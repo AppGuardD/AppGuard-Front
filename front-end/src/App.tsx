@@ -11,6 +11,7 @@ import Mangrullos from './views/Mangrullos/Mangrullos';
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 const App = () => {
+  return(
     <div className="App">
       <Router>
         {
