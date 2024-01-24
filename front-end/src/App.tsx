@@ -5,13 +5,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import About from "./views/About/About";
 import Home from './views/Home/Home';
 import Detail from './views/Detail/Detail'
-import Detail from './views/Detail/Detail' 
 import NavBar from './components/NavBar/NavBar'
 import Mangrullos from './views/Mangrullos/Mangrullos';
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
-
 const App = () => {
-  return(
+
+  return (
     <div className="App">
       <Router>
         {
