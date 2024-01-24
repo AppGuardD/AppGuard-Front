@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NavBar from '../../components/NavBar/NavBar';
 
 interface LandingProps {
   presentacion: string;
@@ -8,7 +9,8 @@ interface LandingProps {
 
 const Landing: React.FC<LandingProps> = ({presentacion}) => {
   return (
-    <div>
+    <div className='Landing'>
+      
       <h1>Landing Page</h1>
       <p>{presentacion}</p>
       <Link to={`/home`}>
