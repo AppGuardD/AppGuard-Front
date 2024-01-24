@@ -1,18 +1,22 @@
-import type React from "react"; 
-
+import type React from "react"
 
 interface detailComponents {
-    zone: string;
-    dangerousness: number;
-    state: string;
-    image: string;
-    qualification: number;
-    activatedMangrullo: boolean;
-
-    
+  zone: string
+  dangerousness: number
+  state: string
+  image: string
+  qualification: number
+  activatedMangrullo: boolean
 }
 
-const Detail: React.FC<detailComponents> = ({zone, dangerousness,state,image,qualification,activatedMangrullo }) => {
+const Detail: React.FC<detailComponents> = ({
+  zone,
+  dangerousness,
+  state,
+  image,
+  qualification,
+  activatedMangrullo,
+}) => {
   return (
     <div>
       <p>{zone}</p>
@@ -22,7 +26,7 @@ const Detail: React.FC<detailComponents> = ({zone, dangerousness,state,image,qua
       <p>{qualification}</p>
       <p>{activatedMangrullo}</p>
     </div>
-  );
-};
+  )
+}
 
-export default Detail;
+export default Detail
