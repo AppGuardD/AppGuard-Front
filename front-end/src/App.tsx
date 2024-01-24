@@ -7,10 +7,14 @@ import About from "./views/About/About";
 import Home from './views/Home/Home';
 import Detail from './views/Detail/Detail'
 import Mangrullos from './views/Mangrullos/Mangrullos';
+import NavBar from "./components/NavBar/NavBar";
 const App = () => {
 
   return (
     <Router>
+      {
+        (<NavBar />)
+      }
       <Routes>
         <Route path='/' element={<Landing presentacion="Bienvenido" />} />
         <Route path='/donations' element={<DonationsMenu descr="Para donar"  />} />
