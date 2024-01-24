@@ -1,0 +1,120 @@
+.nav {
+  display: grid;
+  height: 80px;
+  grid-template-areas: 
+    "logo"
+    "buttons"
+    "sidebar"
+  ;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  background-color: #E8EDDF;
+  z-index: 20;
+}
+
+.logo{
+  grid-area: logo;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+}
+
+.logo span {
+  font-family: 'proxima-nova';
+  color: #526BA7;
+  margin-left: 30px;
+  font-size: 25pt;
+  font-weight: bold;
+}
+
+
+.divImg{
+  display: flex;
+  height: 80%;
+  justify-content: center;
+}
+
+.img {
+  width: 50%;
+  border-radius: 7px;
+  transition: all 0.2s ease; /* Agregamos una transición suave */
+  object-fit: fill;
+  display: block; /* Elimina cualquier espacio adicional debajo de la imagen */
+}
+
+.searchBar{
+  grid-area: sidebar;
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.navButtons {
+  grid-area: buttons;
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-around;
+  align-items: center; /* Centra verticalmente los elementos */
+}
+
+.button{
+  display: flex;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: auto;
+  height: 20px;
+  padding: 5px;
+  font-size: 10pt;
+  font-family: 'proxima-nova';
+  font-weight: bold;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  color: #8a8a8a;
+  align-items: center;
+  text-align: center;
+  justify-items: center;
+  background-color: transparent;
+  background-position: 0;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  line-height: 1.5;
+  background-image: linear-gradient(to right, transparent 50%, #526BA7
+  50%);
+  background-size: 200% 100%;
+  background-position: -100%;
+  transition: background-position 0.6s;
+  color: #000000;
+  box-shadow: none;
+  border: none;
+
+} 
+
+@media(max-width: 900px) {
+  .nav {
+      grid-template-rows: 55% 20% 20%;
+      grid-template-areas: 
+      /* llamamos a grid-area de cada clase */
+      "logo"
+      "buttons"
+      "sidebar"
+      ;
+  }
+
+}
+
+@media (min-width: 900px) {
+  .nav{
+    grid-template-columns: 30% auto 50%;
+    grid-template-areas: 
+    "logo sidebar buttons"
+    ;
+  }
+}

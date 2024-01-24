@@ -1,20 +1,22 @@
-import React from "react"
-import { createRoot } from "react-dom/client"
-import App from "./App"
-import "./index.css"
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from "react-router-dom";
+import store from './redux/store';
+import axios from 'axios'
 
-const container = document.getElementById("root")
+axios.defaults.baseURL='http://localhost:3001';
+//axios.defaults.baseURL='Aquí irá la url de la DB'
+//IMPORTANTE Comentar localhost y descomentar URL para deploy
 
-if (container) {
-  const root = createRoot(container)
+const rootElement = document.getElementById('root');
 
-  root.render(
-    <React.StrictMode>
+ReactDOM.createRoot(rootElement).render(
+  <Provider store={store}>
+    <BrowserRouter>
       <App />
-    </React.StrictMode>,
-  )
-} else {
-  throw new Error(
-    "Root element with ID 'root' was not found in the document. Ensure there is a corresponding HTML element with the ID 'root' in your HTML file.",
-  )
-}
+    </BrowserRouter>
+  </Provider>
+);
