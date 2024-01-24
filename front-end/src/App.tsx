@@ -7,7 +7,6 @@ import About from "./views/About/About";
 import Home from './views/Home/Home';
 import Detail from './views/Detail/Detail'
 import Mangrullos from './views/Mangrullos/Mangrullos';
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 const App = () => {
 
   return (
