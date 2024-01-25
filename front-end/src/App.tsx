@@ -18,7 +18,8 @@ const App = () => {
           path="/donations"
           element={<DonationsMenu descr="Para donar" />}
         />
-        <Route path="/" element={<Home description="Estas en el Home" />} />
+
+        <Route path="/home" element={<Home description="Estas en el Home" />} />
         <Route
           path="/mangrullos"
           element={
@@ -34,6 +35,7 @@ const App = () => {
           path="mangrullos/detail"
           element={
             <Detail
+              name= "La soñada"
               zone="2"
               dangerousness={1 - 3}
               state="activado"
