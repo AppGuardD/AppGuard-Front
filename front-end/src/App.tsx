@@ -8,6 +8,8 @@ import Detail from "./views/Detail/Detail"
 import Mangrullos from "./views/Mangrullos/Mangrullos"
 import NavBar from "./components/NavBar/NavBar"
 import Events from "./views/Events/Events"
+import Login from "./views/Login/Login"
+
 const App = () => {
   return (
     <Router>
@@ -18,7 +20,6 @@ const App = () => {
           path="/donations"
           element={<DonationsMenu descr="Para donar" />}
         />
-
         <Route path="/home" element={<Home description="Estas en el Home" />} />
         <Route
           path="/mangrullos"
@@ -35,7 +36,7 @@ const App = () => {
           path="mangrullos/detail"
           element={
             <Detail
-              name= "La soñada"
+              name="La soñada"
               zone="2"
               dangerousness={1 - 3}
               state="activado"
@@ -44,7 +45,7 @@ const App = () => {
               activatedMangrullo={false}
             />
           }
-        />{" "}
+        />
         Esto renderiza adentro de la Card Mangrullo
         <Route
           path="/about"
@@ -70,6 +71,7 @@ const App = () => {
             />
           }
         />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   )

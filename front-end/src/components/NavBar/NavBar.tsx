@@ -16,21 +16,29 @@ export default function NavBar() {
             INICIO
           </button>
         </Link>
-        <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
-          DONACIONES
-        </button>
-        <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
-          MANGRULLOS
-        </button>
-        <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
-          QUIENES SOMOS
-        </button>
-        <button
-          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
-          onClick={handleLogIn}
-        >
-          INICIAR SESION
-        </button>
+        <Link to={"/donations"}>
+          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
+            DONACIONES
+          </button>
+        </Link>
+        <Link to={"/mangrullos"}>
+          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
+            MANGRULLOS
+          </button>
+        </Link>
+        <Link to={"/about"}>
+          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
+            QUIENES SOMOS
+          </button>
+        </Link>
+        <Link to={"/login"}>
+          <button
+            className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
+            onClick={handleLogIn}
+          >
+            INICIAR SESION
+          </button>
+        </Link>
       </div>
     </nav>
   )
