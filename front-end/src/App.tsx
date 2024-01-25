@@ -13,7 +13,7 @@ const App = () => {
     <Router>
       {<NavBar />}
       <Routes>
-        <Route path="/" element={<Landing presentacion="Bienvenido" />} />
+        <Route path="/" element={<Landing />} />
         <Route
           path="/donations"
           element={<DonationsMenu descr="Para donar" />}
@@ -50,18 +50,24 @@ const App = () => {
             <About description="Aca va la descripción de quienes somos" />
           }
         />
-         <Route path='/event' element={<Events events={[
-      {
-        activityName: "Nombre del Evento",
-        description: "Descripción del Evento",
-        qualification: 4,
-        price: 20,
-        state: "Pago",
-        Active: true,
-        type: "Deportivo"
-      },
-      
-    ]} />} />
+        <Route
+          path="/event"
+          element={
+            <Events
+              events={[
+                {
+                  activityName: "Nombre del Evento",
+                  description: "Descripción del Evento",
+                  qualification: 4,
+                  price: 20,
+                  state: "Pago",
+                  Active: true,
+                  type: "Deportivo",
+                },
+              ]}
+            />
+          }
+        />
       </Routes>
     </Router>
   )
