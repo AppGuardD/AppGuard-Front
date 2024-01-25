@@ -1,28 +1,25 @@
-
-import type React from "react";
-import { Link } from "react-router-dom";
+import type React from "react"
+import { Link } from "react-router-dom"
 import Card from "../../components/Card/Card"
 
-
 interface MangrullosComponents {
-  name: string;
-  zone: number;
-  description: string;
-  image: string;
+  name: string
+  zone: number
+  description: string
+  image: string
 }
 
 const Mangrullos: React.FC<MangrullosComponents> = ({
-
   name,
   zone,
   description,
-  image,
+  // image,
 }) => {
   return (
     <div>
-        <Link to={`/home`}>
-          <button> Ir atras </button>
-        </Link>
+      <Link to={`/home`}>
+        <button> Ir atras </button>
+      </Link>
       <Card>
         <p>Name: {name}</p>
         <p>Zone: {zone}</p>
@@ -35,8 +32,6 @@ const Mangrullos: React.FC<MangrullosComponents> = ({
         </Link>
       </Card>
     </div>
-    );
-  };
-export default Mangrullos;
-
-      
+  )
+}
+export default Mangrullos
