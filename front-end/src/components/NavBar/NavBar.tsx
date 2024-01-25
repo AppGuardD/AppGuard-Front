@@ -16,19 +16,24 @@ export default function NavBar() {
             INICIO
           </button>
         </Link>
+        <Link to={"/home"}>
+          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
+            SERVICIOS
+          </button>
+        </Link>
         <Link to={"/donations"}>
           <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
             DONACIONES
           </button>
         </Link>
-        <Link to={"/mangrullos"}>
-          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
-            MANGRULLOS
-          </button>
-        </Link>
         <Link to={"/about"}>
           <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
             QUIENES SOMOS
+          </button>
+        </Link>
+        <Link to={"/admin"}>
+          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
+            PANEL DE CONTROL
           </button>
         </Link>
         <Link to={"/login"}>
