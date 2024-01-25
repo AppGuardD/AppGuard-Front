@@ -1,20 +1,19 @@
 .nav {
   display: grid;
   height: 80px;
-  grid-template-areas: 
+  grid-template-areas:
     "logo"
     "buttons"
-    "sidebar"
-  ;
+    "sidebar";
   align-items: center;
   gap: 10px;
   position: sticky;
   top: 0;
-  background-color: #E8EDDF;
+  background-color: #e8eddf;
   z-index: 20;
 }
 
-.logo{
+.logo {
   grid-area: logo;
   display: flex;
   flex-wrap: nowrap;
@@ -25,15 +24,14 @@
 }
 
 .logo span {
-  font-family: 'proxima-nova';
-  color: #526BA7;
+  font-family: "proxima-nova";
+  color: #526ba7;
   margin-left: 30px;
   font-size: 25pt;
   font-weight: bold;
 }
 
-
-.divImg{
+.divImg {
   display: flex;
   height: 80%;
   justify-content: center;
@@ -47,7 +45,7 @@
   display: block; /* Elimina cualquier espacio adicional debajo de la imagen */
 }
 
-.searchBar{
+.searchBar {
   grid-area: sidebar;
   text-align: center;
   align-items: center;
@@ -57,12 +55,12 @@
 .navButtons {
   grid-area: buttons;
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   justify-content: space-around;
   align-items: center; /* Centra verticalmente los elementos */
 }
 
-.button{
+.button {
   display: flex;
   border: none;
   outline: none;
@@ -71,7 +69,7 @@
   height: 20px;
   padding: 5px;
   font-size: 10pt;
-  font-family: 'proxima-nova';
+  font-family: "proxima-nova";
   font-weight: bold;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -86,35 +84,29 @@
 .button:hover {
   transform: scale(1.1);
   line-height: 1.5;
-  background-image: linear-gradient(to right, transparent 50%, #526BA7
-  50%);
+  background-image: linear-gradient(to right, transparent 50%, #526ba7 50%);
   background-size: 200% 100%;
   background-position: -100%;
   transition: background-position 0.6s;
   color: #000000;
   box-shadow: none;
   border: none;
+}
 
-} 
-
-@media(max-width: 900px) {
+@media (max-width: 900px) {
   .nav {
-      grid-template-rows: 55% 20% 20%;
-      grid-template-areas: 
+    grid-template-rows: 55% 20% 20%;
+    grid-template-areas: 
       /* llamamos a grid-area de cada clase */
       "logo"
       "buttons"
-      "sidebar"
-      ;
+      "sidebar";
   }
-
 }
 
 @media (min-width: 900px) {
-  .nav{
+  .nav {
     grid-template-columns: 30% auto 50%;
-    grid-template-areas: 
-    "logo sidebar buttons"
-    ;
+    grid-template-areas: "logo sidebar buttons";
   }
 }
