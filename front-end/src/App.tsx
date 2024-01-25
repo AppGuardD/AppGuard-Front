@@ -9,6 +9,7 @@ import Mangrullos from "./views/Mangrullos/Mangrullos"
 import NavBar from "./components/NavBar/NavBar"
 import Events from "./views/Events/Events"
 import Login from "./views/Login/Login"
+import Admin from "./views/Admin/Admin"
 
 const App = () => {
   return (
@@ -53,6 +54,7 @@ const App = () => {
             <About description="Aca va la descripción de quienes somos" />
           }
         />
+        <Route path="/admin" element={<Admin />} />
         <Route
           path="/event"
           element={
