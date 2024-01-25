@@ -1,9 +1,8 @@
-import type React from "react"; // CONSULTAR ESTO.
-import { Link } from "react-router-dom";
-
+import type React from "react" // CONSULTAR ESTO.
+import { Link } from "react-router-dom"
 
 interface AboutUs {
-    description: string;
+  description: string
 }
 
 const About: React.FC<AboutUs> = ({ description }) => {
@@ -14,8 +13,7 @@ const About: React.FC<AboutUs> = ({ description }) => {
         <button> Ir atras </button>
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default About;
-
+export default About

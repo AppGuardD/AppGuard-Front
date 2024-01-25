@@ -6,15 +6,19 @@ import About from "./views/About/About"
 import Home from "./views/Home/Home"
 import Detail from "./views/Detail/Detail"
 import Mangrullos from "./views/Mangrullos/Mangrullos"
+import NavBar from "./components/NavBar/NavBar"
+import Events from "./views/Events/Events"
 const App = () => {
   return (
     <Router>
+      {<NavBar />}
       <Routes>
-        <Route path="/" element={<Landing presentacion="Bienvenido" />} />
+        <Route path="/" element={<Landing />} />
         <Route
           path="/donations"
           element={<DonationsMenu descr="Para donar" />}
         />
+
         <Route path="/home" element={<Home description="Estas en el Home" />} />
         <Route
           path="/mangrullos"
@@ -46,6 +50,24 @@ const App = () => {
           path="/about"
           element={
             <About description="Aca va la descripción de quienes somos" />
+          }
+        />
+        <Route
+          path="/event"
+          element={
+            <Events
+              events={[
+                {
+                  activityName: "Nombre del Evento",
+                  description: "Descripción del Evento",
+                  qualification: 4,
+                  price: 20,
+                  state: "Pago",
+                  Active: true,
+                  type: "Deportivo",
+                },
+              ]}
+            />
           }
         />
       </Routes>

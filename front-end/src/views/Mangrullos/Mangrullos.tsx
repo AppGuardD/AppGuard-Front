@@ -1,3 +1,4 @@
+
 import type React from "react";
 import { Link } from "react-router-dom";
 import Card from "../../components/Card/Card"
@@ -11,6 +12,7 @@ interface MangrullosComponents {
 }
 
 const Mangrullos: React.FC<MangrullosComponents> = ({
+
   name,
   zone,
   description,
@@ -35,6 +37,6 @@ const Mangrullos: React.FC<MangrullosComponents> = ({
     </div>
     );
   };
-
 export default Mangrullos;
 
+      
