@@ -1,22 +1,22 @@
-import rightArrow from "../../assets/right-arrow.svg"
-
 import type React from "react"
 import { Link } from "react-router-dom"
+import rightArrow from "../../assets/right-arrow.svg"
+import CarouselDemo from "@/components/CarouselDemo/CarouselDemo"
+import Advices from "@/components/Advices/Advices"
 
-interface homeComponents {
-  description: string
-}
-
-const Home: React.FC<homeComponents> = ({ description }) => {
+const Home: React.FC = () => {
   return (
-    <div>
-      <p>{description}</p>
+    <div className="flex flex-col items-center">
+      <p className="text-4xl mb-4">Mangrullos</p>
+      <CarouselDemo />
       <Link to={`/mangrullos`}>
-        <button className="flex text-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-transparent hover:bg-accent font-semibold py-2 px-4 border rounded">
-          Ver mangrullos
+        <button className="my-6 flex text-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-transparent hover:bg-accent font-semibold py-2 px-4 border rounded">
+          Ver mas!
           <img className="pl-4" src={rightArrow} alt="" />
         </button>
       </Link>
+      <p className="text-4xl my-4">Consejos</p>
+      <Advices />
     </div>
   )
 }

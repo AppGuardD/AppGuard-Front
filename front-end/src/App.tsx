@@ -21,7 +21,7 @@ const App = () => {
           path="/donations"
           element={<DonationsMenu descr="Para donar" />}
         />
-        <Route path="/home" element={<Home description="Estas en el Home" />} />
+        <Route path="/home" element={<Home />} />
         <Route
           path="/mangrullos"
           element={

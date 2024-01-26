@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import logo from "../../assets/logo-appguard.svg"
 
-export default function NavBar() {
+const NavBar: React.FC = () => {
   const handleLogIn = () => {}
 
   return (
@@ -31,11 +31,6 @@ export default function NavBar() {
             QUIENES SOMOS
           </button>
         </Link>
-        <Link to={"/admin"}>
-          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
-            PANEL DE CONTROL
-          </button>
-        </Link>
         <Link to={"/login"}>
           <button
             className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
@@ -44,7 +39,14 @@ export default function NavBar() {
             INICIAR SESION
           </button>
         </Link>
+        <Link to={"/admin"}>
+          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
+            ADMIN
+          </button>
+        </Link>
       </div>
     </nav>
   )
 }
+
+export default NavBar
