@@ -9,13 +9,13 @@ interface MangrullosComponents {
   image: string
 }
 
-const Mangrullos: React.FC<MangrullosComponents> = () => {
+const Mangrullos: React.FC<MangrullosComponents> = ({ name, zone, description, image }) => {
   return (
     <div>
       <Link to={`/home`}>
         <button> Ir atras </button>
       </Link>
-      <Cards />
+      <Cards name={name} zone={zone} description={description} image={image} /> 
     </div>
   )
 }
