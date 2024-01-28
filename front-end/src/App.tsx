@@ -71,10 +71,10 @@ const App = () => {
                   state: "Pago",
                   Active: true,
                   type: "Deportivo",
-                },                        
+                },
               ]}
-              />
-            }
+            />
+          }
         />
         <Route
           path="/about"

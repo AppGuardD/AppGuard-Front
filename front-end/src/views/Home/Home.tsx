@@ -1,6 +1,6 @@
 import type React from "react"
-import { Link } from "react-router-dom"
 import rightArrow from "../../assets/right-arrow.svg"
+import { Link } from "react-router-dom"
 import CarouselDemo from "@/components/CarouselDemo/CarouselDemo"
 import Advices from "@/components/Advices/Advices"
 
