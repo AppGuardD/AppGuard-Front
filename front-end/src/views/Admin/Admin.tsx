@@ -1,11 +1,17 @@
-import type React from "react"
+import React from "react";
+import SideBar from "@/components/SideBar/SideBar";
 
 const Admin: React.FC = () => {
+  const handleSidebarClick = () => {
+    // Lógica que quieres ejecutar cuando se hace clic en la barra lateral
+    console.log("Sidebar Clicked");
+  };
+
   return (
     <div>
-      <p>este es el panel de los admins</p>
+      <SideBar />
     </div>
-  )
-}
+  );
+};
 
-export default Admin
+export default Admin;
