@@ -2,7 +2,7 @@ import { combineReducers } from "@reduxjs/toolkit"
 import mangrullosReducer from "./mangrullosReducer"
 
 const reducer = combineReducers({
-  mangrullos: mangrullosReducer,
+  mangrullosReducer: mangrullosReducer,
 })
 
 export default reducer

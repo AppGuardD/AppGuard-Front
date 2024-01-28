@@ -5,14 +5,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Link } from "react-router-dom";
+} from "@/components/ui/card"
+import { Link } from "react-router-dom"
 
 interface CardsProps {
-  name: string;
-  zone: number;
-  description: string;
-  image: string;
+  name: string
+  zone: number
+  description: string
+  image: string
 }
 
 const Cards: React.FC<CardsProps> = ({ name, zone, description, image }) => {
@@ -23,7 +23,7 @@ const Cards: React.FC<CardsProps> = ({ name, zone, description, image }) => {
           <CardTitle>{name}</CardTitle>
           <CardDescription>{`Zona ${zone}`}</CardDescription>
         </CardHeader>
-        <CardContent>      
+        <CardContent>
           <p>imagen mangrullo</p>
         </CardContent>
         <CardFooter>
@@ -33,8 +33,7 @@ const Cards: React.FC<CardsProps> = ({ name, zone, description, image }) => {
         </CardFooter>
       </Card>
     </div>
-  );
-};
+  )
+}
 
-export default Cards;
-
+export default Cards

@@ -5,7 +5,7 @@ import rightArrow from "../../assets/right-arrow.svg"
 
 const Landing: React.FC = () => {
   return (
-    <div className="flex p-16 ">
+    <div className="flex p-16">
       <div className="w-1/2 h-12 p-16">
         <p className="text-5xl">
           El mejor website para guardavidas y aficionados a la naturaleza.

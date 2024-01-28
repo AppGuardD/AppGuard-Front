@@ -8,11 +8,14 @@ import {
 } from "@/components/ui/carousel"
 import { cleanMangrullos } from "@/redux/action-creators/mangrullos/cleanMangrullos"
 import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
+import { Mangrullo } from "@/redux/actions/mangrullosActions"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { useEffect } from "react"
 
 const CarouselDemo: React.FC = () => {
-  const mangrullos = useAppSelector(state => state.mangrullos)
+  const mangrullos: Mangrullo[] = useAppSelector(
+    state => state.mangrullosReducer.mangrullos,
+  )
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -32,7 +35,7 @@ const CarouselDemo: React.FC = () => {
   return (
     <Carousel className="w-full max-w-xl">
       <CarouselContent>
-        {mangrullos.map(mangrullo => (
+        {mangrullos?.map(mangrullo => (
           <CarouselItem key={mangrullo.id}>
             <Card className="rounded">
               <CardContent className="grid place-items-center aspect-video items-center justify-center p-0">
