@@ -12,7 +12,7 @@ import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { useEffect } from "react"
 
-const CarouselDemo: React.FC = () => {
+const CarouselHome: React.FC = () => {
   const mangrullos: Mangrullo[] = useAppSelector(
     state => state.mangrullosReducer.mangrullos,
   )
@@ -61,4 +61,4 @@ const CarouselDemo: React.FC = () => {
   )
 }
 
-export default CarouselDemo
+export default CarouselHome

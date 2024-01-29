@@ -15,7 +15,9 @@ interface CardsProps {
   image: string
 }
 
-const Cards: React.FC<CardsProps> = ({ name, zone, description, image }) => {
+const Cards: React.FC<CardsProps> = ({ name, zone }) => {
+  const id = 1
+
   return (
     <Card className="rounded size-96">
       <CardHeader>
@@ -26,7 +28,7 @@ const Cards: React.FC<CardsProps> = ({ name, zone, description, image }) => {
         <p>imagen mangrullo</p>
       </CardContent>
       <CardFooter>
-        <Link to="/mangrullos/detail">
+        <Link to={`/mangrullos/detail/${id}`}>
           <button> Conocer más...</button>
         </Link>
       </CardFooter>
