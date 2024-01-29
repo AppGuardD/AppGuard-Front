@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/carousel"
 import { cleanMangrullos } from "@/redux/action-creators/mangrullos/cleanMangrullos"
 import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
-import { Mangrullo } from "@/redux/actions/mangrullosActions"
+import { Mangrullo } from "@/redux/actions/mangrullos/mangrullosActions"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { useEffect } from "react"
 

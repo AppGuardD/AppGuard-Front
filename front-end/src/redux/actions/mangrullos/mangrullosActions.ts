@@ -1,4 +1,4 @@
-import type { ActionType } from "../action-types/mangrullosTypes"
+import type { ActionType } from "../../action-types/mangrullosTypes"
 
 export interface Mangrullo {
   id: number

@@ -1,32 +1,33 @@
-import type React from "react"
-import { Link } from "react-router-dom"
-import Events from "../Events/Events"
+import type React from "react";
+import { Link } from "react-router-dom";
+// import Events from "../Events/Events";
+import { useEffect } from "react";
+import { useAppDispatch } from "@/redux/hooks";
+import { getEvents } from "@/redux/action-creators/events/getEvents";
 
-// Define la estructura de un objeto que representa una actividad.
+
 interface Activity {
-  activityName: string
-  description: string
-  qualification: number
-  price: number
-  state: string
-  Active: boolean
-  type: string
+  activityName: string;
+  description: string;
+  qualification: number;
+  price: number;
+  state: string;
+  Active: boolean;
+  type: string;
 }
 
-// Define la estructura de las props del componente Detail.
-interface detailComponents {
-  name: string
-  zone: string
-  dangerousness: number
-  state: string
-  image: string
-  qualification: number
-  activatedMangrullo: boolean
-  events: Activity[] // Propiedad que contiene un array de actividades.
+interface DetailProps {
+  name: string;
+  zone: string;
+  dangerousness: number;
+  state: string;
+  image: string;
+  qualification: number;
+  activatedMangrullo: boolean;
+  events: Activity[];
 }
 
-// Declara el componente Detail como un componente funcional de React.
-const Detail: React.FC<detailComponents> = ({
+const Detail: React.FC<DetailProps> = ({
   name,
   zone,
   dangerousness,
@@ -36,7 +37,11 @@ const Detail: React.FC<detailComponents> = ({
   activatedMangrullo,
   events,
 }) => {
-  // Devuelve la representación del componente.
+  const dispatch = useAppDispatch()
+  useEffect (()=>{
+    dispatch(getEvents())
+  },[dispatch])
+
   return (
     <div>
       {/* Enlace para volver a la vista de mangrullos */}
@@ -53,11 +58,32 @@ const Detail: React.FC<detailComponents> = ({
       <p>Calificación: {qualification}</p>
       <p>Activado: {activatedMangrullo ? "Sí" : "No"}</p>
 
-      {/* Componente Events para mostrar información relacionada con las actividades */}
-      <Events events={events} />
+      {/* Mapeo de eventos */}
+      <div>
+        <h2>Eventos Relacionados</h2>
+         {events.map((event, index) => (
+          <div key={index}>
+            <h3>{event.activityName}</h3>
+            <p>Descripción: {event.description}</p>
+            <p>Calificacion: {event.qualification}</p>
+            <p>Precio: ${event.price}</p>
+            <p>Estado: {event.state}</p>
+            <p>Tipo: {event.type}</p>
+            <p>Activo: {event.Active}</p>
+            <hr />
+          </div>
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-// Exporta el componente Detail para que pueda ser utilizado en otros archivos.
-export default Detail
+export default Detail;
+
+  // activityName: string;
+  // description: string;
+  // qualification: number;
+  // price: number;
+  // state: string;
+  // Active: boolean;
+  // type: string;

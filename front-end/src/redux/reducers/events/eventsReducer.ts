@@ -1,23 +1,23 @@
-import { ActionType } from "../action-types/mangrullosTypes"
-import type { Mangrullo, Action } from "../actions/mangrullosActions"
+import { EventType } from "../../action-types/eventsTypes"
+import type { Events, Action } from "../../actions/events/eventsActions"
 
 interface InitialState {
   totalPages: number
-  mangrullos: Mangrullo[]
+  events: Events[]
 }
 
 const initialState: InitialState = {
   totalPages: 0,
-  mangrullos: [],
+  events: [],
 }
 
-const mangrullosReducer = (state = initialState, action: Action) => {
+const eventsReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case ActionType.GET:
-      return { ...state, mangrullos: [...state.mangrullos, ...action.payload] }
+    case EventType.GET:
+      return { ...state, events: [...state.events, ...action.payload] }
 
-    case ActionType.CLEAN:
-      return { ...state, mangrullos: action.payload }
+    case EventType.CLEAN:
+      return { ...state, events: action.payload }
 
     // case ActionType.GET_ID:
     //   return state + action.payload
@@ -36,4 +36,4 @@ const mangrullosReducer = (state = initialState, action: Action) => {
   }
 }
 
-export default mangrullosReducer
+export default eventsReducer
