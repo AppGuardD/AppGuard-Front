@@ -10,6 +10,7 @@ import NavBar from "./components/NavBar/NavBar"
 import Events from "./views/Events/Events"
 import Login from "./views/Login/Login"
 import Admin from "./views/Admin/Admin"
+import CreateMangrullo from "./views/Form/createMangrullosForm"
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           element={<DonationsMenu descr="Para donar" />}
         />
         <Route path="/home" element={<Home />} />
+        <Route path="/create" element={<CreateMangrullo />} />
         <Route
           path="/mangrullos"
           element={
