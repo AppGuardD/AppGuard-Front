@@ -1,89 +1,56 @@
-import type React from "react";
-import { Link } from "react-router-dom";
-// import Events from "../Events/Events";
-import { useEffect } from "react";
-import { useAppDispatch } from "@/redux/hooks";
-import { getEvents } from "@/redux/action-creators/events/getEvents";
+import type React from "react"
+import type { DetailType } from "@/redux/actions/mangrullos/mangrullosActions"
+import Activities from "@/components/Activities/Activities"
+import { Link, useParams } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "@/redux/hooks"
+import { getIdMangrullos } from "@/redux/action-creators/mangrullos/getIdMangrullos"
+import { useEffect } from "react"
 
-
-interface Activity {
-  activityName: string;
-  description: string;
-  qualification: number;
-  price: number;
-  state: string;
-  Active: boolean;
-  type: string;
-}
-
-interface DetailProps {
-  name: string;
-  zone: string;
-  dangerousness: number;
-  state: string;
-  image: string;
-  qualification: number;
-  activatedMangrullo: boolean;
-  events: Activity[];
-}
-
-const Detail: React.FC<DetailProps> = ({
-  name,
-  zone,
-  dangerousness,
-  state,
-  image,
-  qualification,
-  activatedMangrullo,
-  events,
-}) => {
+const Detail: React.FC = () => {
+  const detail: DetailType = useAppSelector(
+    state => state.mangrullosReducer.detail,
+  )
   const dispatch = useAppDispatch()
-  useEffect (()=>{
-    dispatch(getEvents())
-  },[dispatch])
+
+  const { id } = useParams<{ id: string }>()
+
+  useEffect(() => {
+    try {
+      dispatch(getIdMangrullos(Number(id)))
+    } catch (error) {
+      console.error("Error fetching data:", error)
+    }
+  }, [dispatch, id])
 
   return (
     <div>
-      {/* Enlace para volver a la vista de mangrullos */}
       <Link to={`/mangrullos`}>
-        <button> Ir atrás </button>
+        <button className="flex text-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-transparent hover:bg-accent font-semibold py-2 px-4 border rounded">
+          Ir atrás
+        </button>
       </Link>
 
-      {/* Información detallada del mangrullo */}
-      <h1>{name}</h1>
-      <p>Zona: {zone}</p>
-      <p>Peligrosidad: {dangerousness}</p>
-      <p>Estado: {state}</p>
-      <p>Imagen: {image}</p>
-      <p>Calificación: {qualification}</p>
-      <p>Activado: {activatedMangrullo ? "Sí" : "No"}</p>
-
-      {/* Mapeo de eventos */}
-      <div>
-        <h2>Eventos Relacionados</h2>
-         {events.map((event, index) => (
-          <div key={index}>
-            <h3>{event.activityName}</h3>
-            <p>Descripción: {event.description}</p>
-            <p>Calificacion: {event.qualification}</p>
-            <p>Precio: ${event.price}</p>
-            <p>Estado: {event.state}</p>
-            <p>Tipo: {event.type}</p>
-            <p>Activo: {event.Active}</p>
-            <hr />
-          </div>
-        ))}
-      </div>
+      {detail ? (
+        <div>
+          <p className="text-2xl bold capitalize">{detail.zone}</p>
+          <p>Peligrosidad: {detail.dangerousness}</p>
+          <p>Calificación: {detail.qualification}</p>
+          <p>Estado: {detail.state}</p>
+          <img className="size-44" src={detail.image} alt="Imagen de playa" />
+        </div>
+      ) : null}
+      {detail.activity && <Activities activity={detail.activity} />}
     </div>
-  );
-};
+  )
+}
 
-export default Detail;
+export default Detail
 
-  // activityName: string;
-  // description: string;
-  // qualification: number;
-  // price: number;
-  // state: string;
-  // Active: boolean;
-  // type: string;
+// activityName: string;
+// description: string;
+// qualification: number;
+// price: number;
+// state: string;
+// Active: boolean;
+// type: string;
+

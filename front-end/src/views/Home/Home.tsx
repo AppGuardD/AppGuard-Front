@@ -1,14 +1,14 @@
 import type React from "react"
 import rightArrow from "../../assets/right-arrow.svg"
 import { Link } from "react-router-dom"
-import CarouselDemo from "@/components/CarouselDemo/CarouselDemo"
 import Advices from "@/components/Advices/Advices"
+import CarouselHome from "@/components/CarouselHome/CarouselHome"
 
 const Home: React.FC = () => {
   return (
     <div className="flex flex-col items-center">
       <p className="text-4xl mb-4">Mangrullos</p>
-      <CarouselDemo />
+      <CarouselHome />
       <Link to={`/mangrullos`}>
         <button className="my-6 flex text-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-transparent hover:bg-accent font-semibold py-2 px-4 border rounded">
           Ver mas!
@@ -16,6 +16,9 @@ const Home: React.FC = () => {
         </button>
       </Link>
       <p className="text-4xl my-4">Consejos</p>
+      <Advices />
+      <Advices />
+      <Advices />
       <Advices />
     </div>
   )
