@@ -7,7 +7,6 @@ import Home from "./views/Home/Home"
 import Detail from "./views/Detail/Detail"
 import Mangrullos from "./views/Mangrullos/Mangrullos"
 import NavBar from "./components/NavBar/NavBar"
-import Events from "./views/Events/Events"
 import Login from "./views/Login/Login"
 import Admin from "./views/Admin/Admin"
 import CreateMangrullo from "./views/Form/createMangrullosForm"
@@ -35,74 +34,9 @@ const App = () => {
             />
           }
         />
-        <Route
-          path="mangrullos/detail"
-          element={
-            <Detail
-              name="Nombre del Mangrullo"
-              zone="Playa 1"
-              dangerousness={3}
-              state="Activado"
-              image="ruta_de_la_imagen.jpg"
-              qualification={4}
-              activatedMangrullo={true}
-              events={[
-                {
-                  activityName: "Nombre del Evento",
-                  description: "Descripción del Evento",
-                  qualification: 4,
-                  price: 20,
-                  state: "Pago",
-                  Active: true,
-                  type: "Deportivo",
-                },
-                {
-                  activityName: "Nombre del Evento 2",
-                  description: "Descripción del Evento 2",
-                  qualification: 4,
-                  price: 20,
-                  state: "No pago",
-                  Active: false,
-                  type: "Deportivo",
-                },
-                {
-                  activityName: "Nombre del Evento 3 ",
-                  description: "Descripción del Evento 3",
-                  qualification: 4,
-                  price: 20,
-                  state: "Pago",
-                  Active: true,
-                  type: "Deportivo",
-                },
-              ]}
-            />
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <About description="Aca va la descripción de quienes somos" />
-          }
-        />
+        <Route path="mangrullos/detail/:id" element={<Detail />} />
+        <Route path="/about" element={<About />} />
         <Route path="/admin" element={<Admin />} />
-        <Route
-          path="/event"
-          element={
-            <Events
-              events={[
-                {
-                  activityName: "Nombre del Evento",
-                  description: "Descripción del Evento",
-                  qualification: 4,
-                  price: 20,
-                  state: "Pago",
-                  Active: true,
-                  type: "Deportivo",
-                },
-              ]}
-            />
-          }
-        />
         <Route path="/login" element={<Login />} />
       </Routes>
     </Router>

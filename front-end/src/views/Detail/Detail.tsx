@@ -1,60 +1,44 @@
 import type React from "react"
-import { Link } from "react-router-dom"
-import Events from "../Events/Events"
+import type { DetailType } from "@/redux/actions/mangrullosActions"
+import Activities from "@/components/Activities/Activities"
+import { Link, useParams } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "@/redux/hooks"
+import { getIdMangrullos } from "@/redux/action-creators/mangrullos/getIdMangrullos"
+import { useEffect } from "react"
 
-// Define la estructura de un objeto que representa una actividad.
-interface Activity {
-  activityName: string
-  description: string
-  qualification: number
-  price: number
-  state: string
-  Active: boolean
-  type: string
-}
+const Detail: React.FC = () => {
+  const detail: DetailType = useAppSelector(
+    state => state.mangrullosReducer.detail,
+  )
+  const dispatch = useAppDispatch()
 
-// Define la estructura de las props del componente Detail.
-interface detailComponents {
-  name: string
-  zone: string
-  dangerousness: number
-  state: string
-  image: string
-  qualification: number
-  activatedMangrullo: boolean
-  events: Activity[] // Propiedad que contiene un array de actividades.
-}
+  const { id } = useParams<{ id: string }>()
 
-// Declara el componente Detail como un componente funcional de React.
-const Detail: React.FC<detailComponents> = ({
-  name,
-  zone,
-  dangerousness,
-  state,
-  image,
-  qualification,
-  activatedMangrullo,
-  events,
-}) => {
-  // Devuelve la representación del componente.
+  useEffect(() => {
+    try {
+      dispatch(getIdMangrullos(Number(id)))
+    } catch (error) {
+      console.error("Error fetching data:", error)
+    }
+  }, [dispatch, id])
+
   return (
     <div>
-      {/* Enlace para volver a la vista de mangrullos */}
       <Link to={`/mangrullos`}>
-        <button> Ir atrás </button>
+        <button className="flex text-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-transparent hover:bg-accent font-semibold py-2 px-4 border rounded">
+          Ir atrás
+        </button>
       </Link>
-
-      {/* Información detallada del mangrullo */}
-      <h1>{name}</h1>
-      <p>Zona: {zone}</p>
-      <p>Peligrosidad: {dangerousness}</p>
-      <p>Estado: {state}</p>
-      <p>Imagen: {image}</p>
-      <p>Calificación: {qualification}</p>
-      <p>Activado: {activatedMangrullo ? "Sí" : "No"}</p>
-
-      {/* Componente Events para mostrar información relacionada con las actividades */}
-      <Events events={events} />
+      {detail ? (
+        <div>
+          <p className="text-2xl bold capitalize">{detail.zone}</p>
+          <p>Peligrosidad: {detail.dangerousness}</p>
+          <p>Calificación: {detail.qualification}</p>
+          <p>Estado: {detail.state}</p>
+          <img className="size-44" src={detail.image} alt="Imagen de playa" />
+        </div>
+      ) : null}
+      {detail.activity && <Activities activity={detail.activity} />}
     </div>
   )
 }

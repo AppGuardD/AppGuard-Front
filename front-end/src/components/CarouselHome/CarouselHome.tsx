@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import {
   Carousel,
   CarouselContent,
@@ -6,13 +6,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import type { Mangrullo } from "@/redux/actions/mangrullosActions"
 import { cleanMangrullos } from "@/redux/action-creators/mangrullos/cleanMangrullos"
 import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
-import { Mangrullo } from "@/redux/actions/mangrullosActions"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { useEffect } from "react"
 
-const CarouselDemo: React.FC = () => {
+const CarouselHome: React.FC = () => {
   const mangrullos: Mangrullo[] = useAppSelector(
     state => state.mangrullosReducer.mangrullos,
   )
@@ -33,19 +33,23 @@ const CarouselDemo: React.FC = () => {
   }, [dispatch])
 
   return (
-    <Carousel className="w-full max-w-xl">
+    <Carousel className="max-w-lg" opts={{ loop: true }}>
       <CarouselContent>
         {mangrullos?.map(mangrullo => (
-          <CarouselItem key={mangrullo.id}>
-            <Card className="rounded">
-              <CardContent className="grid place-items-center aspect-video items-center justify-center p-0">
-                <p className="text-4xl font-semibold">{mangrullo.id}</p>
-                <p>Zona: {mangrullo.zone}</p>
-                <img
-                  className="max-w-sm"
-                  src={mangrullo.image}
-                  alt="Imagen Mangrullos"
-                />
+          <CarouselItem className="max-w-max" key={mangrullo.id}>
+            <Card className="max-w-max pt-6 rounded">
+              <CardContent className="max-w-max">
+                <div className="rounded aspect-[4/3] h-lg overflow-hidden">
+                  <img
+                    className="object-cover aspect-[4/3] h-lg"
+                    src={mangrullo.image}
+                    alt="Imagen Mangrullos"
+                  />
+                </div>
+                <div className="pt-6 max-w-max">
+                  <CardTitle>Zona destacada {mangrullo.id}</CardTitle>
+                  <p>{mangrullo.zone}</p>
+                </div>
               </CardContent>
             </Card>
           </CarouselItem>
@@ -57,4 +61,4 @@ const CarouselDemo: React.FC = () => {
   )
 }
 
-export default CarouselDemo
+export default CarouselHome
