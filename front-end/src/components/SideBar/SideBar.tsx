@@ -1,67 +1,40 @@
-import React from "react";
+import React from 'react';
 
 import {
-  IconButton,
+  Card,
   Typography,
   List,
   ListItem,
   ListItemPrefix,
-  ListItemSuffix,
   Chip,
   Accordion,
   AccordionHeader,
   AccordionBody,
-  Drawer,
-  Card,
 } from "@material-tailwind/react";
 
 import {
+  NewspaperIcon,
   PresentationChartBarIcon,
-  WalletIcon,
   UserCircleIcon,
-  Cog6ToothIcon,
-  InboxIcon,
+  TrashIcon,
+  FolderPlusIcon,
   PowerIcon,
   ArrowPathIcon,
-  FolderPlusIcon,
-  NewspaperIcon,
-  TrashIcon,
+  WalletIcon,
 } from "@heroicons/react/24/solid";
 
-import {
-  ChevronDownIcon,
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-
+import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+ 
 const SideBarAdmin: React.FC = () => {
   const [open, setOpen] = React.useState(0);
-  const [openAlert, setOpenAlert] = React.useState(true);
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
  
   const handleOpen = (value: React.SetStateAction<number>) => {
     setOpen(open === value ? 0 : value);
   };
- 
-  const openDrawer = () => setIsDrawerOpen(true);
-  const closeDrawer = () => setIsDrawerOpen(false);
- 
+  
   return (
-    <>
-      <IconButton variant="text" size="lg" onClick={openDrawer} placeholder={undefined}>
-        {isDrawerOpen ? (
-          <XMarkIcon className="h-8 w-8 stroke-2" />
-        ) : (
-          <Bars3Icon className="h-8 w-8 stroke-2" />
-        )}
-      </IconButton>
-      <Drawer open={isDrawerOpen} onClose={closeDrawer}  placeholder={undefined}>
-        <Card
-          color="transparent"
-          shadow={false}
-          className="h-[calc(100vh-2rem)] w-full p-4"  placeholder={undefined}        >
-
-          <List  placeholder={undefined}>
+    <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5" placeholder={undefined}>
+      <List className="p-0" placeholder={undefined}>
             <Accordion
               open={open === 1}
               icon={<ChevronDownIcon
@@ -183,44 +156,21 @@ const SideBarAdmin: React.FC = () => {
                 </List>
               </AccordionBody>
             </Accordion>
-            <hr className="my-2 border-blue-gray-50" />
-            <ListItem  placeholder={undefined}>
-              <ListItemPrefix  placeholder={undefined}>
-                <InboxIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              Notificaciones
-              <ListItemSuffix  placeholder={undefined}>
-                <Chip
-                  value="14"
-                  size="sm"
-                  variant="ghost"
-                  color="blue-gray"
-                  className="rounded-full"
-                />
-              </ListItemSuffix>
-            </ListItem>
-            <ListItem  placeholder={undefined}>
-              <ListItemPrefix  placeholder={undefined}>
-                <UserCircleIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              Perfil
-            </ListItem>
-            <ListItem  placeholder={undefined}>
-              <ListItemPrefix  placeholder={undefined}>
-                <Cog6ToothIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              Configuración
-            </ListItem>
-            <ListItem  placeholder={undefined}>
-              <ListItemPrefix  placeholder={undefined}>
-                <PowerIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              Log Out
-            </ListItem>
-          </List>
-        </Card>
-      </Drawer>
-    </>
+        <hr className="my-2 border-blue-gray-50" />
+        <ListItem  placeholder={undefined}>
+          <ListItemPrefix  placeholder={undefined}>
+            <UserCircleIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Perfil
+        </ListItem>
+        <ListItem  placeholder={undefined}>
+          <ListItemPrefix  placeholder={undefined}>
+            <PowerIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Log Out
+        </ListItem>
+      </List>
+    </Card>
   );
 }
 
