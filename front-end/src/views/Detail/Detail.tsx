@@ -1,5 +1,5 @@
 import type React from "react"
-import type { DetailType } from "@/redux/actions/mangrullosActions"
+import type { DetailType } from "@/redux/actions/mangrullos/mangrullosActions"
 import Activities from "@/components/Activities/Activities"
 import { Link, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
@@ -29,6 +29,7 @@ const Detail: React.FC = () => {
           Ir atrás
         </button>
       </Link>
+
       {detail ? (
         <div>
           <p className="text-2xl bold capitalize">{detail.zone}</p>
@@ -43,5 +44,13 @@ const Detail: React.FC = () => {
   )
 }
 
-// Exporta el componente Detail para que pueda ser utilizado en otros archivos.
 export default Detail
+
+// activityName: string;
+// description: string;
+// qualification: number;
+// price: number;
+// state: string;
+// Active: boolean;
+// type: string;
+

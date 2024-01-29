@@ -6,3 +6,4 @@ export enum ActionType {
   PUT = "putMangrullos",
   DISABLE = "disableMangrullos",
 }
+

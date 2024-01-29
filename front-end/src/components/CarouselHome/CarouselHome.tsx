@@ -6,7 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import type { Mangrullo } from "@/redux/actions/mangrullosActions"
+import type { Mangrullo } from "@/redux/actions/mangrullos/mangrullosActions"
 import { cleanMangrullos } from "@/redux/action-creators/mangrullos/cleanMangrullos"
 import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"

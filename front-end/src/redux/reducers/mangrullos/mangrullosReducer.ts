@@ -1,9 +1,9 @@
-import { ActionType } from "../action-types/mangrullosTypes"
+import { ActionType } from "@/redux/action-types/mangrullosTypes"
 import type {
+  DetailType,
   Mangrullo,
   Action,
-  DetailType,
-} from "../actions/mangrullosActions"
+} from "@/redux/actions/mangrullos/mangrullosActions"
 
 interface InitialState {
   totalPages: number
