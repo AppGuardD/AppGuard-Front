@@ -9,23 +9,36 @@ export interface Mangrullo {
   qualification: number
 }
 
-export interface Activity {
-  activityName: string
-  description: string
-  qualification: number
-  price: number
-  state: string
-  type: string
+export interface ActivityType {
+  activity?: [
+    {
+      activityName: string
+      description: string
+      qualification: number
+      price: number
+      state: string
+      type: string
+    },
+  ]
 }
 
-export interface Detail {
-  id: number
-  zone: string
-  state: string
-  image: string
-  dangerousness: number
-  qualification: number
-  activity: Activity[]
+export interface DetailType {
+  id?: number
+  zone?: string
+  state?: string
+  image?: string
+  dangerousness?: number
+  qualification?: number
+  activity?: [
+    {
+      activityName: string
+      description: string
+      qualification: number
+      price: number
+      state: string
+      type: string
+    },
+  ]
 }
 
 interface cleanAction {

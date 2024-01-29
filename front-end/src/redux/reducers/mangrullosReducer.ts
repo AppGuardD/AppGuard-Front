@@ -1,16 +1,20 @@
 import { ActionType } from "../action-types/mangrullosTypes"
-import type { Mangrullo, Action, Detail } from "../actions/mangrullosActions"
+import type {
+  Mangrullo,
+  Action,
+  DetailType,
+} from "../actions/mangrullosActions"
 
 interface InitialState {
   totalPages: number
   mangrullos: Mangrullo[]
-  detail: Detail | null | undefined
+  detail: DetailType
 }
 
 const initialState: InitialState = {
   totalPages: 0,
   mangrullos: [],
-  detail: null,
+  detail: {},
 }
 
 const mangrullosReducer = (state = initialState, action: Action) => {

@@ -1,7 +1,7 @@
-import type { Activity } from "@/redux/actions/mangrullosActions"
+import type { ActivityType } from "@/redux/actions/mangrullosActions"
 import { useState } from "react"
 
-const Activities: React.FC<Activity[]> = activities => {
+const Activities: React.FC<ActivityType> = ({ activity }) => {
   const [review, setReview] = useState("")
   const [rating, setRating] = useState(1)
 
@@ -16,13 +16,15 @@ const Activities: React.FC<Activity[]> = activities => {
         <p>[Lista de eventos]</p>
       </h1>
 
-      {/*{activities?.map(activity => (*/}
-      {/*  <div key={activity.activityName}>*/}
-      {/*    <p>Nombre: {activity.activityName}</p>*/}
-      {/*    <p>Tipo: {activity.type}</p>*/}
-      {/*    <hr />*/}
-      {/*  </div>*/}
-      {/*))}*/}
+      {activity?.map(activity => (
+        <div key={activity.activityName}>
+          <p>Nombre: {activity.activityName}</p>
+          <p>Tipo: {activity.type}</p>
+          <p>Tipo: {activity.price}</p>
+          <p>Tipo: {activity.state}</p>
+          <hr />
+        </div>
+      ))}
 
       <div>
         <h2>Deja tu reseña</h2>
