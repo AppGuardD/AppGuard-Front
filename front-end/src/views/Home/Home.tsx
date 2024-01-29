@@ -17,6 +17,9 @@ const Home: React.FC = () => {
       </Link>
       <p className="text-4xl my-4">Consejos</p>
       <Advices />
+      <Advices />
+      <Advices />
+      <Advices />
     </div>
   )
 }

@@ -17,22 +17,20 @@ interface CardsProps {
 
 const Cards: React.FC<CardsProps> = ({ name, zone, description, image }) => {
   return (
-    <div>
-      <Card className="rounded aspect-square max-h-[300px]">
-        <CardHeader>
-          <CardTitle>{name}</CardTitle>
-          <CardDescription>{`Zona ${zone}`}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>imagen mangrullo</p>
-        </CardContent>
-        <CardFooter>
-          <Link to="/mangrullos/detail">
-            <button> Conocer más...</button>
-          </Link>
-        </CardFooter>
-      </Card>
-    </div>
+    <Card className="rounded size-96">
+      <CardHeader>
+        <CardTitle>{name}</CardTitle>
+        <CardDescription>{`Zona ${zone}`}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>imagen mangrullo</p>
+      </CardContent>
+      <CardFooter>
+        <Link to="/mangrullos/detail">
+          <button> Conocer más...</button>
+        </Link>
+      </CardFooter>
+    </Card>
   )
 }
 
