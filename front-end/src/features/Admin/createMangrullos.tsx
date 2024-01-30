@@ -1,11 +1,11 @@
-import React, { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useState } from "react"
+
 import {
   isValidZone,
   isValidDangerousness,
   isValidImage,
   isValidQualification,
-} from "../../components/Validations/Validations"
+} from "./Validations"
 
 interface MangrulloFormData {
   zone: string
@@ -25,8 +25,6 @@ const CreateMangrullo = () => {
 
   const [disabler, setDisabler] = useState(false)
   const [errors, setErrors] = useState<Record<string, string | null>>({})
-
-  const dispatch = useDispatch()
 
   const handleChange = (
     e: React.ChangeEvent<

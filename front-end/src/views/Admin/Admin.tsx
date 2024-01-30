@@ -1,9 +1,10 @@
-import SideBarDemo from "@/components/SideBarDemo/SideBarDemo"
+import TopBar from "@/features/Admin/TopBar"
 
 const Admin: React.FC = () => {
   return (
     <div>
-      <SideBarDemo></SideBarDemo>
+      <TopBar />
+      <p>Este es el admin</p>
     </div>
   )
 }

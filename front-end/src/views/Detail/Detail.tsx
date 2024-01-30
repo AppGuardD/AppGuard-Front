@@ -1,6 +1,6 @@
 import type React from "react"
 import type { DetailType } from "@/redux/actions/mangrullosActions"
-import DetailActividades from "@/components/Actividades/DetailActividades"
+import DetailActividades from "@/features/Actividades/DetailActividades"
 import { Link, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { getIdMangrullos } from "@/redux/action-creators/mangrullos/getIdMangrullos"

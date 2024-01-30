@@ -1,6 +1,6 @@
-import SeccionHomeActividades from "@/components/Actividades/SeccionHomeActividades"
-import Advices from "@/components/Advices/Advices"
-import SeccionHomeMangrullos from "@/components/Mangrullos/SeccionHomeMangrullos"
+import SeccionHomeActividades from "@/features/Actividades/SeccionHomeActividades"
+import Advices from "@/features/Advices/Advices"
+import SeccionHomeMangrullos from "@/features/Mangrullos/SeccionHomeMangrullos"
 import type React from "react"
 
 const Home: React.FC = () => {

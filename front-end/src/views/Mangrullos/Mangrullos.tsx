@@ -1,5 +1,5 @@
 import type React from "react"
-import CardsMangrullos from "@/components/Mangrullos/CardsMangrullos"
+import CardsMangrullos from "@/features/Mangrullos/CardsMangrullos"
 import { Link } from "react-router-dom"
 
 interface MangrullosComponents {

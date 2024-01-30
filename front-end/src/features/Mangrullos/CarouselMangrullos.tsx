@@ -1,18 +1,18 @@
-import { Card, CardContent, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardTitle } from "@/features/ui/card"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/features/ui/carousel"
 import type { Mangrullo } from "@/redux/actions/mangrullosActions"
 import { cleanMangrullos } from "@/redux/action-creators/mangrullos/cleanMangrullos"
 import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { useEffect } from "react"
 
-const CarouselActividades: React.FC = () => {
+const CarouselMangrullos: React.FC = () => {
   const mangrullos: Mangrullo[] = useAppSelector(
     state => state.mangrullosReducer.mangrullos,
   )
@@ -63,4 +63,4 @@ const CarouselActividades: React.FC = () => {
   )
 }
 
-export default CarouselActividades
+export default CarouselMangrullos

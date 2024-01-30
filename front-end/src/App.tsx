@@ -6,10 +6,9 @@ import About from "./views/About/About"
 import Home from "./views/Home/Home"
 import Detail from "./views/Detail/Detail"
 import Mangrullos from "./views/Mangrullos/Mangrullos"
-import NavBar from "./components/NavBar/NavBar"
+import NavBar from "./features/NavBar/NavBar"
 import Login from "./views/Login/Login"
 import Admin from "./views/Admin/Admin"
-import CreateMangrullo from "./views/Form/createMangrullosForm"
 import Cart from "./views/Cart/Cart"
 
 const App = () => {
@@ -19,7 +18,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/create" element={<CreateMangrullo />} />
         <Route
           path="/mangrullos"
           element={
@@ -34,9 +32,9 @@ const App = () => {
         <Route path="mangrullos/detail/:id" element={<Detail />} />
         <Route path="/donations" element={<Donations />} />
         <Route path="/about" element={<About />} />
-        <Route path="/admin" element={<Admin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   )

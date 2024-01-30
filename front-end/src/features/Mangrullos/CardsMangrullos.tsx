@@ -5,7 +5,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/features/ui/card"
 import { Link } from "react-router-dom"
 
 interface CardsProps {
