@@ -1,11 +1,11 @@
-import { Card, CardContent, CardTitle } from "@/features/ui/card"
+import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/features/ui/carousel"
+} from "@/components/ui/carousel"
 import type { Mangrullo } from "@/redux/actions/mangrullosActions"
 import { cleanMangrullos } from "@/redux/action-creators/mangrullos/cleanMangrullos"
 import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"

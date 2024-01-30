@@ -1,5 +1,5 @@
 import type { AdvicesType } from "@/redux/actions/advicesActions"
-import { Card, CardContent, CardHeader, CardTitle } from "@/features/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { cleanAdvices } from "@/redux/action-creators/advices/cleanAdvices"
 import { getAdvices } from "@/redux/action-creators/advices/getAdvices"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"

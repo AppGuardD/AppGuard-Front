@@ -1,10 +1,11 @@
 import TopBar from "@/features/Admin/TopBar"
+import AdminMangrullos from "@/features/Mangrullos/AdminMangrullos"
 
 const Admin: React.FC = () => {
   return (
     <div>
       <TopBar />
-      <p>Este es el admin</p>
+      <AdminMangrullos />
     </div>
   )
 }
