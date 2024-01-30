@@ -6,7 +6,8 @@ import About from "./views/About/About"
 import Home from "./views/Home/Home"
 import Detail from "./views/Detail/Detail"
 import Mangrullos from "./views/Mangrullos/Mangrullos"
-import NavBar from "./features/NavBar/NavBar"
+import NavBar from "./features/Navigation/NavBar"
+import Footer from "./features/Navigation/Footer"
 import Login from "./views/Login/Login"
 import Admin from "./views/Admin/Admin"
 import Cart from "./views/Cart/Cart"
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
+      {<Footer/>}
     </Router>
   )
 }
