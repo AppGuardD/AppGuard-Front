@@ -3,7 +3,7 @@ import type {
   DetailType,
   Mangrullo,
   Action,
-} from "@/redux/actions/mangrullos/mangrullosActions"
+} from "@/redux/actions/mangrullosActions"
 
 interface InitialState {
   totalPages: number

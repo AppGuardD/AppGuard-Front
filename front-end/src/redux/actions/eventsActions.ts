@@ -1,4 +1,4 @@
-import type { EventType } from "../../action-types/eventsTypes"
+import type { EventType } from "../action-types/eventsTypes"
 
 export interface Events {
   activityName: string
@@ -17,8 +17,8 @@ interface cleanAction {
 }
 
 interface getAction {
-  type: EventType.GET;
-  payload: Events[];
+  type: EventType.GET
+  payload: Events[]
 }
 
 interface getIdAction {
@@ -44,3 +44,4 @@ export type Action =
   | postAction
   | putAction
   | disableAction
+

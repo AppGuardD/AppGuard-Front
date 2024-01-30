@@ -1,8 +1,8 @@
 import type React from "react"
 import rightArrow from "../../assets/right-arrow.svg"
 import { Link } from "react-router-dom"
-import Advices from "@/components/Advices/Advices"
 import CarouselHome from "@/components/CarouselHome/CarouselHome"
+import Advices from "@/components/Advices/Advices"
 
 const Home: React.FC = () => {
   return (
@@ -16,9 +16,6 @@ const Home: React.FC = () => {
         </button>
       </Link>
       <p className="text-4xl my-4">Consejos</p>
-      <Advices />
-      <Advices />
-      <Advices />
       <Advices />
     </div>
   )

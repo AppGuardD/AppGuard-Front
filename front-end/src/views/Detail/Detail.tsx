@@ -1,5 +1,5 @@
 import type React from "react"
-import type { DetailType } from "@/redux/actions/mangrullos/mangrullosActions"
+import type { DetailType } from "@/redux/actions/mangrullosActions"
 import Activities from "@/components/Activities/Activities"
 import { Link, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
@@ -45,12 +45,3 @@ const Detail: React.FC = () => {
 }
 
 export default Detail
-
-// activityName: string;
-// description: string;
-// qualification: number;
-// price: number;
-// state: string;
-// Active: boolean;
-// type: string;
-
