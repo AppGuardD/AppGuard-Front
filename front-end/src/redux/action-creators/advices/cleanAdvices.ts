@@ -1,8 +1,8 @@
-import { ActionType } from "../../action-types/mangrullosTypes"
-import type { Action } from "../../actions/mangrullosActions"
+import { ActionType } from "../../action-types/advicesTypes"
+import type { Action } from "../../actions/advicesActions"
 import type { Dispatch } from "@reduxjs/toolkit"
 
-export function cleanMangrullos() {
+export function cleanAdvices() {
   return function (dispatch: Dispatch<Action>) {
     dispatch({
       type: ActionType.CLEAN,

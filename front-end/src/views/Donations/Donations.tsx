@@ -1,18 +1,14 @@
 import type React from "react"
 import { Link } from "react-router-dom"
 
-interface DonationsMenuProps {
-  descr: string
-}
-
-const DonationsMenu: React.FC<DonationsMenuProps> = ({ descr }) => {
+const Donations: React.FC = () => {
   const handleDonation = (amount: number) => {
     console.log(`Donación de $${amount}`)
   }
 
   return (
     <div>
-      <h1>{descr}</h1>
+      <h1>estas son las donaciones</h1>
 
       <button onClick={() => handleDonation(10)}>Donar $10</button>
       <button onClick={() => handleDonation(20)}>Donar $20</button>
@@ -29,4 +25,4 @@ const DonationsMenu: React.FC<DonationsMenuProps> = ({ descr }) => {
   )
 }
 
-export default DonationsMenu
+export default Donations

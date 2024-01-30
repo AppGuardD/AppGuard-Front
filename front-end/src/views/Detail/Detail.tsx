@@ -1,6 +1,6 @@
 import type React from "react"
-import type { DetailType } from "@/redux/actions/mangrullos/mangrullosActions"
-import Activities from "@/components/Activities/Activities"
+import type { DetailType } from "@/redux/actions/mangrullosActions"
+import DetailActividades from "@/features/Actividades/DetailActividades"
 import { Link, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { getIdMangrullos } from "@/redux/action-creators/mangrullos/getIdMangrullos"
@@ -39,18 +39,9 @@ const Detail: React.FC = () => {
           <img className="size-44" src={detail.image} alt="Imagen de playa" />
         </div>
       ) : null}
-      {detail.activity && <Activities activity={detail.activity} />}
+      {detail.activity && <DetailActividades activity={detail.activity} />}
     </div>
   )
 }
 
 export default Detail
-
-// activityName: string;
-// description: string;
-// qualification: number;
-// price: number;
-// state: string;
-// Active: boolean;
-// type: string;
-

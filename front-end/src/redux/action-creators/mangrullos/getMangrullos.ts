@@ -1,6 +1,6 @@
 import axios from "axios"
 import { ActionType } from "../../action-types/mangrullosTypes"
-import type { Action } from "../../actions/mangrullos/mangrullosActions"
+import type { Action } from "../../actions/mangrullosActions"
 import type { Dispatch } from "@reduxjs/toolkit"
 
 export function getMangrullos() {

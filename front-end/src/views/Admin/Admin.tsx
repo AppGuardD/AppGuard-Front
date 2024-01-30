@@ -1,15 +1,10 @@
-import SideBarDemo from "@/components/SideBarDemo/SideBarDemo"
+import TopBar from "@/features/Admin/TopBar"
 
 const Admin: React.FC = () => {
-  //const handleSidebarClick = () => {
-  //  // Lógica que quieres ejecutar cuando se hace clic en la barra lateral
-  //  console.log("Sidebar Clicked")
-  //}
-
   return (
     <div>
-      {/*<SideBar />*/}
-      <SideBarDemo></SideBarDemo>
+      <TopBar />
+      <p>Este es el admin</p>
     </div>
   )
 }

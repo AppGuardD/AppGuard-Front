@@ -1,5 +1,5 @@
 import type React from "react"
-import Cards from "@/components/Cards/Cards"
+import CardsMangrullos from "@/features/Mangrullos/CardsMangrullos"
 import { Link } from "react-router-dom"
 
 interface MangrullosComponents {
@@ -20,7 +20,12 @@ const Mangrullos: React.FC<MangrullosComponents> = ({
       <Link to={`/home`}>
         <button> Ir atras </button>
       </Link>
-      <Cards name={name} zone={zone} description={description} image={image} />
+      <CardsMangrullos
+        name={name}
+        zone={zone}
+        description={description}
+        image={image}
+      />
     </div>
   )
 }
