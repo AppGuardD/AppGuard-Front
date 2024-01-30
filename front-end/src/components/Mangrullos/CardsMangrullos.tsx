@@ -15,7 +15,7 @@ interface CardsProps {
   image: string
 }
 
-const Cards: React.FC<CardsProps> = ({ name, zone }) => {
+const CardsMangrullos: React.FC<CardsProps> = ({ name, zone }) => {
   const id = 1
 
   return (
@@ -36,4 +36,4 @@ const Cards: React.FC<CardsProps> = ({ name, zone }) => {
   )
 }
 
-export default Cards
+export default CardsMangrullos

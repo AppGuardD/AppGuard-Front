@@ -1,22 +1,22 @@
-import type React from "react"
-import rightArrow from "../../assets/right-arrow.svg"
-import { Link } from "react-router-dom"
-import CarouselHome from "@/components/CarouselHome/CarouselHome"
+import SeccionHomeActividades from "@/components/Actividades/SeccionHomeActividades"
 import Advices from "@/components/Advices/Advices"
+import SeccionHomeMangrullos from "@/components/Mangrullos/SeccionHomeMangrullos"
+import type React from "react"
 
 const Home: React.FC = () => {
   return (
-    <div className="flex flex-col items-center">
-      <p className="text-4xl mb-4">Mangrullos</p>
-      <CarouselHome />
-      <Link to={`/mangrullos`}>
-        <button className="my-6 flex text-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-transparent hover:bg-accent font-semibold py-2 px-4 border rounded">
-          Ver mas!
-          <img className="pl-4" src={rightArrow} alt="" />
-        </button>
-      </Link>
-      <p className="text-4xl my-4">Consejos</p>
-      <Advices />
+    <div>
+      <div className="flex justify-start ml-36 mt-12">
+        <SeccionHomeMangrullos />
+      </div>
+      <div className="flex justify-end mr-36 mt-12">
+        <SeccionHomeActividades />
+      </div>
+      <hr className="mt-12 border-primary" />
+      <p className="text-4xl text-center p-8">Consejos</p>
+      <div className="flex justify-center">
+        <Advices />
+      </div>
     </div>
   )
 }

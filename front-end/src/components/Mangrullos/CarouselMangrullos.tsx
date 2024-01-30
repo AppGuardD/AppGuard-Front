@@ -12,7 +12,7 @@ import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { useEffect } from "react"
 
-const CarouselHome: React.FC = () => {
+const CarouselMangrullos: React.FC = () => {
   const mangrullos: Mangrullo[] = useAppSelector(
     state => state.mangrullosReducer.mangrullos,
   )
@@ -33,22 +33,24 @@ const CarouselHome: React.FC = () => {
   }, [dispatch])
 
   return (
-    <Carousel className="max-w-lg" opts={{ loop: true }}>
+    <Carousel className="max-w-xl">
       <CarouselContent>
         {mangrullos?.map(mangrullo => (
-          <CarouselItem className="max-w-max" key={mangrullo.id}>
-            <Card className="max-w-max pt-6 rounded">
-              <CardContent className="max-w-max">
-                <div className="rounded aspect-[4/3] h-lg overflow-hidden">
-                  <img
-                    className="object-cover aspect-[4/3] h-lg"
-                    src={mangrullo.image}
-                    alt="Imagen Mangrullos"
-                  />
-                </div>
-                <div className="pt-6 max-w-max">
-                  <CardTitle>Zona destacada {mangrullo.id}</CardTitle>
-                  <p>{mangrullo.zone}</p>
+          <CarouselItem key={mangrullo.id}>
+            <Card className="pt-6 rounded">
+              <CardContent>
+                <div className="flex">
+                  <div className="rounded aspect-[4/3] max-w-sm overflow-hidden">
+                    <img
+                      className="object-cover aspect-[4/3] max-w-sm"
+                      src={mangrullo.image}
+                      alt="Imagen Mangrullos"
+                    />
+                  </div>
+                  <div className="pl-6 w-sm">
+                    <CardTitle>Zona destacada {mangrullo.id}</CardTitle>
+                    <p>{mangrullo.zone}</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -61,4 +63,4 @@ const CarouselHome: React.FC = () => {
   )
 }
 
-export default CarouselHome
+export default CarouselMangrullos

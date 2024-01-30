@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import logo from "../../assets/logo-appguard.svg"
+import cartIcon from "../../assets/shopping-cart.svg"
 
 const NavBar: React.FC = () => {
-  const handleLogIn = () => {}
+  const navigate = useNavigate()
 
   return (
     <nav className="flex items-center justify-between flex-wrap p-4 mb-4 border-b border-primary">
@@ -11,39 +12,48 @@ const NavBar: React.FC = () => {
         <span className="font-semibold text-3xl pt-0.5">AppGuard</span>
       </div>
       <div>
-        <Link to={"/"}>
-          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
-            INICIO
-          </button>
-        </Link>
-        <Link to={"/home"}>
-          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
-            SERVICIOS
-          </button>
-        </Link>
-        <Link to={"/donations"}>
-          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
-            DONACIONES
-          </button>
-        </Link>
-        <Link to={"/about"}>
-          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
-            QUIENES SOMOS
-          </button>
-        </Link>
-        <Link to={"/login"}>
-          <button
-            className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
-            onClick={handleLogIn}
-          >
-            INICIAR SESION
-          </button>
-        </Link>
-        <Link to={"/admin"}>
-          <button className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded">
-            ADMIN
-          </button>
-        </Link>
+        <button
+          onClick={() => navigate("/")}
+          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
+        >
+          INICIO
+        </button>
+        <button
+          onClick={() => navigate("/home")}
+          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
+        >
+          SERVICIOS
+        </button>
+        <button
+          onClick={() => navigate("/donations")}
+          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
+        >
+          DONACIONES
+        </button>
+        <button
+          onClick={() => navigate("/about")}
+          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
+        >
+          QUIENES SOMOS
+        </button>
+        <button
+          onClick={() => navigate("/login")}
+          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
+        >
+          INICIAR SESION
+        </button>
+        <button
+          onClick={() => navigate("/admin")}
+          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
+        >
+          ADMIN
+        </button>
+        <button
+          onClick={() => navigate("/cart")}
+          className="align-middle transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
+        >
+          <img src={cartIcon} alt="Icono de carro de compras" />
+        </button>
       </div>
     </nav>
   )
