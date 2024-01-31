@@ -1,9 +1,9 @@
 import axios from "axios"
-import { EventType } from "../../action-types/eventsTypes"
-import type { Action } from "../../actions/eventsActions"
+import { ActividadType } from "../../action-types/actividadesTypes"
+import type { Action } from "../../actions/actividadesActions"
 import type { Dispatch } from "@reduxjs/toolkit"
 
-export function getEvents() {
+export function getActividades() {
   return async function (dispatch: Dispatch<Action>) {
     try {
       const response = await axios(
@@ -12,7 +12,7 @@ export function getEvents() {
       console.log(response.data.requestData)
 
       dispatch({
-        type: EventType.GET,
+        type: ActividadType.GET,
         payload: response.data.requestData,
       })
     } catch (error) {

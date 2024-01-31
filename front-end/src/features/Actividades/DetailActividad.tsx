@@ -1,7 +1,7 @@
-import type { ActivityType } from "@/redux/actions/mangrullosActions"
+import type { ActividadType } from "@/redux/actions/mangrullosActions"
 import { useState } from "react"
 
-const DetailActividades: React.FC<ActivityType> = ({ activity }) => {
+const DetailActividad: React.FC<ActividadType> = ({ activity }) => {
   const [review, setReview] = useState("")
   const [rating, setRating] = useState(1)
 
@@ -50,5 +50,5 @@ const DetailActividades: React.FC<ActivityType> = ({ activity }) => {
   )
 }
 
-// Exporta el componente Events para que pueda ser utilizado en otros archivos.
-export default DetailActividades
+
+export default DetailActividad
