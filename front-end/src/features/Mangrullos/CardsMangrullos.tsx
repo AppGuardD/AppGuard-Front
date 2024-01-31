@@ -1,39 +1,39 @@
+import type React from "react";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/features/ui/card"
-import { Link } from "react-router-dom"
+} from "@/features/ui/card";
+import { Link } from "react-router-dom";
+import type { Mangrullo } from "@/redux/actions/mangrullosActions";
 
-interface CardsProps {
-  name: string
-  zone: number
-  description: string
-  image: string
+interface CardsMangrullosProps {
+  mangrullos: Mangrullo[];
 }
 
-const CardsMangrullos: React.FC<CardsProps> = ({ name, zone }) => {
-  const id = 1
-
+const CardsMangrullos: React.FC<CardsMangrullosProps> = ({ mangrullos }) => {
   return (
-    <Card className="rounded size-96">
-      <CardHeader>
-        <CardTitle>{name}</CardTitle>
-        <CardDescription>{`Zona ${zone}`}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>imagen mangrullo</p>
-      </CardContent>
-      <CardFooter>
-        <Link to={`/mangrullos/detail/${id}`}>
-          <button> Conocer más...</button>
-        </Link>
-      </CardFooter>
-    </Card>
-  )
-}
+    <div>
+      {mangrullos.map((mangrullo, index) => (
+        <Card key={index} className="rounded size-96">
+          <CardHeader>
+            <CardTitle>{mangrullo.zone}</CardTitle>    
+          </CardHeader>
+          <CardContent>
+            <img src={mangrullo.image} alt={`Imagen de $`} />
+          </CardContent>
+          <CardFooter>
+            <Link to={`/mangrullos/detail/${mangrullo.id}`}>
+              <button>Conocer más...</button>
+            </Link>
+          </CardFooter>
+        </Card>
+      ))}
+    </div>
+  );
+};
 
-export default CardsMangrullos
+export default CardsMangrullos;
+

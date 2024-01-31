@@ -1,11 +1,11 @@
 import { combineReducers } from "@reduxjs/toolkit"
 import mangrullosReducer from "./mangrullosReducer"
-//import eventsReducer from "./eventsReducer"
+import actividadesReducer from "./actividadesReducer"
 import advicesReducer from "./advicesReducer"
 
 const reducer = combineReducers({
   mangrullosReducer: mangrullosReducer,
-  //eventsReducer: eventsReducer,
+  actividadesReducer: actividadesReducer,
   advicesReducer: advicesReducer,
 })
 

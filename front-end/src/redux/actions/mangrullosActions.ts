@@ -9,7 +9,7 @@ export interface Mangrullo {
   qualification: number
 }
 
-export interface ActivityType {
+export interface ActividadType {
   activity?: [
     {
       activityName: string
