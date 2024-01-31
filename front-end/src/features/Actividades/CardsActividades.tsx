@@ -1,16 +1,16 @@
-import type React from "react";
+import type React from "react"
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/features/ui/card";
-import { Link } from "react-router-dom";
-import type { ActividadesTypes } from "@/redux/actions/actividadesActions";
+} from "@/components/ui/card"
+import { Link } from "react-router-dom"
+import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
 
 interface CardsActividadesProps {
-  actividades: ActividadesTypes[];
+  actividades: ActividadesTypes[]
 }
 
 const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
@@ -19,7 +19,7 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
       {actividades.map((actividad, index) => (
         <Card key={index} className="rounded size-96">
           <CardHeader>
-            <CardTitle>{actividad.activityName}</CardTitle>    
+            <CardTitle>{actividad.activityName}</CardTitle>
           </CardHeader>
           <CardContent>
             <p>{actividad.qualification}</p>
@@ -33,7 +33,8 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
         </Card>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default CardsActividades;
+export default CardsActividades
+

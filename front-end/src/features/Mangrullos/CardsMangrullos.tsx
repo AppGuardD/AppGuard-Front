@@ -1,17 +1,16 @@
-import type React from "react";
+import type React from "react"
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/features/ui/card";
-import { Link } from "react-router-dom";
-import type { Mangrullo } from "@/redux/actions/mangrullosActions";
-
+} from "@/components/ui/card"
+import { Link } from "react-router-dom"
+import type { Mangrullo } from "@/redux/actions/mangrullosActions"
 
 interface CardsMangrullosProps {
-  mangrullos: Mangrullo[];
+  mangrullos: Mangrullo[]
 }
 
 const CardsMangrullos: React.FC<CardsMangrullosProps> = ({ mangrullos }) => {
@@ -20,7 +19,7 @@ const CardsMangrullos: React.FC<CardsMangrullosProps> = ({ mangrullos }) => {
       {mangrullos.map((mangrullo, index) => (
         <Card key={index} className="rounded size-96">
           <CardHeader>
-            <CardTitle>{mangrullo.zone}</CardTitle>    
+            <CardTitle>{mangrullo.zone}</CardTitle>
           </CardHeader>
           <CardContent>
             <img src={mangrullo.image} alt={`Imagen de $`} />
@@ -33,8 +32,7 @@ const CardsMangrullos: React.FC<CardsMangrullosProps> = ({ mangrullos }) => {
         </Card>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default CardsMangrullos;
-
+export default CardsMangrullos
