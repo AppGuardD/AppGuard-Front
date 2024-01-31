@@ -4,7 +4,7 @@ const TopBar: React.FC = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="flex p-4 m-8 rounded border border-primary">
+    <div className="flex m-8">
       <div className="basis-1/2">
         <span className="align-middle text-3xl font-bold">
           Panel de Control
