@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import type { Mangrullo } from "@/redux/actions/mangrullosActions";
 
+
 interface CardsMangrullosProps {
   mangrullos: Mangrullo[];
 }

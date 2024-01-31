@@ -30,6 +30,8 @@ const mangrullosReducer = (state = initialState, action: Action) => {
         ...state,
         detail: action.payload,
       }
+    case ActionType.DISABLE:
+      return { ...state }
     //
     // case ActionType.POST:
     //   return (state = action.payload)
@@ -37,8 +39,6 @@ const mangrullosReducer = (state = initialState, action: Action) => {
     // case ActionType.PUT:
     //   return (state = action.payload)
     //
-    // case ActionType.DISABLE:
-    //   return (state = action.payload)
 
     default:
       return state
