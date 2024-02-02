@@ -18,11 +18,11 @@ const Footer: React.FC = () => {
         <p>El mejor website para guardavidas y aficionados a la naturaleza.</p>
         <div>
           <ul className="flex items-center justify-start">
-            <li className="m-2 cursor-pointer"><img src={fb} alt="facebook" /></li>
-            <li className="m-2 cursor-pointer"><img src={tw} alt="Twitter" /></li>
-            <li className="m-2 cursor-pointer"><img src={ig} alt="Instagram" /></li>
-            <li className="m-2 cursor-pointer"><img src={tk} alt="TikTok" /></li>
-            <li className="m-2 cursor-pointer"><img src={yt} alt="YouTube" /></li>
+            <li className="m-2 cursor-pointer"><a href="https://www.facebook.com/"><img src={fb} alt="facebook" /></a></li>
+            <li className="m-2 cursor-pointer"><a href="https://www.twitter.com/"><img src={tw} alt="Twitter" /></a></li>
+            <li className="m-2 cursor-pointer"><a href="https://www.instagram.com"><img src={ig} alt="Instagram" /></a></li>
+            <li className="m-2 cursor-pointer"><a href="https://www.tiktok.com"><img src={tk} alt="TikTok" /></a></li>
+            <li className="m-2 cursor-pointer"><a href="https://youtube.com/"><img src={yt} alt="YouTube" /></a></li>
           </ul>
           <span className="font-serif mt-1 text-xs ">AppGuard® 2024. Todos los derechos reservados</span>
         </div>
