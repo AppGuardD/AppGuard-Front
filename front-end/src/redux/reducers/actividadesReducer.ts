@@ -24,6 +24,9 @@ const actividadesReducer = (state = initialState, action: Action) => {
 
    case ActividadType.GET_ID:
     return { ...state, detail: action.payload }
+
+  case ActividadType.FILTER:
+    return { ...state, actividades: action.payload };
    
    // case ActionType.POST:
    //   return (state = action.payload)
