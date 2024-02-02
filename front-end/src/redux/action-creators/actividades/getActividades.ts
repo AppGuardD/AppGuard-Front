@@ -9,8 +9,6 @@ export function getActividades() {
       const response = await axios(
         `http://localhost:3001/api/activities/search`,
       )
-      console.log(response.data.requestData)
-
       dispatch({
         type: ActividadType.GET,
         payload: response.data.requestData,

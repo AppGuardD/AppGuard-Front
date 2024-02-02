@@ -6,56 +6,61 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import type { Mangrullo } from "@/redux/actions/mangrullosActions"
-import { cleanMangrullos } from "@/redux/action-creators/mangrullos/cleanMangrullos"
-import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import { useEffect } from "react"
+import { useAppSelector } from "@/redux/hooks"
+import { useEffect, useState } from "react"
+import CarouselLoading from "../Mangrullos/loading-states/carousel-loading"
+import { Skeleton } from "@/components/ui/skeleton"
 
 const CarouselActividades: React.FC = () => {
-  const mangrullos: Mangrullo[] = useAppSelector(
-    state => state.mangrullosReducer.mangrullos,
+  const actividades = useAppSelector(
+    state => state.actividadesReducer.actividades,
   )
-  const dispatch = useAppDispatch()
+
+  const [loading, setLoading] = useState(true)
+  const [imgLoading, setImgLoading] = useState(true)
 
   useEffect(() => {
-    let mounted = true
-    const fetchData = async () => {
-      await dispatch(getMangrullos())
-      if (!mounted) {
-        dispatch(cleanMangrullos())
-      }
+    if (actividades && actividades.length > 0) {
+      setLoading(false)
     }
-    fetchData()
-    return () => {
-      mounted = false
-    }
-  }, [dispatch])
+  }, [actividades, imgLoading])
+
+  const handleImageLoad = () => {
+    setImgLoading(false)
+  }
 
   return (
     <Carousel className="max-w-xl">
       <CarouselContent>
-        {mangrullos?.map(mangrullo => (
-          <CarouselItem key={mangrullo.id}>
-            <Card className="pt-6 rounded">
-              <CardContent>
-                <div className="flex">
-                  <div className="rounded aspect-[4/3] max-w-sm overflow-hidden">
-                    <img
-                      className="object-cover aspect-[4/3] max-w-sm"
-                      src={mangrullo.image}
-                      alt="Imagen Mangrullos"
-                    />
+        {loading ? (
+          <CarouselLoading />
+        ) : (
+          actividades.map(actividad => (
+            <CarouselItem key={actividad.id}>
+              <Card className="pt-6 rounded">
+                <CardContent>
+                  <div className="flex">
+                    <div className="rounded aspect-[4/3] max-w-sm overflow-hidden">
+                      {imgLoading ? (
+                        <Skeleton className="object-cover aspect-[4/3] w-96" />
+                      ) : null}
+                      <img
+                        onLoad={handleImageLoad}
+                        className="object-cover aspect-[4/3] max-w-sm"
+                        src={actividad.image}
+                        alt="Imagen Mangrullos"
+                      />
+                    </div>
+                    <div className="pl-6 w-sm">
+                      <CardTitle>Zona destacada {actividad.id}</CardTitle>
+                      <p>{actividad.activityName}</p>
+                    </div>
                   </div>
-                  <div className="pl-6 w-sm">
-                    <CardTitle>Zona destacada {mangrullo.id}</CardTitle>
-                    <p>{mangrullo.zone}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </CarouselItem>
-        ))}
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))
+        )}
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />
