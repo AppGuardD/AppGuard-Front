@@ -11,14 +11,14 @@ export interface ActividadesTypes {
   active: boolean
   type: string
 }
-export interface DetailType {   
-      activityName?: string
-      description?: string
-      qualification?: number
-      price?: number
-      state?: string
-      type?: string 
-      image?: string
+export interface DetailType {
+  activityName?: string
+  description?: string
+  qualification?: number
+  price?: number
+  state?: string
+  type?: string
+  image?: string
 }
 
 interface cleanAction {

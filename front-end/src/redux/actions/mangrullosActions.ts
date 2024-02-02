@@ -18,6 +18,7 @@ export interface ActividadType {
       price: number
       state: string
       type: string
+      image?: string
     },
   ]
 }

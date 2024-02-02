@@ -1,13 +1,13 @@
+import { getActividades } from "@/redux/action-creators/actividades/getActividades"
+import { cleanActividades } from "@/redux/action-creators/actividades/cleanActividades"
+import { useAppSelector, useAppDispatch } from "@/redux/hooks"
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { getActividades } from "@/redux/action-creators/actividades/getActividades";
-import { cleanActividades } from "@/redux/action-creators/actividades/cleanActividades";
-import { ActividadesTypes } from "@/redux/actions/actividadesActions";
-import CardsActividades from "@/features/Actividades/CardsActividades";
+import CardsActividades from "@/features/Actividades/CardsActividades"
+import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
 import FilterBar from "@/features/Navigation/FilterBar";
-import { ActividadType } from "@/redux/action-types/actividadesTypes";
-
+import { Button } from "@/components/ui/button"
+import { useNavigate } from "react-router-dom"
+       
 const Actividades: React.FC = () => {
   const [filters, setFilters] = useState({
     searchTerm: "",
@@ -19,7 +19,9 @@ const Actividades: React.FC = () => {
   const actividades: ActividadesTypes[] = useAppSelector(
     (state) => state.actividadesReducer.actividades
   );
-  const dispatch = useAppDispatch();
+
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
     let mounted = true;
@@ -64,9 +66,16 @@ const Actividades: React.FC = () => {
 
   return (
     <div>
-      <Link to={`/home`}>
-        <button> Ir atrás </button>
-      </Link>
+      <div className="flex justify-between px-8 ">
+        <p className="text-3xl align-baseline">Todas las Actividades</p>
+        <Button
+          onClick={() => navigate("/home")}
+          className="rounded mb-4 border-primary"
+          variant={"outline"}
+        >
+          Ir Atras
+        </Button>
+      </div>
       <FilterBar
         onSearch={(searchTerm) => setFilters({ ...filters, searchTerm })}
         onTypeChange={(selectedType) => setFilters({ ...filters, selectedType })}
@@ -76,7 +85,7 @@ const Actividades: React.FC = () => {
       <button onClick={applyFilters}>Aplicar Filtros</button>
       <CardsActividades actividades={actividades} />
     </div>
-  );
-};
+  )
+}
 
-export default Actividades;
+export default Actividades

@@ -14,9 +14,12 @@ const Advices: React.FC = () => {
   useEffect(() => {
     let mounted = true
     const fetchData = async () => {
-      await dispatch(getAdvices())
-      if (!mounted) {
-        dispatch(cleanAdvices())
+      try {
+        await dispatch(getAdvices())
+      } finally {
+        if (!mounted) {
+          dispatch(cleanAdvices())
+        }
       }
     }
     fetchData()

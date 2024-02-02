@@ -7,55 +7,61 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import type { Mangrullo } from "@/redux/actions/mangrullosActions"
-import { cleanMangrullos } from "@/redux/action-creators/mangrullos/cleanMangrullos"
-import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import { useEffect } from "react"
+import { useAppSelector } from "@/redux/hooks"
+import { useEffect, useState } from "react"
+import { Skeleton } from "@/components/ui/skeleton"
+import CarouselLoading from "./loading-states/carousel-loading"
 
 const CarouselMangrullos: React.FC = () => {
   const mangrullos: Mangrullo[] = useAppSelector(
     state => state.mangrullosReducer.mangrullos,
   )
-  const dispatch = useAppDispatch()
+  const [loading, setLoading] = useState(true)
+  const [imgLoading, setImgLoading] = useState(true)
 
   useEffect(() => {
-    let mounted = true
-    const fetchData = async () => {
-      await dispatch(getMangrullos())
-      if (!mounted) {
-        dispatch(cleanMangrullos())
-      }
+    if (mangrullos && mangrullos.length > 0) {
+      setLoading(false)
     }
-    fetchData()
-    return () => {
-      mounted = false
-    }
-  }, [dispatch])
+  }, [mangrullos, imgLoading])
+
+  const handleImageLoad = () => {
+    setImgLoading(false)
+    console.log(imgLoading)
+  }
 
   return (
     <Carousel className="max-w-xl">
       <CarouselContent>
-        {mangrullos?.map(mangrullo => (
-          <CarouselItem key={mangrullo.id}>
-            <Card className="pt-6 rounded">
-              <CardContent>
-                <div className="flex">
-                  <div className="rounded aspect-[4/3] max-w-sm overflow-hidden">
-                    <img
-                      className="object-cover aspect-[4/3] max-w-sm"
-                      src={mangrullo.image}
-                      alt="Imagen Mangrullos"
-                    />
+        {loading ? (
+          <CarouselLoading />
+        ) : (
+          mangrullos.map(mangrullo => (
+            <CarouselItem key={mangrullo.id}>
+              <Card className="pt-6 rounded">
+                <CardContent>
+                  <div className="flex">
+                    <div className="rounded aspect-[4/3] max-w-sm overflow-hidden">
+                      {imgLoading ? (
+                        <Skeleton className="object-cover aspect-[4/3] w-96" />
+                      ) : null}
+                      <img
+                        onLoad={handleImageLoad}
+                        className="object-cover aspect-[4/3] max-w-sm"
+                        src={mangrullo.image}
+                        alt="Imagen Mangrullos"
+                      />
+                    </div>
+                    <div className="pl-6 w-sm">
+                      <CardTitle>Playa destacada #{mangrullo.id}</CardTitle>
+                      <p>{mangrullo.zone}</p>
+                    </div>
                   </div>
-                  <div className="pl-6 w-sm">
-                    <CardTitle>Zona destacada {mangrullo.id}</CardTitle>
-                    <p>{mangrullo.zone}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </CarouselItem>
-        ))}
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))
+        )}
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />

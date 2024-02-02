@@ -3,15 +3,15 @@ import type { ActividadesTypes, Action } from "../actions/actividadesActions"
 import type { DetailType } from "../actions/actividadesActions"
 
 interface InitialState {
- totalPages: number
- actividades: ActividadesTypes[]
- detail: DetailType
+  totalPages: number
+  actividades: ActividadesTypes[]
+  detail: DetailType
 }
 
 const initialState: InitialState = {
- totalPages: 0,
- actividades: [],
- detail: {} 
+  totalPages: 0,
+  actividades: [],
+  detail: {},
 }
 
 const actividadesReducer = (state = initialState, action: Action) => {
