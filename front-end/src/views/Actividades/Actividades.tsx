@@ -1,5 +1,4 @@
 import { getActividades } from "@/redux/action-creators/actividades/getActividades"
-import { cleanActividades } from "@/redux/action-creators/actividades/cleanActividades"
 import { useAppSelector, useAppDispatch } from "@/redux/hooks"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
@@ -7,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import CardsActividades from "@/features/Actividades/CardsActividades"
 import FilterBar from "@/features/Navigation/FilterBar"
 import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
+import { cleanActividades } from "@/redux/action-creators/actividades/cleanActividades"
 
 const Actividades: React.FC = () => {
   const actividades: ActividadesTypes[] = useAppSelector(
