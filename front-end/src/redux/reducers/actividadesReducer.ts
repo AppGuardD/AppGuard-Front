@@ -15,31 +15,31 @@ const initialState: InitialState = {
 }
 
 const actividadesReducer = (state = initialState, action: Action) => {
-  switch (action.type) {
-    case ActividadType.GET:
-      return {
-        ...state,
-        actividades: [...state.actividades, ...action.payload],
-      }
+ switch (action.type) {
+   case ActividadType.GET:
+     return { ...state, actividades: [...state.actividades, ...action.payload] }
 
-    case ActividadType.CLEAN:
-      return { ...state, actividades: action.payload }
+   case ActividadType.CLEAN:
+     return { ...state, actividades: action.payload }
 
-    case ActividadType.GET_ID:
-      return { ...state, detail: action.payload }
+   case ActividadType.GET_ID:
+    return { ...state, detail: action.payload }
 
-    // case ActionType.POST:
-    //   return (state = action.payload)
-    //
-    // case ActionType.PUT:
-    //   return (state = action.payload)
-    //
-    // case ActionType.DISABLE:
-    //   return (state = action.payload)
+  case ActividadType.FILTER:
+    return { ...state, actividades: action.payload };
+   
+   // case ActionType.POST:
+   //   return (state = action.payload)
+   //
+   // case ActionType.PUT:
+   //   return (state = action.payload)
+   //
+   // case ActionType.DISABLE:
+   //   return (state = action.payload)
 
-    default:
-      return state
-  }
+   default:
+     return state
+ }
 }
 
 export default actividadesReducer

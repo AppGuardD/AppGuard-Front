@@ -48,6 +48,11 @@ interface disableAction {
   type: ActividadType.DISABLE
 }
 
+interface filterAction {
+  type: ActividadType.FILTER;
+  payload: ActividadesTypes[];
+}
+
 export type Action =
   | cleanAction
   | getAction
@@ -55,3 +60,4 @@ export type Action =
   | postAction
   | putAction
   | disableAction
+  | filterAction
