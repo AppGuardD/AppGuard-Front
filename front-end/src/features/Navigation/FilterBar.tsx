@@ -1,29 +1,11 @@
-import type {
-  Cost,
-  Name,
-  Order,
-  Type,
-} from "@/redux/actions/actividadesActions"
-import { useAppDispatch } from "@/redux/hooks"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { setFilterActividades } from "@/redux/action-creators/actividades/setFilterActividades"
+import SearchInputActividades from "../Actividades/filters/search-input"
 
 const FilterBar: React.FC = () => {
-  const [name, setName] = useState<Name>("")
-  const [type, setType] = useState<Type>("")
+  const [type, setType] = useState("")
   const [cost, setCost] = useState("")
   const [order, setOrder] = useState("")
-  const dispatch = useAppDispatch()
-
-  //const actividades: ActividadesTypes[] = useAppSelector(
-  //  state => state.actividadesReducer.actividades,
-  //)
-
-  const handleSearch = (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setName(e.target.value)
-  }
 
   const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault()
@@ -41,39 +23,10 @@ const FilterBar: React.FC = () => {
     setOrder(targetOrder)
   }
 
-  const filterData = {
-    name: name,
-    type: type,
-    cost: cost,
-    order: order,
-  }
-
-  console.log(filterData)
-
-  const handleFilter = () => {
-    dispatch(setFilterActividades(name, type, cost, order))
-  }
-
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center">
-        <form className="flex" onSubmit={handleSearch}>
-          <input
-            type="text"
-            placeholder="Buscar actividades"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            className="mr-2 p-2 border rounded focus:outline-none focus:ring-2 ring-accent text-black"
-          />
-
-          <button
-            type="submit"
-            className="transition ease-in-out delay-150 py-2 px-4 mx-2 bg-primary text-white hover:bg-accent rounded"
-          >
-            Buscar
-          </button>
-        </form>
-
+        <SearchInputActividades />
         <select
           value={type}
           onSubmit={handleTypeChange}
@@ -106,7 +59,7 @@ const FilterBar: React.FC = () => {
         </select>
       </div>
       <Button
-        onClick={handleFilter}
+        //onClick={handleFilter}
         className="rounded border-primary"
         variant={"outline"}
       >

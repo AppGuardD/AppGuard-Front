@@ -11,10 +11,10 @@ export function getIdActividad(id: number) {
       )
       dispatch({
         type: ActividadType.GET_ID,
-        payload: response.data.requestData,
+        payload: response.data.requestdata,
       })
     } catch (error) {
-      console.error("Error getting all mangrullos:", error)
+      console.error("error getting all mangrullos:", error)
     }
   }
 }

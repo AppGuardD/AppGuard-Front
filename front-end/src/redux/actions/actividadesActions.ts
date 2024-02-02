@@ -54,14 +54,14 @@ interface disableAction {
   type: ActividadType.DISABLE
 }
 
-interface filterAction {
-  type: ActividadType.FILTER
+interface searchAction {
+  type: ActividadType.QUERY_BY_NAME
   payload: ActividadesTypes[]
 }
 
-interface setFilterAction {
-  type: ActividadType.SET_FILTER
-  payload: Filters
+interface cleanFilterAction {
+  type: ActividadType.CLEAN_FILTERS
+  payload: ActividadesTypes[]
 }
 
 export type Action =
@@ -71,5 +71,5 @@ export type Action =
   | postAction
   | putAction
   | disableAction
-  | filterAction
-  | setFilterAction
+  | searchAction
+  | cleanFilterAction

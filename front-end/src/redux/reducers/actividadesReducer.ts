@@ -2,26 +2,22 @@ import { ActividadType } from "../action-types/actividadesTypes"
 import type { ActividadesTypes, Action } from "../actions/actividadesActions"
 import type { DetailType } from "../actions/actividadesActions"
 
-export interface Filters {}
-
 interface InitialState {
-  name: string
+  actividades: ActividadesTypes[]
+  actividadesCopy: ActividadesTypes[]
   type: "" | "Deportivo" | "Sanitario" | "Cultural"
   cost: "" | "Pago" | "Gratis"
   order: "" | "Mayor" | "Menor"
-  actividades: ActividadesTypes[]
-  actividadesFilter: ActividadesTypes[]
   totalPages: number
   detail: DetailType
 }
 
 const initialState: InitialState = {
-  name: "",
+  actividades: [],
+  actividadesCopy: [],
   type: "",
   cost: "",
   order: "",
-  actividades: [],
-  actividadesFilter: [],
   totalPages: 0,
   detail: {},
 }
@@ -32,6 +28,7 @@ const actividadesReducer = (state = initialState, action: Action) => {
       return {
         ...state,
         actividades: [...state.actividades, ...action.payload],
+        actividadesCopy: [...state.actividades, ...action.payload],
       }
 
     case ActividadType.CLEAN:
@@ -40,11 +37,17 @@ const actividadesReducer = (state = initialState, action: Action) => {
     case ActividadType.GET_ID:
       return { ...state, detail: action.payload }
 
-    case ActividadType.FILTER:
-      return { ...state, actividades: action.payload }
+    case ActividadType.CLEAN_FILTERS:
+      return {
+        ...state,
+        actividades: state.actividadesCopy,
+      }
 
-    case ActividadType.SET_FILTER:
-      return { ...state, filters: action.payload }
+    case ActividadType.QUERY_BY_NAME:
+      return {
+        ...state,
+        actividades: action.payload,
+      }
 
     // case ActionType.POST:
     //   return (state = action.payload)

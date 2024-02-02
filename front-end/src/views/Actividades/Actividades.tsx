@@ -58,14 +58,3 @@ const Actividades: React.FC = () => {
 }
 
 export default Actividades
-//
-//onSearch={searchTerm => setFilters({ ...filters, searchTerm })}
-//onTypeChange={selectedType =>
-//  setFilters({ ...filters, selectedType })
-//}
-//onCostChange={selectedCost =>
-//  setFilters({ ...filters, selectedCost })
-//}
-//onOrderChange={selectedOrder =>
-//  setFilters({ ...filters, selectedOrder })
-//}
