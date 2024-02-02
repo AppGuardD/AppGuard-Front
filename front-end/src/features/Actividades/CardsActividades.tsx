@@ -6,29 +6,41 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
+import { Button } from "@/components/ui/button"
 
 interface CardsActividadesProps {
   actividades: ActividadesTypes[]
 }
 
 const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
+  const navigate = useNavigate()
+
   return (
-    <div>
-      {actividades.map((actividad, index) => (
-        <Card key={index} className="rounded size-96">
+    <div className="grid grid-cols-4 gap-6 justify-items-center mx-6 mb-6">
+      {actividades.map(actividad => (
+        <Card key={actividad.id} className="rounded size-96">
           <CardHeader>
-            <CardTitle>{actividad.activityName}</CardTitle>
+            <CardTitle className="capitalize">
+              {actividad.activityName}
+            </CardTitle>
           </CardHeader>
-          <CardContent>
-            <p>{actividad.qualification}</p>
-            <img src={actividad.image} alt={`Imagen de $`} />
+          <CardContent className="rounded overflow-hidden aspect-video">
+            <img
+              className="object-cover aspect-video rounded"
+              src={actividad.image}
+              alt="Actividad"
+            />
           </CardContent>
-          <CardFooter>
-            <Link to={`/actividades/detail/${actividad.id}`}>
-              <button>Conocer más...</button>
-            </Link>
+          <CardFooter className="flex justify-between">
+            <p>Calificacion: {actividad.qualification} Estrella</p>
+            <Button
+              variant={"outline"}
+              onClick={() => navigate(`/actividades/detail/${actividad.id}`)}
+            >
+              Conocer mas...
+            </Button>
           </CardFooter>
         </Card>
       ))}
@@ -37,4 +49,3 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
 }
 
 export default CardsActividades
-
