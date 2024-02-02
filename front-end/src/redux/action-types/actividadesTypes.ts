@@ -5,5 +5,6 @@ export enum ActividadType {
   POST = "postActividades",
   PUT = "putActividades",
   DISABLE = "disableActividades",
-  FILTER= "FILTER"
+  FILTER = "filterActividades",
+  SET_FILTER = "setFilterActividades",
 }

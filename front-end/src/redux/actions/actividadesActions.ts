@@ -1,5 +1,10 @@
 import type { ActividadType } from "../action-types/actividadesTypes"
 
+export type Name = string
+export type Type = "" | "Deportivo" | "Sanitario" | "Cultural"
+export type Cost = "" | "Pago" | "Gratis"
+export type Order = "" | "Mayor" | "Menor"
+
 export interface ActividadesTypes {
   id: number
   activityName: string
@@ -11,6 +16,7 @@ export interface ActividadesTypes {
   active: boolean
   type: string
 }
+
 export interface DetailType {
   activityName?: string
   description?: string
@@ -49,8 +55,13 @@ interface disableAction {
 }
 
 interface filterAction {
-  type: ActividadType.FILTER;
-  payload: ActividadesTypes[];
+  type: ActividadType.FILTER
+  payload: ActividadesTypes[]
+}
+
+interface setFilterAction {
+  type: ActividadType.SET_FILTER
+  payload: Filters
 }
 
 export type Action =
@@ -61,3 +72,4 @@ export type Action =
   | putAction
   | disableAction
   | filterAction
+  | setFilterAction
