@@ -11,7 +11,7 @@ export function getActividades() {
       )
       dispatch({
         type: ActividadType.GET,
-        payload: response.data.requestData,
+        payload: response.data,
       })
     } catch (error) {
       console.error("Error getting all events:", error)

@@ -9,6 +9,8 @@ interface InitialState {
   cost: "" | "Pago" | "Gratis"
   order: "" | "Mayor" | "Menor"
   totalPages: number
+  totalItems: number
+  currentPage: number
   detail: DetailType
 }
 
@@ -18,7 +20,11 @@ const initialState: InitialState = {
   type: "",
   cost: "",
   order: "",
+
   totalPages: 0,
+  totalItems: 0,
+  currentPage: 1,
+
   detail: {},
 }
 
@@ -27,8 +33,11 @@ const actividadesReducer = (state = initialState, action: Action) => {
     case ActividadType.GET:
       return {
         ...state,
-        actividades: [...state.actividades, ...action.payload],
-        actividadesCopy: [...state.actividades, ...action.payload],
+        actividades: [...state.actividades, ...action.payload.requestData],
+        actividadesCopy: [...state.actividades, ...action.payload.requestData],
+        totalPages: (state.totalPages = action.payload.pagination.totalPages),
+        totalItems: (state.totalItems = action.payload.pagination.totalItems),
+        currentPage: (state.currentPage= action.payload.pagination.currentPage),
       }
 
     case ActividadType.CLEAN:

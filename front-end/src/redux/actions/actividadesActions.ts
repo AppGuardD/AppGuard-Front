@@ -17,6 +17,12 @@ export interface ActividadesTypes {
   type: string
 }
 
+export interface ResponseData{
+  succes: boolean
+  pagination:{}
+  requestData:ActividadType[]
+}
+
 export interface DetailType {
   activityName?: string
   description?: string
