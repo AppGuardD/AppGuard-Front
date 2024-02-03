@@ -19,8 +19,12 @@ export interface ActividadesTypes {
 
 export interface ResponseData{
   succes: boolean
-  pagination:{}
-  requestData:ActividadType[]
+  pagination:{
+    totalPages : number
+    totalItems : number
+    currentPage: number
+  }
+  requestData:ActividadesTypes[]
 }
 
 export interface DetailType {
@@ -40,7 +44,7 @@ interface cleanAction {
 
 interface getAction {
   type: ActividadType.GET
-  payload: ActividadesTypes[]
+  payload: ResponseData
 }
 
 interface getIdAction {
