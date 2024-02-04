@@ -2,10 +2,11 @@ import type React from "react"
 import { Link } from "react-router-dom"
 import guardavidasImg from "../../assets/guardavidas-landing.jpeg"
 import rightArrow from "../../assets/right-arrow.svg"
+import { Button } from "@/components/ui/button"
 
 const Landing: React.FC = () => {
   return (
-    <div className="flex p-16">
+    <div className="flex p-16 h-dvh">
       <div className="w-1/2 h-12 p-16">
         <p className="text-5xl">
           El mejor website para guardavidas y aficionados a la naturaleza.
@@ -17,16 +18,16 @@ const Landing: React.FC = () => {
         </ul>
         <div className="grid place-items-center mt-8">
           <Link to={`/home`}>
-            <button className="flex text-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-transparent hover:bg-accent font-semibold py-2 px-4 border rounded">
+            <Button variant={"outline"} className="text-xl">
               Conocer mas
               <img className="pl-4" src={rightArrow} alt="" />
-            </button>
+            </Button>
           </Link>
         </div>
       </div>
-      <div className="grid place-items-center w-1/2">
+      <div className="flex flex-col items-center w-1/2">
         <img
-          className="shadow-lg h-3/4 border-primary border-solid border-2 rounded"
+          className="aspect-auto rounded h-96"
           src={guardavidasImg}
           alt="Guardavidas salta al agua"
         />

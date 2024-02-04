@@ -1,16 +1,17 @@
 import type React from "react"
 import type { DetailType } from "@/redux/actions/actividadesActions"
-import { Link, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { getIdActividad } from "@/redux/action-creators/actividades/getIdActividad"
 import { useEffect } from "react"
-
+import { Button } from "@/components/ui/button"
 
 const DetailActividades: React.FC = () => {
   const detail: DetailType = useAppSelector(
     state => state.actividadesReducer.detail,
   )
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const { id } = useParams<{ id: string }>()
 
@@ -24,12 +25,16 @@ const DetailActividades: React.FC = () => {
 
   return (
     <div>
-      <Link to={`/mangrullos`}>
-        <button className="flex text-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-transparent hover:bg-accent font-semibold py-2 px-4 border rounded">
-          Ir atrás
-        </button>
-      </Link>
-
+      <div className="flex justify-between px-8">
+        <p className="text-3xl align-baseline">Detalle de actividad</p>
+        <Button
+          onClick={() => navigate("/actividades")}
+          className="rounded mb-4 border-primary"
+          variant={"outline"}
+        >
+          Ir Atras
+        </Button>
+      </div>
       {detail ? (
         <div>
           <p className="text-2xl bold capitalize">{detail.activityName}</p>

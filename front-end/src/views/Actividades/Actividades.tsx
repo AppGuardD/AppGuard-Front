@@ -1,14 +1,12 @@
-import type React from "react"
-import { Link } from "react-router-dom"
-import { useAppSelector,useAppDispatch } from "@/redux/hooks"
-import { useEffect } from "react"
 import { getActividades } from "@/redux/action-creators/actividades/getActividades"
-import  { cleanActividades } from "@/redux/action-creators/actividades/cleanActividades"
-import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
+import { useAppSelector, useAppDispatch } from "@/redux/hooks"
+import { useEffect } from "react"
 import CardsActividades from "@/features/Actividades/CardsActividades"
+import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
+import { cleanActividades } from "@/redux/action-creators/actividades/cleanActividades"
+import FilterActividades from "@/features/Actividades/filters/filter-bar"
 
-
-const Actividades: React.FC= () => {
+const Actividades: React.FC = () => {
   const actividades: ActividadesTypes[] = useAppSelector(
     state => state.actividadesReducer.actividades,
   )
@@ -17,9 +15,12 @@ const Actividades: React.FC= () => {
   useEffect(() => {
     let mounted = true
     const fetchData = async () => {
-      await dispatch(getActividades())
-      if (!mounted) {
-        dispatch(cleanActividades())
+      try {
+        await dispatch(getActividades())
+      } finally {
+        if (!mounted) {
+          dispatch(cleanActividades())
+        }
       }
     }
     fetchData()
@@ -27,14 +28,13 @@ const Actividades: React.FC= () => {
       mounted = false
     }
   }, [dispatch])
+
   return (
-    <div>
-      <Link to={`/home`}>
-        <button> Ir atras </button>
-      </Link>
-      <CardsActividades actividades={actividades}/>
-    </div>
-  ) 
+    <>
+      <FilterActividades />
+      <CardsActividades actividades={actividades} />
+    </>
+  )
 }
 
 export default Actividades

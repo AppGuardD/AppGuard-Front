@@ -1,5 +1,10 @@
 import type { ActividadType } from "../action-types/actividadesTypes"
 
+export type Name = string
+export type Type = "" | "Deportivo" | "Sanitario" | "Cultural"
+export type Cost = "" | "Pago" | "Gratis"
+export type Order = "" | "Mayor" | "Menor"
+
 export interface ActividadesTypes {
   id: number
   activityName: string
@@ -11,14 +16,25 @@ export interface ActividadesTypes {
   active: boolean
   type: string
 }
-export interface DetailType {   
-      activityName?: string
-      description?: string
-      qualification?: number
-      price?: number
-      state?: string
-      type?: string 
-      image?: string
+
+export interface ResponseData {
+  succes: boolean
+  pagination: {
+    totalPages: number
+    totalItems: number
+    currentPage: number
+  }
+  requestData: ActividadesTypes[]
+}
+
+export interface DetailType {
+  activityName?: string
+  description?: string
+  qualification?: number
+  price?: number
+  state?: string
+  type?: string
+  image?: string
 }
 
 interface cleanAction {
@@ -28,7 +44,8 @@ interface cleanAction {
 
 interface getAction {
   type: ActividadType.GET
-  payload: ActividadesTypes[]
+  payload: ResponseData
+  url: string
 }
 
 interface getIdAction {
@@ -48,6 +65,11 @@ interface disableAction {
   type: ActividadType.DISABLE
 }
 
+interface pageAction {
+  type: ActividadType.PAGE
+  payload: ResponseData
+}
+
 export type Action =
   | cleanAction
   | getAction
@@ -55,3 +77,4 @@ export type Action =
   | postAction
   | putAction
   | disableAction
+  | pageAction
