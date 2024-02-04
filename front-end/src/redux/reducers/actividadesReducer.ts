@@ -9,7 +9,10 @@ interface InitialState {
   cost: "" | "Pago" | "Gratis"
   order: "" | "Mayor" | "Menor"
   totalPages: number
+  totalItems: number
+  currentPage: number
   detail: DetailType
+  url: string
 }
 
 const initialState: InitialState = {
@@ -19,7 +22,10 @@ const initialState: InitialState = {
   cost: "",
   order: "",
   totalPages: 0,
+  totalItems: 0,
+  currentPage: 1,
   detail: {},
+  url: "",
 }
 
 const actividadesReducer = (state = initialState, action: Action) => {
@@ -27,8 +33,12 @@ const actividadesReducer = (state = initialState, action: Action) => {
     case ActividadType.GET:
       return {
         ...state,
-        actividades: [...state.actividades, ...action.payload],
-        actividadesCopy: [...state.actividades, ...action.payload],
+        actividades: action.payload.requestData,
+        actividadesCopy: action.payload.requestData,
+        totalPages: action.payload.pagination.totalPages,
+        totalItems: action.payload.pagination.totalItems,
+        currentPage: action.payload.pagination.currentPage,
+        url: action.url,
       }
 
     case ActividadType.CLEAN:
@@ -37,16 +47,14 @@ const actividadesReducer = (state = initialState, action: Action) => {
     case ActividadType.GET_ID:
       return { ...state, detail: action.payload }
 
-    case ActividadType.CLEAN_FILTERS:
+    case ActividadType.PAGE:
       return {
         ...state,
-        actividades: state.actividadesCopy,
-      }
-
-    case ActividadType.QUERY_BY_NAME:
-      return {
-        ...state,
-        actividades: action.payload,
+        actividades: action.payload.requestData,
+        actividadesCopy: action.payload.requestData,
+        totalPages: action.payload.pagination.totalPages,
+        totalItems: action.payload.pagination.totalItems,
+        currentPage: action.payload.pagination.currentPage,
       }
 
     // case ActionType.POST:

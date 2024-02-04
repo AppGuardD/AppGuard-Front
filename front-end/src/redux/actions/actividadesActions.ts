@@ -17,6 +17,16 @@ export interface ActividadesTypes {
   type: string
 }
 
+export interface ResponseData {
+  succes: boolean
+  pagination: {
+    totalPages: number
+    totalItems: number
+    currentPage: number
+  }
+  requestData: ActividadesTypes[]
+}
+
 export interface DetailType {
   activityName?: string
   description?: string
@@ -34,7 +44,8 @@ interface cleanAction {
 
 interface getAction {
   type: ActividadType.GET
-  payload: ActividadesTypes[]
+  payload: ResponseData
+  url: string
 }
 
 interface getIdAction {
@@ -54,14 +65,9 @@ interface disableAction {
   type: ActividadType.DISABLE
 }
 
-interface searchAction {
-  type: ActividadType.QUERY_BY_NAME
-  payload: ActividadesTypes[]
-}
-
-interface cleanFilterAction {
-  type: ActividadType.CLEAN_FILTERS
-  payload: ActividadesTypes[]
+interface pageAction {
+  type: ActividadType.PAGE
+  payload: ResponseData
 }
 
 export type Action =
@@ -71,5 +77,4 @@ export type Action =
   | postAction
   | putAction
   | disableAction
-  | searchAction
-  | cleanFilterAction
+  | pageAction
