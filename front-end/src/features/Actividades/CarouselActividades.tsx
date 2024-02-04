@@ -1,3 +1,4 @@
+import * as React from "react"
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import {
   Carousel,
@@ -10,8 +11,18 @@ import { useAppSelector } from "@/redux/hooks"
 import { useEffect, useState } from "react"
 import CarouselLoading from "../Mangrullos/loading-states/carousel-loading"
 import { Skeleton } from "@/components/ui/skeleton"
+import Autoplay from "embla-carousel-autoplay"
+import { Separator } from "@/components/ui/separator"
+import { Star } from "lucide-react"
 
 const CarouselActividades: React.FC = () => {
+  const plugin = React.useRef(
+    Autoplay({
+      delay: 4000,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+    }),
+  )
   const actividades = useAppSelector(
     state => state.actividadesReducer.actividades,
   )
@@ -30,7 +41,12 @@ const CarouselActividades: React.FC = () => {
   }
 
   return (
-    <Carousel className="max-w-xl">
+    <Carousel
+      plugins={[plugin.current]}
+      onMouseEnter={plugin.current.stop}
+      onMouseLeave={plugin.current.reset}
+      className="max-w-xl"
+    >
       <CarouselContent>
         {loading ? (
           <CarouselLoading />
@@ -52,8 +68,17 @@ const CarouselActividades: React.FC = () => {
                       />
                     </div>
                     <div className="pl-6 w-sm">
-                      <CardTitle>Zona destacada {actividad.id}</CardTitle>
-                      <p>{actividad.activityName}</p>
+                      <p className="w-44 max-w-sm text-xl font-bold">
+                        {actividad.activityName}
+                      </p>
+                      <Separator className="my-2" />
+                      <p className="max-w-sm">{actividad.type}</p>
+                      <div className="flex">
+                        <p className="max-w-sm font-bold">
+                          {actividad.qualification}
+                        </p>
+                        <Star className="inline-block align-middle ml-2 size-5" />
+                      </div>
                     </div>
                   </div>
                 </CardContent>
