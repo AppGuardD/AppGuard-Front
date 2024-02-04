@@ -33,11 +33,11 @@ const actividadesReducer = (state = initialState, action: Action) => {
     case ActividadType.GET:
       return {
         ...state,
-        actividades: [...state.actividades, ...action.payload.requestData],
-        actividadesCopy: [...state.actividades, ...action.payload.requestData],
-        totalPages: (state.totalPages = action.payload.pagination.totalPages),
-        totalItems: (state.totalItems = action.payload.pagination.totalItems),
-        currentPage: (state.currentPage= action.payload.pagination.currentPage),
+        actividades: action.payload.requestData,
+        actividadesCopy: action.payload.requestData,
+        totalPages: action.payload.pagination.totalPages,
+        totalItems: action.payload.pagination.totalItems,
+        currentPage: action.payload.pagination.currentPage,
       }
 
     case ActividadType.CLEAN:

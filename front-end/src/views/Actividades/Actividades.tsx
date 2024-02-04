@@ -4,9 +4,9 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import CardsActividades from "@/features/Actividades/CardsActividades"
-import FilterBar from "@/features/Navigation/FilterBar"
 import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
 import { cleanActividades } from "@/redux/action-creators/actividades/cleanActividades"
+import FilterActividades from "@/features/Actividades/filters/filter-bar"
 
 const Actividades: React.FC = () => {
   const actividades: ActividadesTypes[] = useAppSelector(
@@ -35,21 +35,19 @@ const Actividades: React.FC = () => {
 
   return (
     <div>
-      <div className="flex justify-between px-8 pb-6 ">
-        <p className="basis-1/3 text-3xl align-baseline">
-          Todas las Actividades
-        </p>
-        <div className="basis-1/3">
-          <FilterBar />
-        </div>
-        <div className="basis-1/3 flex flex-row-reverse">
+      <div className="flex px-8 pb-6 ">
+        <div className="basis-1/3 flex">
           <Button
             onClick={() => navigate("/home")}
-            className="ml-4 rounded border-primary"
+            className="mr-4"
             variant={"outline"}
           >
             Atras
           </Button>
+          <p className="text-3xl">Todas las Actividades</p>
+        </div>
+        <div className="basis-2/3">
+          <FilterActividades />
         </div>
       </div>
       <CardsActividades actividades={actividades} />

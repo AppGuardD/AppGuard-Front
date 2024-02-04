@@ -1,7 +1,9 @@
 import { getActividades } from "@/redux/action-creators/actividades/getActividades"
 import { useAppSelector, useAppDispatch } from "@/redux/hooks"
 
-const Pagination: React.FC = () => {
+// en progreso
+
+const PagesMangrullos: React.FC = () => {
   const dispatch = useAppDispatch()
   const totalPages = useAppSelector(
     state => state.actividadesReducer.totalPages,
@@ -41,4 +43,4 @@ const Pagination: React.FC = () => {
   )
 }
 
-export default Pagination
+export default PagesMangrullos
