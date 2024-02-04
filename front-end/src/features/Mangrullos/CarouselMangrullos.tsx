@@ -1,3 +1,4 @@
+import * as React from "react"
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import {
   Carousel,
@@ -11,8 +12,17 @@ import { useAppSelector } from "@/redux/hooks"
 import { useEffect, useState } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
 import CarouselLoading from "./loading-states/carousel-loading"
+import Autoplay from "embla-carousel-autoplay"
 
 const CarouselMangrullos: React.FC = () => {
+  const plugin = React.useRef(
+    Autoplay({
+      delay: 4000,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+    }),
+  )
+
   const mangrullos: Mangrullo[] = useAppSelector(
     state => state.mangrullosReducer.mangrullos,
   )
@@ -30,7 +40,12 @@ const CarouselMangrullos: React.FC = () => {
   }
 
   return (
-    <Carousel className="max-w-xl">
+    <Carousel
+      plugins={[plugin.current]}
+      onMouseEnter={plugin.current.stop}
+      onMouseLeave={plugin.current.reset}
+      className="max-w-xl"
+    >
       <CarouselContent>
         {loading ? (
           <CarouselLoading />

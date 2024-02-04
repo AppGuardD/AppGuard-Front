@@ -9,6 +9,13 @@ import {
 import { useNavigate } from "react-router-dom"
 import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
 import { Button } from "@/components/ui/button"
+import {
+  ChevronRight,
+  CircleDollarSign,
+  ShoppingCart,
+  Star,
+} from "lucide-react"
+import { Separator } from "@/components/ui/separator"
 
 interface CardsActividadesProps {
   actividades: ActividadesTypes[]
@@ -33,14 +40,31 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
               alt="Actividad"
             />
           </CardContent>
-          <CardFooter className="flex justify-between">
-            <p>Calificacion: {actividad.qualification} Estrella</p>
-            <Button
-              variant={"outline"}
-              onClick={() => navigate(`/actividades/detail/${actividad.id}`)}
-            >
-              Conocer mas...
-            </Button>
+          <CardFooter className="flex flex-col">
+            <div className="grid grid-cols-2 place-items-center w-full px-8">
+              <div className="flex mr-auto">
+                <CircleDollarSign className="size-5 mr-2" />
+                <p>{actividad.price}</p>
+              </div>
+              <div className="flex ml-auto">
+                <Star className="size-5 mr-2" />
+                <p>{actividad.qualification}</p>
+              </div>
+            </div>
+            <Separator className="mt-2" />
+            <div className="flex justify-between">
+              <Button variant={"ghost"}>
+                Añadir al carrito
+                <ShoppingCart className="size-5 ml-2" />
+              </Button>
+              <Button
+                variant={"ghost"}
+                onClick={() => navigate(`/actividades/detail/${actividad.id}`)}
+              >
+                Conocer mas
+                <ChevronRight className="size-5 ml-2" />
+              </Button>
+            </div>
           </CardFooter>
         </Card>
       ))}

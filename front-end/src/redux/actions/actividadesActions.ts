@@ -28,13 +28,15 @@ export interface ResponseData {
 }
 
 export interface DetailType {
+  id?: number
   activityName?: string
   description?: string
+  image?: string
   qualification?: number
   price?: number
   state?: string
+  active?: boolean
   type?: string
-  image?: string
 }
 
 interface cleanAction {
