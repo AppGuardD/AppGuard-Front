@@ -14,6 +14,7 @@ import Cart from "./views/Cart/Cart"
 import Actividades from "./views/Actividades/Actividades"
 import DetailActividades from "./views/Detail/DetailActividades"
 import RegistrationForm from "./views/Register/Register"
+import { Profile } from "./views/Profile/Profile"
 const App = () => {
   return (
     <Router>
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/actividades" element={< Actividades/>} />
         <Route path="/actividades/detail/:id" element={< DetailActividades/>} />
         <Route path="/register" element={<RegistrationForm />} />
+        <Route path="/profile" element={<Profile/>} />
       </Routes>
       {<Footer/>}
     </Router>
