@@ -27,7 +27,6 @@ const CarouselMangrullos: React.FC = () => {
 
   const handleImageLoad = () => {
     setImgLoading(false)
-    console.log(imgLoading)
   }
 
   return (

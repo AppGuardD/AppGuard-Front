@@ -20,7 +20,6 @@ const SelectFilterActividades: React.FC = () => {
       setState("")
     } else {
       setState(value)
-      console.log(state)
     }
   }
 
@@ -29,7 +28,6 @@ const SelectFilterActividades: React.FC = () => {
       setType("")
     } else {
       setType(value)
-      console.log(type)
     }
   }
 
