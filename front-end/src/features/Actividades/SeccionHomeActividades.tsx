@@ -9,16 +9,15 @@ const SeccionHomeActividades: React.FC = () => {
     <div className="flex w-full">
       <div className="grid place-items-center w-full text-justify mx-16 mr-20">
         <p className="text-4xl mb-4">Actividades</p>
-        <p className="text-md">
-          Donec quis libero lorem. Cras sed ultrices diam. Vestibulum ultrices
-          vel mauris pellentesque gravida. Praesent porta vulputate faucibus.
-          Sed vel odio at sapien congue fermentum. Integer quam tortor, commodo
-          vel viverra nec, pretium ac tellus. Cras vestibulum dolor at dolor
-          ultrices dignissim. Maecenas nec scelerisque mi. Ut id eros eu risus
-          congue posuere a quis eros. Integer tortor orci, dictum volutpat leo
-          vel, tincidunt interdum dolor. Sed vehicula purus maximus, malesuada
-          ex ut, condimentum augue. Ut imperdiet leo at augue porttitor varius.
-          Vestibulum facilisis leo eget ex congue pulvinar.
+        <p className="text-lg mb-4">
+        Embárcate en una jornada inolvidable con nuestras actividades en la playa,
+        un oasis de diversión y descanso frente a las mejores playas. En nuestro
+        exclusivo repertorio, encuentras una gama de opciones que se adaptan a
+        todos los gustos y preferencias. Déjate llevar por la emoción de los deportes 
+        acuáticos, sumérgete en la riqueza cultural que ofrecemos en la orilla o encuentra 
+        la armonía en actividades sanitarias frente al océano. La diversidad de nuestras 
+        propuestas garantiza experiencias únicas para cada individuo, desde aquellos que buscan 
+        adrenalina hasta quienes anhelan momentos de tranquilidad.
         </p>
         <div>
           <button

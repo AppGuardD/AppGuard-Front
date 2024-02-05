@@ -24,7 +24,7 @@ const github = (
 
 const About: React.FC = () => {
   return (
-    <div className="container flex-column text-white relative w-11/12 m-4  overflow-hidden">
+    <div className="h-svh mx-auto container flex-column text-white relative w-11/12 m-4  overflow-hidden">
       <h1 className="font-semibold mt-1 text-3xl pt-0.25 text-center text-white">
         Nuestro Equipo
       </h1>
