@@ -3,20 +3,21 @@ import { columns } from "./data-table/columns"
 import { DataTable } from "./data-table/data-table"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import CreateDialog from "./data-table/create-dialog"
-import type { DetailType } from "@/redux/actions/actividadesActions"
-import { getActividades } from "@/redux/action-creators/actividades/getActividades"
+import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
 import { cleanActividades } from "@/redux/action-creators/actividades/cleanActividades"
+import { getAdminActividades } from "@/redux/action-creators/actividades/admin/admin-get-actividades"
 
 const AdminActividades: React.FC = () => {
-  const actividades: DetailType[] = useAppSelector(
-    state => state.actividadesReducer.actividades,
+  const token = useAppSelector(state => state.userReducer.token)
+  const adminTable: ActividadesTypes[] = useAppSelector(
+    state => state.actividadesReducer.adminTable,
   )
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     let mounted = true
     const fetchData = async () => {
-      await dispatch(getActividades())
+      await dispatch(getAdminActividades({ token: token }))
       if (!mounted) {
         dispatch(cleanActividades())
       }
@@ -25,7 +26,7 @@ const AdminActividades: React.FC = () => {
     return () => {
       mounted = false
     }
-  }, [dispatch])
+  }, [dispatch, token])
 
   return (
     <div className="p-4 m-8 rounded border border-primary">
@@ -33,7 +34,7 @@ const AdminActividades: React.FC = () => {
         <p className="text-3xl align-baseline">Actividades</p>
         <CreateDialog />
       </div>
-      <DataTable columns={columns} data={actividades} />
+      <DataTable columns={columns} data={adminTable} />
     </div>
   )
 }

@@ -3,6 +3,7 @@ import type { ActividadesTypes, Action } from "../actions/actividadesActions"
 import type { DetailType } from "../actions/actividadesActions"
 
 interface InitialState {
+  adminTable: ActividadesTypes[]
   actividades: ActividadesTypes[]
   actividadesCopy: ActividadesTypes[]
   type: "" | "Deportivo" | "Sanitario" | "Cultural"
@@ -16,6 +17,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
+  adminTable: [],
   actividades: [],
   actividadesCopy: [],
   type: "",
@@ -57,14 +59,14 @@ const actividadesReducer = (state = initialState, action: Action) => {
         currentPage: action.payload.pagination.currentPage,
       }
 
-    // case ActionType.POST:
-    //   return (state = action.payload)
-    //
-    // case ActionType.PUT:
-    //   return (state = action.payload)
-    //
-    // case ActionType.DISABLE:
-    //   return (state = action.payload)
+    case ActividadType.DISABLE:
+      return { ...state, adminTable: action.payload }
+
+    case ActividadType.GET_ADMIN:
+      return { ...state, adminTable: action.payload }
+
+    case ActividadType.CLEAN_ADMIN:
+      return { ...state, adminTable: action.payload }
 
     default:
       return state

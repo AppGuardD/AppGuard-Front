@@ -1,4 +1,4 @@
-import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
+import type { DetailType } from "@/redux/actions/actividadesActions"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -13,8 +13,10 @@ import { Label } from "@/components/ui/label"
 import { MoreHorizontalIcon } from "lucide-react"
 import TypeSelectActividades from "./type-select"
 import ValueSelectActividades from "./value-select"
+import { Textarea } from "@/components/ui/textarea"
+import DisableButtonActividades from "./disable-button"
 
-const EditDialog: React.FC<ActividadesTypes> = data => {
+const EditDialog: React.FC<DetailType> = data => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -48,7 +50,7 @@ const EditDialog: React.FC<ActividadesTypes> = data => {
             <Label htmlFor="Valor" className="text-right">
               Valor
             </Label>
-            <ValueSelectActividades />
+            <ValueSelectActividades value={data.state} />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="Calificacion" className="text-right">
@@ -71,21 +73,17 @@ const EditDialog: React.FC<ActividadesTypes> = data => {
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="Imagen" className="text-right">
+            <Label htmlFor="image" className="text-right">
               Imagen
             </Label>
-            <Input
-              id="username"
-              defaultValue={data.image}
-              className="col-span-3"
-            />
+            <Input type="file" id="image" className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="Descripcion" className="text-right">
               Descripcion
             </Label>
-            <Input
-              id="username"
+            <Textarea
+              id="description"
               defaultValue={data.description}
               className="col-span-3"
             />
@@ -93,16 +91,7 @@ const EditDialog: React.FC<ActividadesTypes> = data => {
         </div>
 
         <DialogFooter>
-          <div className="flex justify-between w-full">
-            <Button
-              className="text-sky-100"
-              variant={"destructive"}
-              type="submit"
-            >
-              Desactivar
-            </Button>
-            <Button type="submit">Guardar</Button>
-          </div>
+          <DisableButtonActividades id={data.id} />
         </DialogFooter>
       </DialogContent>
     </Dialog>

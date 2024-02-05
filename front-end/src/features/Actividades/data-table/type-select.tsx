@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/select"
 
 interface TypeProps {
-  type: string
+  type?: string
 }
 
 const TypeSelectActividades: React.FC<TypeProps> = props => {
