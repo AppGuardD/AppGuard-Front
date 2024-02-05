@@ -55,6 +55,16 @@ interface getIdAction {
   payload: DetailType
 }
 
+interface getAdminAction {
+  type: ActividadType.GET_ADMIN
+  payload: ActividadesTypes[]
+}
+
+interface cleanAdminAction {
+  type: ActividadType.CLEAN_ADMIN
+  payload: []
+}
+
 interface postAction {
   type: ActividadType.POST
 }
@@ -65,6 +75,7 @@ interface putAction {
 
 interface disableAction {
   type: ActividadType.DISABLE
+  payload: ActividadesTypes[]
 }
 
 interface pageAction {
@@ -80,3 +91,5 @@ export type Action =
   | putAction
   | disableAction
   | pageAction
+  | getAdminAction
+  | cleanAdminAction

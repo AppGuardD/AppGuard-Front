@@ -6,10 +6,16 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-const ValueSelectActividades: React.FC = () => {
+interface ValueProps {
+  value?: string
+}
+
+const ValueSelectActividades: React.FC<ValueProps> = props => {
+  const value = props.value
+
   return (
     <>
-      <Select>
+      <Select defaultValue={value}>
         <SelectTrigger className="col-span-3">
           <SelectValue placeholder="Valor" />
         </SelectTrigger>
