@@ -39,7 +39,7 @@ const About: React.FC = () => {
             <p className="absolute top-16 w-full text-1.5xl uppercase text-white tracking-wide transform rotate-90 transition-all duration-500 ease-out group-hover:rotate-0 group-hover:text-2xl group-hover:text-center group-hover:bg-slate-950 group-hover:top-0">
               Tomas Elias Moukarzel
             </p>
-            <div className="w-full absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 ">
+            <div className="absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 ">
               <p className="fs-5">Full </p>
               <p>Stack</p> <p>Developer</p>
               <div className="card-link">
@@ -47,10 +47,16 @@ const About: React.FC = () => {
                   className="me-3"
                   href="https://www.linkedin.com/"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   {linkedin}
                 </a>
-                <a className="me-3" href="https://github.com/" target="_blank">
+                <a
+                  className="me-3"
+                  href="https://github.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   {github}
                 </a>
               </div>
@@ -67,18 +73,24 @@ const About: React.FC = () => {
             <p className="absolute top-16 w-full text-1.5xl uppercase text-white tracking-wide transform rotate-90 transition-all duration-500 ease-out group-hover:rotate-0 group-hover:text-2xl group-hover:text-center group-hover:bg-slate-950 group-hover:top-0">
               Marcos Barrientos
             </p>
-            <div className="w-full absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 ">
+            <div className="absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 ">
               <p className="fs-5">Full </p>
               <p>Stack</p> <p>Developer</p>
               <div className="card-link">
                 <a
+                  rel="noreferrer"
                   className="me-3"
                   href="https://www.linkedin.com/"
                   target="_blank"
                 >
                   {linkedin}
                 </a>
-                <a className="me-3" href="https://github.com/" target="_blank">
+                <a
+                  rel="noreferrer"
+                  className="me-3"
+                  href="https://github.com/"
+                  target="_blank"
+                >
                   {github}
                 </a>
               </div>
@@ -95,11 +107,12 @@ const About: React.FC = () => {
             <p className="absolute top-16 w-full text-1.5xl uppercase text-white tracking-wide transform rotate-90 transition-all duration-500 ease-out group-hover:rotate-0 group-hover:text-2xl group-hover:text-center group-hover:bg-slate-950 group-hover:top-0">
               Humberto Bernal Mondragon
             </p>
-            <div className="w-full absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 ">
+            <div className="absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 ">
               <p className="fs-5">Full </p>
               <p>Stack</p> <p>Developer</p>
               <div className="card-link">
                 <a
+                  rel="noreferrer"
                   className="me-3"
                   href="https://www.linkedin.com/in/bernal-mh/"
                   target="_blank"
@@ -107,6 +120,7 @@ const About: React.FC = () => {
                   {linkedin}
                 </a>
                 <a
+                  rel="noreferrer"
                   className="me-3"
                   href="https://github.com/bemh1997 "
                   target="_blank"
@@ -127,7 +141,7 @@ const About: React.FC = () => {
             <p className="absolute top-16 w-full text-1.5xl uppercase text-white tracking-wide transform rotate-90 transition-all duration-500 ease-out group-hover:rotate-0 group-hover:text-2xl group-hover:text-center group-hover:bg-slate-950 group-hover:top-0">
               Braian Isaac Bascuñan
             </p>
-            <div className="w-full absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 fill-white">
+            <div className="absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 fill-white">
               <p className="fs-5">Full </p>
               <p>Stack</p> <p>Developer</p>
               <div className="transition-all duration-300 flex-row">
@@ -151,18 +165,24 @@ const About: React.FC = () => {
             <p className="absolute top-16 w-full text-1.5xl uppercase text-white tracking-wide transform rotate-90 transition-all duration-500 ease-out group-hover:rotate-0 group-hover:text-2xl group-hover:text-center group-hover:bg-slate-950 group-hover:top-0">
               Javier Emiro Lopez Arrieta
             </p>
-            <div className="w-full absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 ">
+            <div className="absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 ">
               <p className="fs-5">Full </p>
               <p>Stack</p> <p>Developer</p>
               <div className="card-link">
                 <a
+                  rel="noreferrer"
                   className="me-3"
                   href="https://www.linkedin.com/"
                   target="_blank"
                 >
                   {linkedin}
                 </a>
-                <a className="me-3" href="https://github.com/ " target="_blank">
+                <a
+                  rel="noreferrer"
+                  className="me-3"
+                  href="https://github.com/ "
+                  target="_blank"
+                >
                   {github}
                 </a>
               </div>
@@ -180,18 +200,24 @@ const About: React.FC = () => {
             <p className="absolute top-16 w-full text-1.5xl uppercase text-white tracking-wide transform rotate-90 transition-all duration-500 ease-out group-hover:rotate-0 group-hover:text-2xl group-hover:text-center group-hover:bg-slate-950 group-hover:top-0">
               Nestor Camilo Londoño Martinez
             </p>
-            <div className="w-full absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 ">
+            <div className="absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 ">
               <p className="fs-5">Full </p>
               <p>Stack</p> <p>Developer</p>
               <div className="card-link">
                 <a
+                  rel="noreferrer"
                   className="me-3"
                   href="https://www.linkedin.com/"
                   target="_blank"
                 >
                   {linkedin}
                 </a>
-                <a className="me-3" href="https://github.com/" target="_blank">
+                <a
+                  rel="noreferrer"
+                  className="me-3"
+                  href="https://github.com/"
+                  target="_blank"
+                >
                   {github}
                 </a>
               </div>
@@ -208,18 +234,24 @@ const About: React.FC = () => {
             <p className="absolute top-16 w-full text-1.5xl uppercase text-white tracking-wide transform rotate-90 transition-all duration-500 ease-out group-hover:rotate-0 group-hover:text-2xl group-hover:text-center group-hover:bg-slate-950 group-hover:top-0">
               Juan Andres Bautista Perez
             </p>
-            <div className="w-full absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 ">
+            <div className="absolute bottom-16 w-full flex items-center justify-center flex-col transform translate-y-20 transition-all duration-300 ">
               <p className="fs-5">Full </p>
               <p>Stack</p> <p>Developer</p>
               <div className="card-link">
                 <a
+                  rel="noreferrer"
                   className="me-3"
                   href="https://www.linkedin.com/"
                   target="_blank"
                 >
                   {linkedin}
                 </a>
-                <a className="me-3" href="https://github.com/" target="_blank">
+                <a
+                  rel="noreferrer"
+                  className="me-3"
+                  href="https://github.com/"
+                  target="_blank"
+                >
                   {github}
                 </a>
               </div>
