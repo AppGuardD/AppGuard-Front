@@ -15,6 +15,7 @@ import Actividades from "./views/Actividades/Actividades"
 import DetailActividades from "./views/Detail/DetailActividades"
 import RegistrationForm from "./views/Register/Register"
 import { Profile } from "./views/Profile/Profile"
+import {Review} from "./views/Review/Review"
 const App = () => {
   return (
     <Router>
@@ -31,8 +32,10 @@ const App = () => {
         <Route path="mangrullos/detail/:id" element={<DetailMangrullo />} />
         <Route path="/actividades" element={<Actividades />} />
         <Route path="/actividades/detail/:id" element={<DetailActividades />} />
-        <Route path="/register" element={<RegistrationForm />} />
+        {/* <Route path="/register" element={<RegistrationForm />} /> */}
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/review" element={<Review/>} />
+
       </Routes>
       {<Footer />}
     </Router>
