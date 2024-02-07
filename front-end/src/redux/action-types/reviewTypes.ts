@@ -1,5 +1,5 @@
 export enum ReviewType {
-    GET = "getReview",
-    POST = "postReview",
-    DELETE = "deleteReview"
+  GET = "getReview",
+  POST = "postReview",
+  DELETE = "deleteReview",
 }

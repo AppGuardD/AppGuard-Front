@@ -10,8 +10,8 @@ const reducer = combineReducers({
   actividadesReducer: actividadesReducer,
   advicesReducer: advicesReducer,
   userReducer: userReducer,
-  loginReducer:loginReducer,
-  reviewReducer: reviewReducer
+  loginReducer: loginReducer,
+  reviewReducer: reviewReducer,
 })
 
 export default reducer
