@@ -1,7 +1,7 @@
-import { Action } from "@/redux/actions/reviewActions"
+import type { Action } from "@/redux/actions/reviewActions"
+import type { Dispatch } from "@reduxjs/toolkit"
 import { ReviewType } from "@/redux/action-types/reviewTypes"
 import axios from "axios"
-import { Dispatch } from "@reduxjs/toolkit"
 
 const instance = axios.create({
   baseURL: "http://localhost:3001/api",
@@ -9,18 +9,31 @@ const instance = axios.create({
 })
 
 interface ReviewData {
-  //  activityId: number
-  // userId: number
+  activityId?: string
+  userId?: string
+}
+
+interface FormData {
   comment: string
   qualification: number
 }
 
-export function createReviewActividades(ReviewData: ReviewData) {
+export function createReviewActividades(options: {
+  reviewData: ReviewData
+  formData: FormData
+}) {
   return async function (dispatch: Dispatch<Action>) {
     try {
-      console.log(ReviewData)
+      const requestData = {
+        activityId: options.reviewData.activityId,
+        userId: options.reviewData.userId,
+        comment: options.formData.comment,
+        qualification: options.formData.qualification,
+      }
+
+      console.log(requestData)
       const url = "/reviewActivity/create"
-      const response = await instance.post(url, ReviewData)
+      const response = await instance.post(url, requestData)
 
       dispatch({
         type: ReviewType.POST,

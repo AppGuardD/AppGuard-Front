@@ -1,22 +1,19 @@
-import { UseDispatch } from "react-redux"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/formReview"
+} from "@/components/ui/form"
 import { Textarea } from "@/components/ui/textarea"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import { UserTypes } from "@/redux/actions/userActions"
 import { useParams } from "react-router-dom"
+import { createReviewActividades } from "@/redux/action-creators/reviews/postReview"
 
 // Nuevo esquema del formulario que incluye la puntuación
 const formSchema = z.object({
@@ -38,8 +35,8 @@ export function Review() {
   const userId = useAppSelector(state => state.userReducer.id)
 
   const reviewData = {
-    userId: userId,
-    actividadId: id,
+    userId: userId.toString(),
+    activityId: id,
   }
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -51,7 +48,9 @@ export function Review() {
   })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    //disaptch de data y traer la funcion creadora
+    dispatch(
+      createReviewActividades({ reviewData: reviewData, formData: data }),
+    )
   }
 
   return (
