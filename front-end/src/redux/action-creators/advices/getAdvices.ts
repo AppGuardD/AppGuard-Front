@@ -6,7 +6,9 @@ import type { Dispatch } from "@reduxjs/toolkit"
 export function getAdvices() {
   return async function (dispatch: Dispatch<Action>) {
     try {
-      const response = await axios(`http://localhost:3001/api/advice/search`)
+      const response = await axios(
+        `https://appguard-back.onrender.com/api/advice/search`,
+      )
       dispatch({
         type: ActionType.GET,
         payload: response.data,

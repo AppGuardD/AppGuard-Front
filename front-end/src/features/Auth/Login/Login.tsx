@@ -1,23 +1,19 @@
-
-import React from "react";
-import { useForm , SubmitHandler } from "react-hook-form";
-import { postLogin } from "../../redux/action-creators/login/postLogin";
-import { useAppDispatch } from "@/redux/hooks";
-
+import { useForm, SubmitHandler } from "react-hook-form"
+import { postLogin } from "../../../redux/action-creators/login/postLogin"
+import { useAppDispatch } from "@/redux/hooks"
 
 interface LogData {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
+
 interface FormData {
-
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
-
 
 const LoginForm: React.FC = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const {
     control,
@@ -29,33 +25,27 @@ const LoginForm: React.FC = () => {
   const onSubmit: SubmitHandler<FormData> = data => {
     // Aquí puedes manejar los datos del formulario
 
-    console.log(data);
-
+    console.log(data)
 
     // Llama a tu acción para iniciar sesión
-    dispatch(postLogin(data));
-  };
-// const handleLogin = ()=> ;
+    dispatch(postLogin(data))
+  }
+  // const handleLogin = ()=> ;
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="h-svh">
       <div className="bg-darkblue-900 text-white p-8 rounded w-96">
-        <h2 className="text-2xl font-semibold mb-4">Iniciar Sesión</h2>
+        <p className="text-4xl font-semibold mb-4">Iniciar Sesión</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
-
             <label htmlFor="Email" className="block text-sm font-medium">
-
               Usuario:
             </label>
             <input
               type="text"
-
               id="emial"
-              
               {...register("email")} // Vincula el campo al estado de react-hook-form
               className="mt-1 p-2 w-full border rounded bg-gray-800 text-white"
             />
-
           </div>
 
           <div className="mb-4">
@@ -65,12 +55,9 @@ const LoginForm: React.FC = () => {
             <input
               type="password"
               id="password"
-
-             
               {...register("password")} // Vincula el campo al estado de react-hook-form
               className="mt-1 p-2 w-full border rounded bg-gray-800 text-white"
             />
-
           </div>
 
           <button
@@ -82,9 +69,7 @@ const LoginForm: React.FC = () => {
         </form>
       </div>
     </div>
+  )
+}
 
-  );
-};
-
-export default LoginForm;
-
+export default LoginForm
