@@ -30,10 +30,10 @@ const Actividades: React.FC = () => {
   }, [dispatch])
 
   return (
-    <>
+    <div className="h-svh">
       <FilterActividades />
       <CardsActividades actividades={actividades} />
-    </>
+    </div>
   )
 }
 

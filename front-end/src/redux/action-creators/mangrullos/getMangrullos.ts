@@ -7,7 +7,7 @@ export function getMangrullos() {
   return async function (dispatch: Dispatch<Action>) {
     try {
       const response = await axios(
-        `http://localhost:3001/api/mangrullos/search`,
+        `https://appguard-back.onrender.com/api/mangrullos/search`,
       )
       dispatch({
         type: ActionType.GET,
