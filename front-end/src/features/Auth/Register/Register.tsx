@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -33,8 +32,10 @@ const formSchema = z.object({
   password: z.string().min(8, {
     message: "La contraseña tiene que tener al menos 8 caracteres.",
   }),
+  numberIdentification: z.string().min(1, {
+    message: "Este campo es obligatorio",
+  }),
   typeIdentification: z.enum(["DNI", "PP"]),
-  numberIdentification: z.string(),
   rol: z.enum(["Admin", "Cliente"]),
 })
 
@@ -65,120 +66,118 @@ const CreateUserForm: React.FC = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
-          className="h-svh w-96 mx-8"
+          className="h-svh mr-16 ml-8"
         >
-          <FormField
-            control={form.control}
-            name="userName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nombre de usuario</FormLabel>
-                <FormControl>
-                  <Input placeholder="Jhon Doe" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Correo electronico</FormLabel>
-                <FormControl>
-                  <Input
-                    type="email"
-                    placeholder="jhondoe@mail.com"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Contraseña</FormLabel>
-                <FormControl>
-                  <Input type="password" placeholder="jhon123" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="typeIdentification"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Tipo de identificacion</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+          <div className="grid grid-cols-2 gap-8">
+            <FormField
+              control={form.control}
+              name="userName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nombre de usuario</FormLabel>
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
+                    <Input placeholder="Jhon Doe" {...field} />
                   </FormControl>
-                  <SelectContent>
-                    <SelectItem value="DNI">DNI</SelectItem>
-                    <SelectItem value="PP">Pasaporte</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormDescription>
-                  Elige tu tipo de identificacion
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="numberIdentification"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  Escribe tu numero de identificacion o de pasaporte
-                </FormLabel>
-                <FormControl>
-                  <Input placeholder="1234567890" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="rol"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Tipo de cuenta</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Correo electronico</FormLabel>
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
+                    <Input
+                      type="email"
+                      placeholder="jhondoe@mail.com"
+                      {...field}
+                    />
                   </FormControl>
-                  <SelectContent>
-                    <SelectItem value="Admin">Administrador</SelectItem>
-                    <SelectItem value="Cliente">Cliente</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormDescription>Elige tu tipo de cuenta</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Contraseña</FormLabel>
+                  <FormControl>
+                    <Input type="password" placeholder="jhon123" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="typeIdentification"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tipo de identificacion</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="DNI">DNI</SelectItem>
+                      <SelectItem value="PP">Pasaporte</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="numberIdentification"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    Escribe tu numero de identificacion o de pasaporte
+                  </FormLabel>
+                  <FormControl>
+                    <Input placeholder="1234567890" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="rol"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tipo de cuenta</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="Admin">Administrador</SelectItem>
+                      <SelectItem value="Cliente">Cliente</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
           <Button className="mt-4" variant={"secondary"} type="submit">
-            Crear usuario
+            Crea tu cuenta
           </Button>
         </form>
       </Form>
