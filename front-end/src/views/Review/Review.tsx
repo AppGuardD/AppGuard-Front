@@ -1,3 +1,4 @@
+import { UseDispatch } from "react-redux"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -12,41 +13,50 @@ import  {
   FormLabel,
   FormMessage,
 } from "@/components/ui/formReview"
+import { Textarea } from "@/components/ui/textarea"
 
 // Nuevo esquema del formulario que incluye la puntuación
 const formSchema = z.object({
-  Nombre: z.string().min((2), {
-    message: "Username must be at least 2 characters.",
-  }),
+  Description: z.string().min((2), {
+    message: "Your review cannot be less than 2 characters",
+  }).max(120, { message:"Your review cannot be more than 120 characters" }),
   Puntuacion: z.number().min(1, { message: "Puntuación mínima de 1" }).max(5, { message: "Puntuación máxima de 5" }),
 })
+
+
 
 export function Review() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      Nombre: "",
+      Description: "",
       Puntuacion: 0,
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Aquí manejas la información del formulario, incluida la puntuación
+ 
+
+  function onSubmit(data: z.infer<typeof formSchema>) {
+   //disaptch de data y traer la funcion creadora
   }
 
   return (
+
+  <div className="flex flex-col">
+    <p className="text-2xl mx-auto">Review actividades</p>
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col items-center">
+      
+        <FormField 
           control={form.control}
-          name="Nombre"
+          name="Description"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-              Dejanos tu descripción acá
+            <FormItem className="mt - 10">
+              <FormLabel className="mt-10">
+              Dejanos tu review
               </FormLabel>
               <FormControl>
-                <Input placeholder="Ingrese un texto" {...field} />
+                <Textarea placeholder="Ingrese un texto" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -56,7 +66,7 @@ export function Review() {
           control={form.control}
           name="Puntuacion"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="">
               <FormLabel>
                 Puntuación
               </FormLabel>
@@ -81,9 +91,7 @@ export function Review() {
         <Button type="submit" >Submit</Button>
       </form>
     </Form>
+
+  </div>
   )
 }
-
-
-
-
