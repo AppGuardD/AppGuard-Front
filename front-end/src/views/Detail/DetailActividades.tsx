@@ -54,7 +54,6 @@ const DetailActividades: React.FC = () => {
             <Separator className="my-2" />
             <div className="flex">
               <p>
-                
                 <b>Calificación: </b>
                 {detail.qualification}
               </p>
@@ -73,9 +72,8 @@ const DetailActividades: React.FC = () => {
               {detail.type}
             </p>
             <div>
-              <Button
-               onClick={() => navigate("/review")}>
-               Dejanos tu opiñion!
+              <Button onClick={() => navigate(`/review/${detail.id}`)}>
+                Dejanos tu opiñion!
               </Button>
             </div>
           </div>
