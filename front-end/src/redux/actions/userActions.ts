@@ -18,7 +18,7 @@ interface cleanAction {
 
 interface getAction {
   type: ActionType.GET
-  payload: UserTypes[]
+  payload: UserTypes
 }
 
 interface getIdAction {

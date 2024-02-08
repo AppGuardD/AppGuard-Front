@@ -71,6 +71,11 @@ const DetailActividades: React.FC = () => {
               <b>Tipo: </b>
               {detail.type}
             </p>
+            <div>
+              <Button onClick={() => navigate(`/review/${detail.id}`)}>
+                Dejanos tu opiñion!
+              </Button>
+            </div>
           </div>
         </div>
       ) : null}
