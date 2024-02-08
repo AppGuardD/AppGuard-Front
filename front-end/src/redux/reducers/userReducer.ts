@@ -15,7 +15,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  id: 0,
+  id: 2,
   userName: "",
   email: "",
   password: "",

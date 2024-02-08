@@ -14,6 +14,7 @@ import Actividades from "./views/Actividades/Actividades"
 import DetailActividades from "./views/Detail/DetailActividades"
 import { Profile } from "./views/Profile/Profile"
 import UsersView from "./views/Users/user"
+import { Review } from "./views/Review/Review"
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/actividades" element={<Actividades />} />
         <Route path="/actividades/detail/:id" element={<DetailActividades />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/review/:id" element={<Review />} />
       </Routes>
       {<Footer />}
     </Router>
