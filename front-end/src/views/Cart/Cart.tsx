@@ -1,4 +1,4 @@
-import Construccion from "../../assets/Construccion.png";
+import Construccion from "../../assets/Construccion.png"
 
 const Cart: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ const Cart: React.FC = () => {
         alt="En construcción"
       />
     </div>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

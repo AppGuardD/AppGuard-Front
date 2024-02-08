@@ -1,11 +1,8 @@
 import type { ActionType } from "../action-types/loginTypes"
 
 export interface LoginTypes {
-    
-    
-    email:string,
-    password: string,
-    
+  email: string
+  password: string
 }
 
 interface cleanAction {

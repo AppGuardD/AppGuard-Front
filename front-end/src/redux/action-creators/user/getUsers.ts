@@ -6,9 +6,7 @@ import type { Dispatch } from "@reduxjs/toolkit"
 export function getUsers() {
   return async function (dispatch: Dispatch<Action>) {
     try {
-      const response = await axios(
-        `http://localhost:3001/api/user/search`,
-      )
+      const response = await axios(`http://localhost:3001/api/user/search`)
       dispatch({
         type: ActionType.GET,
         payload: response.data.user,
