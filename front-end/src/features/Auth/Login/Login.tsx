@@ -1,12 +1,12 @@
-import React from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { postLogin } from "../../redux/action-creators/login/postLogin"
+import { postLogin } from "../../../redux/action-creators/login/postLogin"
 import { useAppDispatch } from "@/redux/hooks"
 
 interface LogData {
   email: string
   password: string
 }
+
 interface FormData {
   email: string
   password: string
@@ -32,9 +32,9 @@ const LoginForm: React.FC = () => {
   }
   // const handleLogin = ()=> ;
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="h-svh">
       <div className="bg-darkblue-900 text-white p-8 rounded w-96">
-        <h2 className="text-2xl font-semibold mb-4">Iniciar Sesión</h2>
+        <p className="text-4xl font-semibold mb-4">Iniciar Sesión</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label htmlFor="Email" className="block text-sm font-medium">

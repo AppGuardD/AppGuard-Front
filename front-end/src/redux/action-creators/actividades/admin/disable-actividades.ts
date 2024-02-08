@@ -4,7 +4,8 @@ import type { Action } from "@/redux/actions/actividadesActions"
 import { ActividadType } from "@/redux/action-types/actividadesTypes"
 
 const instance = axios.create({
-  baseURL: "http://localhost:3001/api",
+  //baseURL: "http://localhost:3001/api",
+  baseURL: "https://appguard-back.onrender.com/",
 })
 
 export function disableActividades(options: { id?: number; token?: string }) {

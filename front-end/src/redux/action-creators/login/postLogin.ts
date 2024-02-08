@@ -4,7 +4,6 @@ import type { Action } from "../../actions/loginActions"
 import type { Dispatch } from "@reduxjs/toolkit"
 
 export function postLogin(data: any) {
-  console.log("Datos enviados:", data) // Agrega este console.log
   return async function (dispatch: Dispatch<Action>) {
     try {
       const response = await axios.post(
