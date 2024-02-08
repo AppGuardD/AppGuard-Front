@@ -5,7 +5,7 @@ import CreateUserForm from "../../features/Auth/Register/Register"
 const UsersView: React.FC = () => {
   return (
     <>
-      <Tabs className="ml-12" defaultValue="login">
+      <Tabs className="ml-8" defaultValue="login">
         <TabsList>
           <TabsTrigger value="login">Iniciar Sesion</TabsTrigger>
           <TabsTrigger value="signin">Registrarse</TabsTrigger>
