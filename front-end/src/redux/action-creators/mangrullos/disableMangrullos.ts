@@ -1,16 +1,14 @@
-import axios from "axios"
 import { ActionType } from "../../action-types/mangrullosTypes"
 import type { Action } from "../../actions/mangrullosActions"
 import type { Dispatch } from "@reduxjs/toolkit"
 import { cleanMangrullos } from "./cleanMangrullos"
 import { getMangrullos } from "./getMangrullos"
+import instance from "@/redux/axios/instance"
 
 export function disableMangrullos(id: number) {
   return async function (dispatch: Dispatch<Action>) {
     try {
-      const response = await axios.put(
-        `http://localhost:3001/api/mangrullos/disable/${id}`,
-      )
+      const response = await instance.put(`/mangrullos/disable/${id}`)
       cleanMangrullos()
       getMangrullos()
       dispatch({

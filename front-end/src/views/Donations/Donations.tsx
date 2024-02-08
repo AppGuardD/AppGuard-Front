@@ -19,11 +19,14 @@ const Donations: React.FC = () => {
         </p>
         <div className="mt-4 md:mt-6 lg:mt-8 text-justify">
           <p className="text-2xl">
-            Desde AppGuard, valoramos enormemente la valiosa contribución de nuestros destacados 
-            guardavidas, cuya labor es preservar nuestra seguridad para que podamos disfrutar 
-            plenamente de todas las actividades y playas que ofrecemos. Es por eso que facilitamos 
-            medios directos de contribución para apoyarlos. ¡Únete a nosotros, tu ayuda es fundamental! 
-            Tu participación marca la diferencia. ¡Juntos hacemos posible un entorno más seguro y placentero para todos!
+            Desde AppGuard, valoramos enormemente la valiosa contribución de
+            nuestros destacados guardavidas, cuya labor es preservar nuestra
+            seguridad para que podamos disfrutar plenamente de todas las
+            actividades y playas que ofrecemos. Es por eso que facilitamos
+            medios directos de contribución para apoyarlos. ¡Únete a nosotros,
+            tu ayuda es fundamental! Tu participación marca la diferencia.
+            ¡Juntos hacemos posible un entorno más seguro y placentero para
+            todos!
           </p>
         </div>
         <div className="mt-8">
@@ -34,7 +37,7 @@ const Donations: React.FC = () => {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Donations;
+export default Donations

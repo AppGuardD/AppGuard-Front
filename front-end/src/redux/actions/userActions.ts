@@ -1,14 +1,14 @@
 import type { ActionType } from "../action-types/userTypes"
 
 export interface UserTypes {
-    id: number,
-    userName: string
-    email:string,
-    password: string,
-    typeIdentification: string,
-    numberIdentification: string,
-    rol: string,
-    state: string
+  id: number
+  userName: string
+  email: string
+  password: string
+  typeIdentification: string
+  numberIdentification: string
+  rol: string
+  state: string
 }
 
 interface cleanAction {

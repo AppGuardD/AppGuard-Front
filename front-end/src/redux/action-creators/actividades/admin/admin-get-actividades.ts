@@ -1,11 +1,7 @@
-import axios from "axios"
 import { ActividadType } from "../../../action-types/actividadesTypes"
 import type { Action } from "../../../actions/actividadesActions"
 import type { Dispatch } from "@reduxjs/toolkit"
-
-const instance = axios.create({
-  baseURL: "http://localhost:3001/api",
-})
+import instance from "@/redux/axios/instance"
 
 export function getAdminActividades(options: {
   //page?: number

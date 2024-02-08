@@ -18,18 +18,18 @@ const Landing: React.FC = () => {
         </ul>
         <div className="grid place-items-center mt-14">
           <div className="flex mt-8">
-          <Link to={`/home`}>
-            <Button variant={"outline"} className="text-xl mr-4">
-              Conocer mas
-              <img className="pl-4" src={rightArrow} alt="" />
-            </Button>
-          </Link>
-          <Link to={`/login`}>
-            <Button variant={"outline"} className="text-xl mr-4">
-              Iniciar sesion
-              <img className="pl-4" src={rightArrow} alt="" />
-            </Button>
-          </Link>
+            <Link to={`/home`}>
+              <Button variant={"outline"} className="text-xl mr-4">
+                Conocer mas
+                <img className="pl-4" src={rightArrow} alt="" />
+              </Button>
+            </Link>
+            <Link to={`/login`}>
+              <Button variant={"outline"} className="text-xl mr-4">
+                Iniciar sesion
+                <img className="pl-4" src={rightArrow} alt="" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import axios from "axios"
+import instance from "@/redux/axios/instance"
 import { ActividadType } from "../../action-types/actividadesTypes"
 import type { Action } from "../../actions/actividadesActions"
 import type { Dispatch } from "@reduxjs/toolkit"
@@ -6,9 +6,7 @@ import type { Dispatch } from "@reduxjs/toolkit"
 export function getIdActividad(id: string | undefined) {
   return async function (dispatch: Dispatch<Action>) {
     try {
-      const response = await axios(
-        `http://localhost:3001/api/activities/search/${id}`,
-      )
+      const response = await instance(`/activities/search/${id}`)
       dispatch({
         type: ActividadType.GET_ID,
         payload: response.data.requestData,

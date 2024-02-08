@@ -1,15 +1,12 @@
-import axios from "axios"
 import { ActionType } from "../../action-types/loginTypes"
 import type { Action } from "../../actions/loginActions"
 import type { Dispatch } from "@reduxjs/toolkit"
+import instance from "@/redux/axios/instance"
 
 export function postLogin(data: any) {
   return async function (dispatch: Dispatch<Action>) {
     try {
-      const response = await axios.post(
-        "http://localhost:3001/auth/login",
-        data,
-      )
+      const response = await instance.post("/auth/login", data)
       dispatch({
         type: ActionType.POST,
         payload: response.data,
