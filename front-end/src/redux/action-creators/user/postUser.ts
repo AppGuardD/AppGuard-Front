@@ -1,12 +1,7 @@
-import axios from "axios"
 import { ActionType } from "../../action-types/userTypes"
 import type { Action } from "../../actions/userActions"
 import type { Dispatch } from "@reduxjs/toolkit"
-
-const instance = axios.create({
-  baseURL: "http://localhost:3001/api",
-  //baseURL: "https://appguard-back.onrender.com/",
-})
+import instance from "@/redux/axios/instance"
 
 interface UserData {
   userName: string

@@ -1,14 +1,12 @@
-import axios from "axios"
 import { ActionType } from "../../action-types/advicesTypes"
 import type { Action } from "../../actions/advicesActions"
 import type { Dispatch } from "@reduxjs/toolkit"
+import instance from "@/redux/axios/instance"
 
 export function getAdvices() {
   return async function (dispatch: Dispatch<Action>) {
     try {
-      const response = await axios(
-        `https://appguard-back.onrender.com/api/advice/search`,
-      )
+      const response = await instance(`/advice/search`)
       dispatch({
         type: ActionType.GET,
         payload: response.data,
