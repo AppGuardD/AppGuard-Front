@@ -2,15 +2,29 @@ import { ActionType } from "@/redux/action-types/userTypes"
 import type { Action, UserTypes } from "@/redux/actions/userActions"
 
 interface InitialState {
-  user: UserTypes[]
-  detail?: UserTypes // Puede ser opcional dependiendo de tu lógica
+  id: number
+  userName: string
+  email: string
+  password: string
+  typeIdentification: string
+  numberIdentification: string
+  rol: string
+  state: string
+  detail?: UserTypes
   token?: string
 }
 
 const initialState: InitialState = {
-  user: [],
-  token:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2wiOiJBZG1pbiIsImlhdCI6MTcwNzEwOTcxMiwiZXhwIjoxNzA3Mjg5NzEyfQ.rMoJpD9gnvWwLcH6ObOOTOmUGsvc6nrjMEvs3Rtatqs",
+  id: 2,
+  userName: "",
+  email: "",
+  password: "",
+  typeIdentification: "",
+  numberIdentification: "",
+  rol: "",
+
+  state: "",
+  token: "",
 }
 
 const userReducer = (state = initialState, action: Action) => {
@@ -19,7 +33,7 @@ const userReducer = (state = initialState, action: Action) => {
       return { ...state, user: action.payload }
 
     case ActionType.GET:
-      return { ...state, user: [...state.user, ...action.payload] }
+      return { ...state, user: action.payload }
 
     case ActionType.GET_ID:
       return {
@@ -33,7 +47,7 @@ const userReducer = (state = initialState, action: Action) => {
     case ActionType.POST:
       return {
         ...state,
-        user: [...state.user, action.payload],
+        user: [...state.userInfo, action.payload],
       }
 
     //  case ActionType.PUT:

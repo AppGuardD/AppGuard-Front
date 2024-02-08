@@ -10,14 +10,15 @@ const SeccionHomeActividades: React.FC = () => {
       <div className="grid place-items-center w-full text-justify mx-16 mr-20">
         <p className="text-4xl mb-4">Actividades</p>
         <p className="text-lg mb-4">
-        Embárcate en una jornada inolvidable con nuestras actividades en la playa,
-        un oasis de diversión y descanso frente a las mejores playas. En nuestro
-        exclusivo repertorio, encuentras una gama de opciones que se adaptan a
-        todos los gustos y preferencias. Déjate llevar por la emoción de los deportes 
-        acuáticos, sumérgete en la riqueza cultural que ofrecemos en la orilla o encuentra 
-        la armonía en actividades sanitarias frente al océano. La diversidad de nuestras 
-        propuestas garantiza experiencias únicas para cada individuo, desde aquellos que buscan 
-        adrenalina hasta quienes anhelan momentos de tranquilidad.
+          Embárcate en una jornada inolvidable con nuestras actividades en la
+          playa, un oasis de diversión y descanso frente a las mejores playas.
+          En nuestro exclusivo repertorio, encuentras una gama de opciones que
+          se adaptan a todos los gustos y preferencias. Déjate llevar por la
+          emoción de los deportes acuáticos, sumérgete en la riqueza cultural
+          que ofrecemos en la orilla o encuentra la armonía en actividades
+          sanitarias frente al océano. La diversidad de nuestras propuestas
+          garantiza experiencias únicas para cada individuo, desde aquellos que
+          buscan adrenalina hasta quienes anhelan momentos de tranquilidad.
         </p>
         <div>
           <button

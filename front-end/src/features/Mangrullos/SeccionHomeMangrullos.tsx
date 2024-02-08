@@ -11,13 +11,15 @@ const SeccionHomeMangrullos: React.FC = () => {
       <div className="grid place-items-center w-full text-justify mx-16 mr-20">
         <p className="text-4xl mb-4">Mangrullos</p>
         <p className="text-lg mb-4">
-        Bienvenido a la experiencia definitiva en playas, descubre las mejores y más seguras 
-        costas para disfrutar del sol y el mar. Nos enorgullece ofrecerte una selección exclusiva 
-        de playas donde podrás relajarte con total tranquilidad, sabiendo que estás resguardado 
-        por nuestros dedicados y expertos guardavidas. Cada rincón que recomendamos ha sido 
-        minuciosamente evaluado para garantizar un entorno acuático seguro y protegido. Nuestros guardavidas,
-        expertos en su campo, están comprometidos con tu seguridad y bienestar, brindándote la confianza 
-        para sumergirte en el disfrute de cada momento.
+          Bienvenido a la experiencia definitiva en playas, descubre las mejores
+          y más seguras costas para disfrutar del sol y el mar. Nos enorgullece
+          ofrecerte una selección exclusiva de playas donde podrás relajarte con
+          total tranquilidad, sabiendo que estás resguardado por nuestros
+          dedicados y expertos guardavidas. Cada rincón que recomendamos ha sido
+          minuciosamente evaluado para garantizar un entorno acuático seguro y
+          protegido. Nuestros guardavidas, expertos en su campo, están
+          comprometidos con tu seguridad y bienestar, brindándote la confianza
+          para sumergirte en el disfrute de cada momento.
         </p>
         <div>
           <button

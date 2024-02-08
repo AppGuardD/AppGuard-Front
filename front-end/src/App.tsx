@@ -8,13 +8,14 @@ import DetailMangrullo from "./views/Detail/DetailMangrullo"
 import Mangrullos from "./views/Mangrullos/Mangrullos"
 import NavBar from "./features/Navigation/NavBar"
 import Footer from "./features/Navigation/Footer"
-import Login from "./views/Login/Login"
 import Admin from "./views/Admin/Admin"
 import Cart from "./views/Cart/Cart"
 import Actividades from "./views/Actividades/Actividades"
 import DetailActividades from "./views/Detail/DetailActividades"
-import RegistrationForm from "./views/Register/Register"
 import { Profile } from "./views/Profile/Profile"
+import UsersView from "./views/Users/user"
+import { Review } from "./views/Review/Review"
+
 const App = () => {
   return (
     <Router>
@@ -22,17 +23,17 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/users" element={<UsersView />} />
         <Route path="/donations" element={<Donations />} />
         <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/mangrullos" element={<Mangrullos />} />
-        <Route path="mangrullos/detail/:id" element={<DetailMangrullo />} />
+        <Route path="/mangrullos/detail/:id" element={<DetailMangrullo />} />
         <Route path="/actividades" element={<Actividades />} />
         <Route path="/actividades/detail/:id" element={<DetailActividades />} />
-        <Route path="/register" element={<RegistrationForm />} />
-        <Route path="/profile" element={<Profile/>} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/review/:id" element={<Review />} />
       </Routes>
       {<Footer />}
     </Router>
