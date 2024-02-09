@@ -22,7 +22,7 @@ const NavBar: React.FC = () => {
           onClick={() => navigate("/home")}
           className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
         >
-          SERVICIOS
+          ACTIVIDADES
         </button>
         <button
           onClick={() => navigate("/donations")}
@@ -37,7 +37,7 @@ const NavBar: React.FC = () => {
           QUIENES SOMOS
         </button>
         <button
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/users")}
           className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
         >
           INICIAR SESION

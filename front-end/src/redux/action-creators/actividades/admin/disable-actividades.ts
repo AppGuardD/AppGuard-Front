@@ -1,11 +1,7 @@
-import axios from "axios"
 import type { Dispatch } from "@reduxjs/toolkit"
 import type { Action } from "@/redux/actions/actividadesActions"
 import { ActividadType } from "@/redux/action-types/actividadesTypes"
-
-const instance = axios.create({
-  baseURL: "http://localhost:3001/api",
-})
+import instance from "@/redux/axios/instance"
 
 export function disableActividades(options: { id?: number; token?: string }) {
   return async function (dispatch: Dispatch<Action>) {
