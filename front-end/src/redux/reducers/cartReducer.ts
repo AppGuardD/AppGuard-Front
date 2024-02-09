@@ -15,22 +15,29 @@ const initialState: InitialState = {
   }
 }
 
+const sortDetalleCarrito = (carrito: CartTypes) => {
+  return {
+    ...carrito,
+    detalle_carrito: carrito.detalle_carrito?.sort((a, b) => a?.id - b?.id)
+  };
+};
+
 const cartReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ActionType.ADD_TO_CART:
-      return { ...state, carrito: action.payload };
+      return { ...state, carrito: sortDetalleCarrito(action.payload) };
 
     case ActionType.GET_CART:
-      return { ...state, carrito: action.payload };
+      return { ...state, carrito: sortDetalleCarrito(action.payload) };
 
     case ActionType.DELETE_ITEM:
       // Assuming the payload contains the updated cart items
-      return { ...state, carrito: action.payload };
+      return { ...state, carrito: sortDetalleCarrito(action.payload) };
 
     case ActionType.REMOVE_FROM_CART:
       return {
         ...state,
-        carrito: action.payload
+        carrito: sortDetalleCarrito(action.payload)
       };
 
     default:
