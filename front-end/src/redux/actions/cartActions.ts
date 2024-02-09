@@ -1,23 +1,21 @@
 import type { ActionType } from "../action-types/cartTypes"
 
 export interface CarObjType {
-  id?: number,
-  cantidad?: number,
-  subtotal?: number,
-  carritoId?: number,
-  ActivityId?: number,
+  id?: number
+  cantidad?: number
+  subtotal?: number
+  carritoId?: number
+  ActivityId?: number
   Activity?: Object
 }
 
 export interface CartTypes {
-  id: number,
-  fecha: string,
-  userId: number,
-  total: number,
+  id: number
+  fecha: string
+  userId: number
+  total: number
   detalle_carrito?: Array<CarObjType>
 }
-
-
 
 interface addAction {
   type: ActionType.ADD_TO_CART
@@ -25,7 +23,7 @@ interface addAction {
 }
 
 interface getAction {
-  type: ActionType.GET_CART,
+  type: ActionType.GET_CART
   payload: CartTypes
 }
 
@@ -39,8 +37,4 @@ interface removeAction {
   payload: CartTypes
 }
 
-export type Action =
-  | addAction
-  | getAction
-  | deleteAction
-  | removeAction
+export type Action = addAction | getAction | deleteAction | removeAction

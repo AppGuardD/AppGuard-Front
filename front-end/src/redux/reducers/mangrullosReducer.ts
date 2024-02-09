@@ -1,37 +1,37 @@
-import { ActionType } from "@/redux/action-types/mangrullosTypes"
+import { ActionType } from "@/redux/action-types/mangrullosTypes";
 import type {
   DetailType,
   Mangrullo,
   Action,
-} from "@/redux/actions/mangrullosActions"
+} from "@/redux/actions/mangrullosActions";
 
 interface InitialState {
-  totalPages: number
-  mangrullos: Mangrullo[]
-  detail: DetailType
+  totalPages: number;
+  mangrullos: Mangrullo[];
+  detail: DetailType;
 }
 
 const initialState: InitialState = {
   totalPages: 0,
   mangrullos: [],
   detail: {},
-}
+};
 
 const mangrullosReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ActionType.CLEAN:
-      return { ...state, mangrullos: action.payload }
+      return { ...state, mangrullos: action.payload };
 
     case ActionType.GET:
-      return { ...state, mangrullos: [...state.mangrullos, ...action.payload] }
+      return { ...state, mangrullos: [...state.mangrullos, ...action.payload] };
 
     case ActionType.GET_ID:
       return {
         ...state,
         detail: action.payload,
-      }
+      };
     case ActionType.DISABLE:
-      return { ...state }
+      return { ...state };
     //
     // case ActionType.POST:
     //   return (state = action.payload)
@@ -41,8 +41,8 @@ const mangrullosReducer = (state = initialState, action: Action) => {
     //
 
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default mangrullosReducer
+export default mangrullosReducer;
