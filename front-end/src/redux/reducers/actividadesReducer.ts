@@ -1,19 +1,19 @@
-import { ActividadType } from "../action-types/actividadesTypes"
-import type { ActividadesTypes, Action } from "../actions/actividadesActions"
-import type { DetailType } from "../actions/actividadesActions"
+import { ActividadType } from "../action-types/actividadesTypes";
+import type { ActividadesTypes, Action } from "../actions/actividadesActions";
+import type { DetailType } from "../actions/actividadesActions";
 
 interface InitialState {
-  adminTable: ActividadesTypes[]
-  actividades: ActividadesTypes[]
-  actividadesCopy: ActividadesTypes[]
-  type: "" | "Deportivo" | "Sanitario" | "Cultural"
-  cost: "" | "Pago" | "Gratis"
-  order: "" | "Mayor" | "Menor"
-  totalPages: number
-  totalItems: number
-  currentPage: number
-  detail: DetailType
-  url: string
+  adminTable: ActividadesTypes[];
+  actividades: ActividadesTypes[];
+  actividadesCopy: ActividadesTypes[];
+  type: "" | "Deportivo" | "Sanitario" | "Cultural";
+  cost: "" | "Pago" | "Gratis";
+  order: "" | "Mayor" | "Menor";
+  totalPages: number;
+  totalItems: number;
+  currentPage: number;
+  detail: DetailType;
+  url: string;
 }
 
 const initialState: InitialState = {
@@ -28,7 +28,7 @@ const initialState: InitialState = {
   currentPage: 1,
   detail: {},
   url: "",
-}
+};
 
 const actividadesReducer = (state = initialState, action: Action) => {
   switch (action.type) {
@@ -41,13 +41,13 @@ const actividadesReducer = (state = initialState, action: Action) => {
         totalItems: action.payload.pagination.totalItems,
         currentPage: action.payload.pagination.currentPage,
         url: action.url,
-      }
+      };
 
     case ActividadType.CLEAN:
-      return { ...state, actividades: action.payload }
+      return { ...state, actividades: action.payload };
 
     case ActividadType.GET_ID:
-      return { ...state, detail: action.payload }
+      return { ...state, detail: action.payload };
 
     case ActividadType.PAGE:
       return {
@@ -57,20 +57,20 @@ const actividadesReducer = (state = initialState, action: Action) => {
         totalPages: action.payload.pagination.totalPages,
         totalItems: action.payload.pagination.totalItems,
         currentPage: action.payload.pagination.currentPage,
-      }
+      };
 
     case ActividadType.DISABLE:
-      return { ...state, adminTable: action.payload }
+      return { ...state, adminTable: action.payload };
 
     case ActividadType.GET_ADMIN:
-      return { ...state, adminTable: action.payload }
+      return { ...state, adminTable: action.payload };
 
     case ActividadType.CLEAN_ADMIN:
-      return { ...state, adminTable: action.payload }
+      return { ...state, adminTable: action.payload };
 
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default actividadesReducer
+export default actividadesReducer;
