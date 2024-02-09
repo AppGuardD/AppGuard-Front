@@ -16,6 +16,9 @@ import {
   Star,
 } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
+import { addCart } from '@/redux/action-creators/carrito/addCart'
+import { useAppDispatch } from "@/redux/hooks"
+import { getCart } from "@/redux/action-creators/carrito/getItems"
 
 interface CardsActividadesProps {
   actividades: ActividadesTypes[]
@@ -23,7 +26,19 @@ interface CardsActividadesProps {
 
 const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const userId = 2;
 
+  const handleAddtoCart = (ActivityId:number)=>{
+    
+    const actividad = {
+      userId, 
+      ActivityId, 
+      cantidad: 1
+    }
+    dispatch(addCart(actividad))
+  }
+ 
   return (
     <div className="grid grid-cols-4 gap-6 justify-items-center mx-6 mb-6">
       {actividades.map(actividad => (
@@ -53,7 +68,8 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
             </div>
             <Separator className="mt-2" />
             <div className="flex justify-between">
-              <Button variant={"ghost"}>
+              <Button 
+                onClick={() => handleAddtoCart(actividad.id)} variant={"ghost"}>
                 Añadir al carrito
                 <ShoppingCart className="size-5 ml-2" />
               </Button>

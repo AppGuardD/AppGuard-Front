@@ -4,14 +4,16 @@ import actividadesReducer from "./actividadesReducer"
 import advicesReducer from "./advicesReducer"
 import userReducer from "./userReducer"
 import loginReducer from "./loginReducer"
+import cartReducer from './cartReducer'
 import reviewReducer from "./reviewReducer"
 const reducer = combineReducers({
   mangrullosReducer: mangrullosReducer,
   actividadesReducer: actividadesReducer,
   advicesReducer: advicesReducer,
   userReducer: userReducer,
-  loginReducer: loginReducer,
-  reviewReducer: reviewReducer,
+  loginReducer:loginReducer,
+  cartReducer: cartReducer,
+  reviewReducer: reviewReducer
 })
 
 export default reducer
