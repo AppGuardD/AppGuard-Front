@@ -38,9 +38,9 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
   }
 
   return (
-    <div className="grid grid-cols-4 gap-6 justify-items-center mx-6 mb-6">
+    <div className="flex flex-wrap justify-center mx-6 mb-6">
       {actividades.map(actividad => (
-        <Card key={actividad.id} className="rounded size-96">
+        <Card key={actividad.id} className="rounded m-4 size-96">
           <CardHeader>
             <CardTitle className="capitalize">
               {actividad.activityName}
