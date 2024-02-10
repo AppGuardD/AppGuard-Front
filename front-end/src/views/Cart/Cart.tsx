@@ -8,12 +8,13 @@ import { getCart } from "@/redux/action-creators/carrito/getItems"
 import { useAppSelector, useAppDispatch } from "@/redux/hooks"
 import { useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Minus, Plus, Trash2Icon, X } from "lucide-react"
+import { ChevronRight, Minus, Plus, X } from "lucide-react"
 import { addCart } from "@/redux/action-creators/carrito/addCart"
 import { deleteItem } from "@/redux/action-creators/carrito/deleteItem"
 import { removeItem } from "@/redux/action-creators/carrito/removeItem"
 import { Card } from "@/components/ui/card"
 import type { CartTypes } from "@/redux/actions/cartActions"
+import { Separator } from "@/components/ui/separator"
 
 const Cart: React.FC = () => {
   const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
@@ -106,7 +107,9 @@ const Cart: React.FC = () => {
                       )}
                     </PaginationItem>
                     <PaginationItem>
-                      <PaginationLink>{item.cantidad}</PaginationLink>
+                      <PaginationLink className="text-lg">
+                        {item.cantidad}
+                      </PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
                       <Button
@@ -129,21 +132,23 @@ const Cart: React.FC = () => {
         )}
       </div>
       <div className="w-64 ml-6 p-4 space-y-4 content-start border-l-2">
-        <h2 className="text-lg font-bold mb-2">Cantidad de boletos: </h2>
+        <h2 className="text-xl font-bold mb-2">Cantidad de boletos </h2>
         {carrito.detalle_carrito?.length === 1 ? (
-          <h3 className="text-lg mb-2">
+          <h3 className="text-xl mb-2">
             {carrito.detalle_carrito?.length} actividad
           </h3>
         ) : (
-          <h3 className="text-lg ml-4 mb-2">
+          <h3 className="text-xl ml-4 mb-2">
             {carrito.detalle_carrito?.length} actividades
           </h3>
         )}
-        <h2 className="text-lg font-bold mb-2">Total de la compra</h2>
-        <p className="text-2xl ml-4">${carrito.total}</p>
-        <Button variant={"outline"}>
+        <Separator className="my-2" />
+        <h2 className="text-xl font-bold mb-2">Total de la compra</h2>
+        <p className="text-xl ml-4">${carrito.total}</p>
+        <Separator className="my-2" />
+        <Button variant={"ghost"} className="text-xl">
           Ir a Pagar
-          <Trash2Icon className="ml-2" />
+          <ChevronRight className="ml-2" />
         </Button>
       </div>
     </div>
