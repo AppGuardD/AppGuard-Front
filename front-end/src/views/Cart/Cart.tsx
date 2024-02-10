@@ -8,7 +8,14 @@ import { getCart } from "@/redux/action-creators/carrito/getItems"
 import { useAppSelector, useAppDispatch } from "@/redux/hooks"
 import { useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { ChevronRight, Minus, Plus, X } from "lucide-react"
+import {
+  ChevronRight,
+  Minus,
+  Plus,
+  Trash2Icon,
+  TrashIcon,
+  X,
+} from "lucide-react"
 import { addCart } from "@/redux/action-creators/carrito/addCart"
 import { deleteItem } from "@/redux/action-creators/carrito/deleteItem"
 import { removeItem } from "@/redux/action-creators/carrito/removeItem"
@@ -79,7 +86,7 @@ const Cart: React.FC = () => {
                     onClick={() => handleDeleteItem(item.ActivityId)}
                     variant={"ghost"}
                   >
-                    <X className="size-5" />
+                    <Trash2Icon className="size-5" />
                   </Button>
                 </div>
 

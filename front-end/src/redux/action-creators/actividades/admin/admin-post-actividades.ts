@@ -7,7 +7,7 @@ interface NewActivity {
   activityName: string
   description: string
   image: string
-  price: number
+  price: string
   state: string
   type: string
 }

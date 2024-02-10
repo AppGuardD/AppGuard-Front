@@ -31,8 +31,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { useAppSelector } from "@/redux/hooks"
 import { MultiSelect } from "@/components/ui/multiselect"
-//import { useAppDispatch } from "@/redux/hooks"
-//import { postAdminActividades } from "@/redux/action-creators/actividades/admin/admin-post-actividades"
+import { useAppDispatch } from "@/redux/hooks"
+import { postAdminActividades } from "@/redux/action-creators/actividades/admin/admin-post-actividades"
 
 const formSchema = z.object({
   activityName: z.string().min(2, {
@@ -61,8 +61,8 @@ const CreateDialog: React.FC = () => {
     value: mangrullo.id.toString(),
     label: mangrullo.zone,
   }))
+  const dispatch = useAppDispatch()
 
-  //const dispatch = useAppDispatch()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -77,8 +77,17 @@ const CreateDialog: React.FC = () => {
   })
 
   const handleSubmit: SubmitHandler<z.infer<typeof formSchema>> = data => {
-    console.log(JSON.stringify(data))
-    //dispatch(postAdminActividades({ newActivity: data }))
+    const activityData = {
+      activityName: data.activityName,
+      description: data.description,
+      image: data.image,
+      price: data.price,
+      mangrullos: data.mangrullos.map(item => item.value),
+      state: data.state,
+      type: data.type,
+    }
+    console.log(JSON.stringify(activityData))
+    dispatch(postAdminActividades({ newActivity: activityData }))
   }
 
   return (
