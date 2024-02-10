@@ -4,7 +4,7 @@ import AdminActividades from "@/features/Actividades/AdminActivity"
 
 const Admin: React.FC = () => {
   return (
-    <div className="flex m-8 h-svh">
+    <div className="flex m-8">
       <Tabs defaultValue="actividades" className="w-svw">
         <div className="flex justify-between">
           <span className="text-3xl">Panel de administrador</span>
