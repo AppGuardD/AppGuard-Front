@@ -62,23 +62,23 @@ const Cart: React.FC = () => {
                 <div className="w-1/3 relative">
                   <img
                     className="absolute inset-0 w-full h-full object-cover"
-                    src={item.Activity?.image}
-                    alt={item.Activity?.activityName}
+                    src={item.Activity.image}
+                    alt={item.Activity.activityName}
                   />
                 </div>
                 <div className="w-2/3 p-6">
                   <h2 className="text-lg font-bold">
-                    {item.Activity?.activityName}
+                    {item.Activity.activityName}
                   </h2>
 
                   <p className="mt-2">
-                    Precio Unitario: ${item.Activity?.price}
+                    Precio Unitario: ${item.Activity.price}
                   </p>
                   <p className="mt-2">Subtotal: ${item.subtotal}</p>
                   <div className="mt-2 flex flex-row">
                     <p className="">Cantidad: </p>
                     <Button
-                      onClick={() => handleRemoveItem(item.Activity?.id)}
+                      onClick={() => handleRemoveItem(item.ActivityId)}
                       variant={"ghost"}
                       className="mr-2"
                     >
@@ -86,7 +86,7 @@ const Cart: React.FC = () => {
                     </Button>
                     <p className="m-2">{item.cantidad}</p>
                     <Button
-                      onClick={() => handleAddtoCart(item.Activity?.id)}
+                      onClick={() => handleAddtoCart(item.ActivityId)}
                       variant={"ghost"}
                       className="mr-2"
                     >
@@ -94,7 +94,7 @@ const Cart: React.FC = () => {
                     </Button>
 
                     <Button
-                      onClick={() => handleDeleteItem(item.Activity?.id)}
+                      onClick={() => handleDeleteItem(item.ActivityId)}
                       variant={"ghost"}
                     >
                       Eliminar del carrito
