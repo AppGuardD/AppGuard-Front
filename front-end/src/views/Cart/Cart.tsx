@@ -1,12 +1,19 @@
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+} from "@/components/ui/pagination"
 import { getCart } from "@/redux/action-creators/carrito/getItems"
 import { useAppSelector, useAppDispatch } from "@/redux/hooks"
 import { useEffect } from "react"
-import type { CartTypes } from "@/redux/actions/cartActions"
 import { Button } from "@/components/ui/button"
-import { Minus, Plus, Trash2Icon } from "lucide-react"
+import { Minus, Plus, Trash2Icon, X } from "lucide-react"
 import { addCart } from "@/redux/action-creators/carrito/addCart"
 import { deleteItem } from "@/redux/action-creators/carrito/deleteItem"
 import { removeItem } from "@/redux/action-creators/carrito/removeItem"
+import { Card } from "@/components/ui/card"
+import type { CartTypes } from "@/redux/actions/cartActions"
 
 const Cart: React.FC = () => {
   const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
@@ -19,7 +26,6 @@ const Cart: React.FC = () => {
     const fetchData = async () => {
       await dispatch(getCart(userId))
     }
-
     fetchData()
   }, [dispatch, userId])
 
@@ -50,61 +56,71 @@ const Cart: React.FC = () => {
   }
 
   return (
-    <div className="flex  justify-center">
-      <div className="max-w-3xl w-full">
+    <div className="flex justify-center">
+      <div className="">
         {carrito.detalle_carrito?.length !== 0 ? (
           carrito.detalle_carrito?.map(item => (
-            <div
-              key={item.id}
-              className="shadow-md rounded-lg overflow-hidden mb-8 "
-            >
-              <div className="flex">
-                <div className="w-1/3 relative">
-                  <img
-                    className="absolute inset-0 w-full h-full object-cover"
-                    src={item.Activity.image}
-                    alt={item.Activity.activityName}
-                  />
-                </div>
-                <div className="w-2/3 p-6">
-                  <h2 className="text-lg font-bold">
-                    {item.Activity.activityName}
-                  </h2>
-
-                  <p className="mt-2">
-                    Precio Unitario: ${item.Activity.price}
-                  </p>
-                  <p className="mt-2">Subtotal: ${item.subtotal}</p>
-                  <div className="mt-2 flex flex-row">
-                    <p className="">Cantidad: </p>
-                    <Button
-                      onClick={() => handleRemoveItem(item.ActivityId)}
-                      variant={"ghost"}
-                      className="mr-2"
-                    >
-                      <Minus className="ml-2" />
-                    </Button>
-                    <p className="m-2">{item.cantidad}</p>
-                    <Button
-                      onClick={() => handleAddtoCart(item.ActivityId)}
-                      variant={"ghost"}
-                      className="mr-2"
-                    >
-                      <Plus className="ml-2" />
-                    </Button>
-
-                    <Button
-                      onClick={() => handleDeleteItem(item.ActivityId)}
-                      variant={"ghost"}
-                    >
-                      Eliminar del carrito
-                      <Trash2Icon className="ml-2" />
-                    </Button>
-                  </div>
-                </div>
+            <Card key={item.id} className="aspect-[4/1] flex my-6 p-6">
+              <div className="rounded overflow-hidden aspect-[4/3] h-56">
+                <img
+                  className="object-cover rounded aspect-[4/3] h-56"
+                  src={item.Activity.image}
+                  alt={item.Activity.activityName}
+                />
               </div>
-              <div className="border-t border-gray-200 p-6"></div>
-            </div>
+              <div className="pl-6 w-96 flex flex-col">
+                <div className="flex justify-between">
+                  <p className="text-3xl font-bold">
+                    {item.Activity.activityName}
+                  </p>
+                  <Button
+                    className="p-0 size-5"
+                    onClick={() => handleDeleteItem(item.ActivityId)}
+                    variant={"ghost"}
+                  >
+                    <X className="size-5" />
+                  </Button>
+                </div>
+
+                <p className="mt-2">Precio Unitario: ${item.Activity.price}</p>
+                <p className="mt-2">Subtotal: ${item.subtotal}</p>
+                <Pagination className="flex h-full w-full">
+                  <PaginationContent className="self-end ml-auto">
+                    <PaginationItem>
+                      {item.cantidad === 1 ? (
+                        <Button
+                          variant={"ghost"}
+                          className="p-0 size-10"
+                          disabled
+                        >
+                          <Minus className="size-5" />
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={() => handleRemoveItem(item.ActivityId)}
+                          variant={"ghost"}
+                          className="p-0 size-10"
+                        >
+                          <Minus className="size-5" />
+                        </Button>
+                      )}
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink>{item.cantidad}</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <Button
+                        onClick={() => handleAddtoCart(item.ActivityId)}
+                        variant={"ghost"}
+                        className="p-0 size-10"
+                      >
+                        <Plus className="size-5" />
+                      </Button>
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
+              </div>
+            </Card>
           ))
         ) : (
           <h1 className="text-2xl font-semibold text-center my-16">
@@ -112,7 +128,7 @@ const Cart: React.FC = () => {
           </h1>
         )}
       </div>
-      <div className="w-64 p-4 space-y-4 content-start">
+      <div className="w-64 ml-6 p-4 space-y-4 content-start border-l-2">
         <h2 className="text-lg font-bold mb-2">Cantidad de boletos: </h2>
         {carrito.detalle_carrito?.length === 1 ? (
           <h3 className="text-lg mb-2">
@@ -125,7 +141,7 @@ const Cart: React.FC = () => {
         )}
         <h2 className="text-lg font-bold mb-2">Total de la compra</h2>
         <p className="text-2xl ml-4">${carrito.total}</p>
-        <Button variant={"ghost"}>
+        <Button variant={"outline"}>
           Ir a Pagar
           <Trash2Icon className="ml-2" />
         </Button>

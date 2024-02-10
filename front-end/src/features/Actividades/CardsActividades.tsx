@@ -17,13 +17,15 @@ import {
 } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { addCart } from "@/redux/action-creators/carrito/addCart"
-import { useAppDispatch } from "@/redux/hooks"
+import { useAppDispatch, useAppSelector } from "@/redux/hooks"
+import { CartTypes } from "@/redux/actions/cartActions"
 
 interface CardsActividadesProps {
   actividades: ActividadesTypes[]
 }
 
 const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
+  const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const userId = 2
@@ -73,13 +75,22 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
                 Conocer mas
                 <ChevronRight className="size-5 ml-2" />
               </Button>
-              <Button
-                onClick={() => handleAddtoCart(actividad.id)}
-                variant={"ghost"}
-              >
-                Añadir al carrito
-                <ShoppingCart className="size-5 ml-2" />
-              </Button>
+              {carrito.detalle_carrito.some(
+                carrito => carrito.Activity.id === actividad.id,
+              ) ? (
+                <Button variant={"ghost"} disabled>
+                  Añadir al carrito
+                  <ShoppingCart className="size-5 ml-2" />
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => handleAddtoCart(actividad.id)}
+                  variant={"ghost"}
+                >
+                  Añadir al carrito
+                  <ShoppingCart className="size-5 ml-2" />
+                </Button>
+              )}
             </div>
           </CardFooter>
         </Card>

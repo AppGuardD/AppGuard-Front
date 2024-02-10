@@ -1,5 +1,5 @@
 import type { ActionType } from "../action-types/cartTypes"
-import { ActividadesTypes } from "./actividadesActions"
+import type { ActividadesTypes } from "./actividadesActions"
 
 export interface CarObjType {
   id: number
