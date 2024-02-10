@@ -1,4 +1,4 @@
-import type { ActividadType } from "../action-types/actividadesTypes"
+import type { ActionType } from "../action-types/actividadesTypes"
 
 export type Name = string
 export type Type = "" | "Deportivo" | "Sanitario" | "Cultural"
@@ -40,46 +40,46 @@ export interface DetailType {
 }
 
 interface cleanAction {
-  type: ActividadType.CLEAN
+  type: ActionType.CLEAN
   payload: []
 }
 
 interface getAction {
-  type: ActividadType.GET
+  type: ActionType.GET
   payload: ResponseData
   url: string
 }
 
 interface getIdAction {
-  type: ActividadType.GET_ID
+  type: ActionType.GET_ID
   payload: DetailType
 }
 
 interface getAdminAction {
-  type: ActividadType.GET_ADMIN
+  type: ActionType.GET_ADMIN
   payload: ActividadesTypes[]
 }
 
 interface cleanAdminAction {
-  type: ActividadType.CLEAN_ADMIN
+  type: ActionType.CLEAN_ADMIN
   payload: []
 }
 
 interface postAction {
-  type: ActividadType.POST
+  type: ActionType.POST
 }
 
 interface putAction {
-  type: ActividadType.PUT
+  type: ActionType.PUT
 }
 
 interface disableAction {
-  type: ActividadType.DISABLE
+  type: ActionType.DISABLE
   payload: ActividadesTypes[]
 }
 
 interface pageAction {
-  type: ActividadType.PAGE
+  type: ActionType.PAGE
   payload: ResponseData
 }
 

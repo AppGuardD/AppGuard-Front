@@ -1,4 +1,4 @@
-import { ActividadType } from "../../action-types/actividadesTypes"
+import { ActionType } from "../../action-types/actividadesTypes"
 import type { Action } from "../../actions/actividadesActions"
 import type { Dispatch } from "@reduxjs/toolkit"
 import instance from "@/redux/axios/instance"
@@ -19,7 +19,7 @@ export function getActividades(options?: {
       const response = await instance.get(url)
 
       dispatch({
-        type: ActividadType.GET,
+        type: ActionType.GET,
         payload: response.data,
         url: url,
       })
