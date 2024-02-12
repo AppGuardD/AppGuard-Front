@@ -18,7 +18,7 @@ import {
 import { Separator } from "@/components/ui/separator"
 import { addCart } from "@/redux/action-creators/carrito/addCart"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import { CartTypes } from "@/redux/actions/cartActions"
+import type { CartTypes } from "@/redux/actions/cartActions"
 
 interface CardsActividadesProps {
   actividades: ActividadesTypes[]

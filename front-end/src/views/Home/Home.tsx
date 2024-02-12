@@ -27,7 +27,7 @@ const Home: React.FC = () => {
         if (!mounted) {
           dispatch(cleanActividades())
         }
-      } 
+      }
     }
     fetchData()
     return () => {

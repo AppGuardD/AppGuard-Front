@@ -8,7 +8,7 @@ export function getAdminActividades(options: {
   //query?: string
   //type?: string
   //state?: string
-  token?: string
+  token: string | null
 }) {
   return async function (dispatch: Dispatch<Action>) {
     try {
@@ -17,13 +17,10 @@ export function getAdminActividades(options: {
       //if (options?.query) queryParams.set("query", options.query)
       //if (options?.type) queryParams.set("type", options.type)
       //if (options?.state) queryParams.set("state", options.state)
-      const token = options.token
 
       const url = `/activities/admin`
-      const response = await instance({
-        method: "get",
-        url: url,
-        data: { token: token },
+      const response = await instance.get(url, {
+        headers: { tk: options.token },
       })
 
       dispatch({

@@ -1,5 +1,4 @@
 export enum ReviewMangrullosType {
-    GET = "getReviewMangrullos",
-    POST = "postReviewMangrullos",
-  }
-  
+  GET = "getReviewMangrullos",
+  POST = "postReviewMangrullos",
+}

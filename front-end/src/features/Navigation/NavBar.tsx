@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo-appguard.svg";
-import cartIcon from "../../assets/shopping-cart.svg";
-import { jwtDecode} from 'jwt-decode';
+import React, { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import logo from "../../assets/logo-appguard.svg"
+import cartIcon from "../../assets/shopping-cart.svg"
+import { jwtDecode } from "jwt-decode"
 
 interface JwtPayload {
-  email: string;
-  userName: string;
-  rol: string;
+  email: string
+  userName: string
+  rol: string
 }
 
 const NavBar: React.FC = () => {
-  const token = localStorage.getItem("USER_INFO");
-  const navigate = useNavigate();
-  const [user, setUser] = useState<JwtPayload | null>(null);
+  const token = localStorage.getItem("USER_INFO")
+  const navigate = useNavigate()
+  const [user, setUser] = useState<JwtPayload | null>(null)
 
   useEffect(() => {
     if (token) {
-      const decodedToken: JwtPayload = jwtDecode(token);
-      setUser(decodedToken);
+      const decodedToken: JwtPayload = jwtDecode(token)
+      setUser(decodedToken)
     } else {
-      setUser(null);
+      setUser(null)
     }
-  }, [token]);
+  }, [token])
 
   return (
     <nav className="flex items-center justify-between flex-wrap p-4 mb-4 border-b border-primary">
@@ -89,7 +89,7 @@ const NavBar: React.FC = () => {
         </button>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar

@@ -58,8 +58,8 @@ const DetailMangrullo: React.FC = () => {
           {detail.activity && <DetailActividad activity={detail.activity} />}
         </div>
         <Button onClick={() => navigate(`/mangrullos/review/${detail.id}`)}>
-                Deja tu review
-              </Button>
+          Deja tu review
+        </Button>
       </div>
     </div>
   )

@@ -3,6 +3,7 @@ import type { ActionType } from "../action-types/loginTypes"
 export interface LoginTypes {
   email: string
   password: string
+  token: string
 }
 
 interface cleanAction {
@@ -22,7 +23,7 @@ interface getIdAction {
 
 interface postAction {
   type: ActionType.POST
-  payload: LoginTypes
+  payload: string
 }
 
 interface putAction {

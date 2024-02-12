@@ -8,7 +8,6 @@ import { cleanActividades } from "@/redux/action-creators/actividades/cleanActiv
 import { getAdminActividades } from "@/redux/action-creators/actividades/admin/admin-get-actividades"
 
 const AdminActividades: React.FC = () => {
-  const token = useAppSelector(state => state.userReducer.token)
   const adminTable: ActividadesTypes[] = useAppSelector(
     state => state.actividadesReducer.adminTable,
   )
@@ -16,6 +15,8 @@ const AdminActividades: React.FC = () => {
 
   useEffect(() => {
     let mounted = true
+    const token = localStorage.getItem("USER_INFO")
+
     const fetchData = async () => {
       await dispatch(getAdminActividades({ token: token }))
       if (!mounted) {
@@ -26,7 +27,7 @@ const AdminActividades: React.FC = () => {
     return () => {
       mounted = false
     }
-  }, [dispatch, token])
+  }, [dispatch])
 
   return (
     <div className="p-4 m-8 rounded border border-primary">

@@ -48,9 +48,7 @@ export function ReviewMangrullos() {
   })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    dispatch(
-      createReviewMangrullos({ reviewData: reviewData, formData: data }),
-    )
+    dispatch(createReviewMangrullos({ reviewData: reviewData, formData: data }))
   }
 
   return (

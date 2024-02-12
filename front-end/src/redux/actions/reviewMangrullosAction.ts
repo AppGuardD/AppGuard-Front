@@ -1,14 +1,13 @@
 import type { ReviewMangrullosType } from "../action-types/reviewMangrullosTypes"
 
-
-export interface ReviewMangrullosTypes  {
-  comment: string,
-  qualification: number,
+export interface ReviewMangrullosTypes {
+  comment: string
+  qualification: number
 }
 
 interface getReviewsMangrullo {
   type: ReviewMangrullosType.GET
-  payload: ReviewMangrullosTypes []
+  payload: ReviewMangrullosTypes[]
 }
 
 interface postAction {
@@ -16,6 +15,4 @@ interface postAction {
   payload: ReviewMangrullosTypes
 }
 
-
-export type Action =  getReviewsMangrullo | postAction 
-
+export type Action = getReviewsMangrullo | postAction
