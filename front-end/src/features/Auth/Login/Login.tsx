@@ -1,6 +1,8 @@
 import { useForm, SubmitHandler } from "react-hook-form"
 import { postLogin } from "../../../redux/action-creators/login/postLogin"
 import { useAppDispatch } from "@/redux/hooks"
+import { GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 interface LogData {
   email: string
@@ -18,20 +20,21 @@ const LoginForm: React.FC = () => {
   const {
     control,
     handleSubmit,
-    register, // Agrega la función register aquí
+    register, 
     formState: { errors },
   } = useForm<FormData>()
 
   const onSubmit: SubmitHandler<FormData> = data => {
-    // Aquí puedes manejar los datos del formulario
+    
 
     console.log(data)
 
-    // Llama a tu acción para iniciar sesión
+    // Llama a tu acción para iniciagit r sesión
     dispatch(postLogin(data))
   }
   // const handleLogin = ()=> ;
   return (
+  <GoogleOAuthProvider clientId="204945610405-eaj4cam96mbfrom5fj3m3hadk3guep9s.apps.googleusercontent.com">
     <div className="h-svh">
       <div className="bg-darkblue-900 text-white p-8 rounded w-96">
         <p className="text-4xl font-semibold mb-4">Iniciar Sesión</p>
@@ -66,9 +69,18 @@ const LoginForm: React.FC = () => {
           >
             Iniciar Sesión
           </button>
+          <GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>;
         </form>
       </div>
     </div>
+    </GoogleOAuthProvider>
   )
 }
 

@@ -4,7 +4,7 @@ import actividadesReducer from "./actividadesReducer";
 import advicesReducer from "./advicesReducer";
 import userReducer from "./userReducer";
 import loginReducer from "./loginReducer";
-import cartReducer from "./cartReducer";
+// import cartReducer from "./cartReducer";
 import reviewReducer from "./reviewReducer";
 
 const reducer = combineReducers({
@@ -13,7 +13,7 @@ const reducer = combineReducers({
   advicesReducer: advicesReducer,
   userReducer: userReducer,
   loginReducer: loginReducer,
-  cartReducer: cartReducer,
+  // cartReducer: cartReducer,
   reviewReducer: reviewReducer,
 });
 
