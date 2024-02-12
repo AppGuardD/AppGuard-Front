@@ -1,11 +1,11 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import mangrullosReducer from "./mangrullosReducer";
-import actividadesReducer from "./actividadesReducer";
-import advicesReducer from "./advicesReducer";
-import userReducer from "./userReducer";
-import loginReducer from "./loginReducer";
-// import cartReducer from "./cartReducer";
-import reviewReducer from "./reviewReducer";
+import { combineReducers } from "@reduxjs/toolkit"
+import mangrullosReducer from "./mangrullosReducer"
+import actividadesReducer from "./actividadesReducer"
+import advicesReducer from "./advicesReducer"
+import userReducer from "./userReducer"
+import loginReducer from "./loginReducer"
+import reviewReducer from "./reviewReducer"
+import reviewMangrullosReducer from "./reviewMangrullosReducer"
 
 const reducer = combineReducers({
   mangrullosReducer: mangrullosReducer,
@@ -15,6 +15,7 @@ const reducer = combineReducers({
   loginReducer: loginReducer,
   // cartReducer: cartReducer,
   reviewReducer: reviewReducer,
-});
+  reviewMangrullosReducer: reviewMangrullosReducer,
+})
 
 export default reducer;

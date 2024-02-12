@@ -30,7 +30,7 @@ const Actividades: React.FC = () => {
   }, [dispatch])
 
   return (
-    <div className="h-svh">
+    <div className="h-full">
       <FilterActividades />
       <CardsActividades actividades={actividades} />
     </div>

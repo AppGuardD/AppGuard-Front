@@ -10,6 +10,7 @@ interface InitialState {
   typeIdentification: string;
   numberIdentification: string;
   rol: string;
+
   state: string;
   detail?: UserTypes;
   token?: string;
@@ -26,6 +27,7 @@ const initialState: InitialState = {
   rol: "",
 
   state: "",
+  //detail?: UserTypes;
   token: "",
 };
 

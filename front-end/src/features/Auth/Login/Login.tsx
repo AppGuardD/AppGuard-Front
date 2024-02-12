@@ -1,68 +1,94 @@
-import { useForm, SubmitHandler } from "react-hook-form"
-import { postLogin } from "../../../redux/action-creators/login/postLogin"
+import type { SubmitHandler } from "react-hook-form"
+import { useForm } from "react-hook-form"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { useAppDispatch } from "@/redux/hooks"
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { z } from "zod"
+import { postLogin } from "@/redux/action-creators/login/postLogin"
+import { Badge } from "@/components/ui/badge"
 
-interface LogData {
-  email: string
-  password: string
-}
+const formSchema = z.object({
+  email: z.string().email({
+    message: "Correo electronico invalido.",
+  }),
+  password: z.string().min(8, {
+    message: "La contraseña tiene que tener al menos 8 caracteres.",
+  }),
+})
 
-interface FormData {
-  email: string
-  password: string
-}
-
-const LoginForm: React.FC = () => {
+const CreateUserForm: React.FC = () => {
   const dispatch = useAppDispatch()
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  })
 
-  const {
-    control,
-    handleSubmit,
-    register, 
-    formState: { errors },
-  } = useForm<FormData>()
-
-  const onSubmit: SubmitHandler<FormData> = data => {
-    
-
+  const handleSubmit: SubmitHandler<z.infer<typeof formSchema>> = data => {
     console.log(data)
-
-    // Llama a tu acción para iniciagit r sesión
     dispatch(postLogin(data))
   }
-  // const handleLogin = ()=> ;
+
   return (
   <GoogleOAuthProvider clientId="204945610405-eaj4cam96mbfrom5fj3m3hadk3guep9s.apps.googleusercontent.com">
-    <div className="h-svh">
-      <div className="bg-darkblue-900 text-white p-8 rounded w-96">
-        <p className="text-4xl font-semibold mb-4">Iniciar Sesión</p>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-4">
-            <label htmlFor="Email" className="block text-sm font-medium">
-              Usuario:
-            </label>
-            <input
-              type="text"
-              id="emial"
-              {...register("email")} // Vincula el campo al estado de react-hook-form
-              className="mt-1 p-2 w-full border rounded bg-gray-800 text-white"
+    <div>
+      <p className="text-4xl font-semibold mt-8 mx-8 mb-4">Inicio de sesion.</p>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(handleSubmit)}
+          className="h-svh mr-16 ml-8"
+        >
+          <div className="w-96">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem className="h-24">
+                  <FormLabel>Correo electronico</FormLabel>
+                  <FormControl>
+                    <Input placeholder="hola@mail.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium">
-              Contraseña:
-            </label>
-            <input
-              type="password"
-              id="password"
-              {...register("password")} // Vincula el campo al estado de react-hook-form
-              className="mt-1 p-2 w-full border rounded bg-gray-800 text-white"
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem className="h-28">
+                  <FormLabel>Contraseña</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="Escribe tu contraseña"
+                      {...field}
+                    />
+                  </FormControl>
+                  <Badge className="mt-4" variant={"outline"}>
+                    Olvide mi contraseña
+                  </Badge>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
+            <Button className="mt-4" variant={"secondary"} type="submit">
+              Iniciar Sesion
+            </Button>
           </div>
-
           <button
             className="flex text-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-transparent hover:bg-accent font-semibold py-2 px-4 border rounded"
             type="submit"
@@ -78,10 +104,10 @@ const LoginForm: React.FC = () => {
   }}
 />;
         </form>
-      </div>
+      </Form>
     </div>
     </GoogleOAuthProvider>
   )
 }
 
-export default LoginForm
+export default CreateUserForm

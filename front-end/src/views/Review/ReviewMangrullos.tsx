@@ -12,9 +12,10 @@ import {
 } from "@/components/ui/form"
 import { Textarea } from "@/components/ui/textarea"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import { createReviewActividades } from "@/redux/action-creators/reviews/postReview"
 import { useParams } from "react-router-dom"
+import { createReviewMangrullos } from "@/redux/action-creators/reviews/postReviewMangrullos"
 
+// Nuevo esquema del formulario que incluye la puntuación
 const formSchema = z.object({
   comment: z
     .string()
@@ -28,14 +29,14 @@ const formSchema = z.object({
     .max(5, { message: "Puntuación máxima de 5" }),
 })
 
-export function Review() {
+export function ReviewMangrullos() {
   const dispatch = useAppDispatch()
   const { id } = useParams<{ id: string }>()
   const userId = useAppSelector(state => state.userReducer.id)
 
   const reviewData = {
     userId: userId.toString(),
-    activityId: id,
+    mangrulloId: id,
   }
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -48,13 +49,13 @@ export function Review() {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     dispatch(
-      createReviewActividades({ reviewData: reviewData, formData: data }),
+      createReviewMangrullos({ reviewData: reviewData, formData: data }),
     )
   }
 
   return (
     <div className="flex flex-col">
-      <p className="text-2xl mx-auto">Review actividades</p>
+      <p className="text-2xl mx-auto">Review Mangrullos</p>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
