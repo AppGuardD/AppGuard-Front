@@ -1,4 +1,4 @@
-export enum ActividadType {
+export enum ActionType {
   CLEAN = "clearActividades",
   GET = "getActividades",
   GET_ID = "getIdActividades",

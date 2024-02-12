@@ -12,10 +12,9 @@ import {
 } from "@/components/ui/form"
 import { Textarea } from "@/components/ui/textarea"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import { useParams } from "react-router-dom"
 import { createReviewActividades } from "@/redux/action-creators/reviews/postReview"
+import { useParams } from "react-router-dom"
 
-// Nuevo esquema del formulario que incluye la puntuación
 const formSchema = z.object({
   comment: z
     .string()

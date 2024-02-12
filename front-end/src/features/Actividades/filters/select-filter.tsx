@@ -38,7 +38,7 @@ const SelectFilterActividades: React.FC = () => {
   return (
     <>
       <Select onValueChange={handleState}>
-        <SelectTrigger className="w-[110px]">
+        <SelectTrigger className="mr-2 w-[110px]">
           <SelectValue placeholder="Valor" />
         </SelectTrigger>
         <SelectContent>
@@ -48,7 +48,7 @@ const SelectFilterActividades: React.FC = () => {
         </SelectContent>
 
         <Select onValueChange={handleType}>
-          <SelectTrigger className="w-[110px]">
+          <SelectTrigger className="mr-2 w-[110px]">
             <SelectValue placeholder="Tipo" />
           </SelectTrigger>
           <SelectContent>

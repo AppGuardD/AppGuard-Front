@@ -1,4 +1,4 @@
-import { ActividadType } from "../../../action-types/actividadesTypes"
+import { ActionType } from "../../../action-types/actividadesTypes"
 import type { Action } from "../../../actions/actividadesActions"
 import type { Dispatch } from "@reduxjs/toolkit"
 import instance from "@/redux/axios/instance"
@@ -27,7 +27,7 @@ export function getAdminActividades(options: {
       })
 
       dispatch({
-        type: ActividadType.GET_ADMIN,
+        type: ActionType.GET_ADMIN,
         payload: response.data.requestData,
       })
     } catch (error) {

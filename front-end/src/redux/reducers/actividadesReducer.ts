@@ -1,4 +1,4 @@
-import { ActividadType } from "../action-types/actividadesTypes"
+import { ActionType } from "../action-types/actividadesTypes"
 import type { ActividadesTypes, Action } from "../actions/actividadesActions"
 import type { DetailType } from "../actions/actividadesActions"
 
@@ -32,7 +32,7 @@ const initialState: InitialState = {
 
 const actividadesReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case ActividadType.GET:
+    case ActionType.GET:
       return {
         ...state,
         actividades: action.payload.requestData,
@@ -43,13 +43,13 @@ const actividadesReducer = (state = initialState, action: Action) => {
         url: action.url,
       }
 
-    case ActividadType.CLEAN:
+    case ActionType.CLEAN:
       return { ...state, actividades: action.payload }
 
-    case ActividadType.GET_ID:
+    case ActionType.GET_ID:
       return { ...state, detail: action.payload }
 
-    case ActividadType.PAGE:
+    case ActionType.PAGE:
       return {
         ...state,
         actividades: action.payload.requestData,
@@ -59,13 +59,13 @@ const actividadesReducer = (state = initialState, action: Action) => {
         currentPage: action.payload.pagination.currentPage,
       }
 
-    case ActividadType.DISABLE:
+    case ActionType.DISABLE:
       return { ...state, adminTable: action.payload }
 
-    case ActividadType.GET_ADMIN:
+    case ActionType.GET_ADMIN:
       return { ...state, adminTable: action.payload }
 
-    case ActividadType.CLEAN_ADMIN:
+    case ActionType.CLEAN_ADMIN:
       return { ...state, adminTable: action.payload }
 
     default:

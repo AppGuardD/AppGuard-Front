@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
             <Link to={`/mangrullos`}>Ir a mangrullos</Link>
           </li>
           <li>
-            <Link to={`/activities`}>Ir a actividades</Link>
+            <Link to={`/actividades`}>Ir a actividades</Link>
           </li>
           <li>
             <Link to={`/home`}>Ir a servicios </Link>

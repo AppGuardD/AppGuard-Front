@@ -1,6 +1,6 @@
 import type { Dispatch } from "@reduxjs/toolkit"
 import type { Action } from "@/redux/actions/actividadesActions"
-import { ActividadType } from "@/redux/action-types/actividadesTypes"
+import { ActionType } from "@/redux/action-types/actividadesTypes"
 import instance from "@/redux/axios/instance"
 
 export function disableActividades(options: { id?: number; token?: string }) {
@@ -23,7 +23,7 @@ export function disableActividades(options: { id?: number; token?: string }) {
       })
 
       dispatch({
-        type: ActividadType.DISABLE,
+        type: ActionType.DISABLE,
         payload: response.data.requestData,
       })
     } catch (error) {

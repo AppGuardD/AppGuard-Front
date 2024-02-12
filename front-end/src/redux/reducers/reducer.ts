@@ -6,14 +6,16 @@ import userReducer from "./userReducer"
 import loginReducer from "./loginReducer"
 import reviewReducer from "./reviewReducer"
 import reviewMangrullosReducer from "./reviewMangrullosReducer"
+
 const reducer = combineReducers({
   mangrullosReducer: mangrullosReducer,
   actividadesReducer: actividadesReducer,
   advicesReducer: advicesReducer,
   userReducer: userReducer,
   loginReducer: loginReducer,
+  cartReducer: cartReducer,
   reviewReducer: reviewReducer,
   reviewMangrullosReducer: reviewMangrullosReducer,
 })
 
-export default reducer
+export default reducer;
