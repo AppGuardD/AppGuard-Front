@@ -1,6 +1,5 @@
-import React from "react"
 import { jwtDecode } from "jwt-decode"
-import LogoutButton from "../../features/Auth/LogOut/Logout"
+import LogoutButton from "../../features/Auth/Login/logout-button"
 
 interface JwtPayload {
   email: string
@@ -10,11 +9,11 @@ interface JwtPayload {
 
 export const Profile: React.FC = () => {
   const token = localStorage.getItem("USER_INFO")
-
   const user: JwtPayload = jwtDecode(token || "")
+  console.log(user)
 
   return (
-    <div className="bg-darkblue-900 text-white p-8 rounded w-96">
+    <div className="p-8 rounded w-96 h-svh">
       <h1 className="text-2xl font-semibold mb-4">
         Bienvenido, {user.userName}!
       </h1>

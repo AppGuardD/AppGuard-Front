@@ -9,7 +9,6 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useAppDispatch } from "@/redux/hooks"
 import { GoogleLogin } from "@react-oauth/google"
@@ -17,18 +16,24 @@ import { GoogleOAuthProvider } from "@react-oauth/google"
 import { z } from "zod"
 import { postLogin } from "@/redux/action-creators/login/postLogin"
 import { Badge } from "@/components/ui/badge"
+import { useNavigate } from "react-router-dom"
+import { useToast } from "@/components/ui/use-toast"
+import { Button } from "@/components/ui/button"
 
 const formSchema = z.object({
   email: z.string().email({
     message: "Correo electronico invalido.",
   }),
-  password: z.string().min(8, {
+  password: z.string().min(1, {
     message: "La contraseña tiene que tener al menos 8 caracteres.",
   }),
 })
 
-const CreateUserForm: React.FC = () => {
+const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const { toast } = useToast()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,6 +45,17 @@ const CreateUserForm: React.FC = () => {
   const handleSubmit: SubmitHandler<z.infer<typeof formSchema>> = data => {
     console.log(data)
     dispatch(postLogin(data))
+
+    try {
+      toast({
+        title: "AppGuard",
+        description: "Has iniciado sesion.",
+      })
+    } finally {
+      setTimeout(() => {
+        navigate("/home")
+      }, 1000)
+    }
   }
 
   return (
@@ -80,32 +96,27 @@ const CreateUserForm: React.FC = () => {
                         {...field}
                       />
                     </FormControl>
+                    <FormMessage />
                     <Badge className="mt-4" variant={"outline"}>
                       Olvide mi contraseña
                     </Badge>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button className="mt-4" variant={"secondary"} type="submit">
-                Iniciar Sesion
-              </Button>
+              <div className="flex justify-between mt-4">
+                <Button type="submit" variant={"secondary"}>
+                  Iniciar Sesion
+                </Button>
+                <GoogleLogin
+                  onSuccess={credentialResponse => {
+                    console.log(credentialResponse)
+                  }}
+                  onError={() => {
+                    console.log("Login Failed")
+                  }}
+                />
+              </div>
             </div>
-            <button
-              className="flex text-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-transparent hover:bg-accent font-semibold py-2 px-4 border rounded"
-              type="submit"
-            >
-              Iniciar Sesión
-            </button>
-            <GoogleLogin
-              onSuccess={credentialResponse => {
-                console.log(credentialResponse)
-              }}
-              onError={() => {
-                console.log("Login Failed")
-              }}
-            />
-            ;
           </form>
         </Form>
       </div>
@@ -113,4 +124,4 @@ const CreateUserForm: React.FC = () => {
   )
 }
 
-export default CreateUserForm
+export default LoginForm

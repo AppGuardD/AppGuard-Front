@@ -6,38 +6,14 @@ export interface LoginTypes {
   token: string
 }
 
-interface cleanAction {
-  type: ActionType.CLEAN
-  payload: []
-}
-
-interface getAction {
-  type: ActionType.GET
-  payload: LoginTypes[]
-}
-
-interface getIdAction {
-  type: ActionType.GET_ID
-  payload: LoginTypes
-}
-
-interface postAction {
-  type: ActionType.POST
+interface loginAction {
+  type: ActionType.LOGIN
   payload: string
 }
 
-interface putAction {
-  type: ActionType.PUT
+interface loginErrorAction {
+  type: ActionType.LOGIN_ERROR
+  payload: string
 }
 
-interface disableAction {
-  type: ActionType.DISABLE
-}
-
-export type Action =
-  | cleanAction
-  | getAction
-  | getIdAction
-  | postAction
-  | putAction
-  | disableAction
+export type Action = loginAction | loginErrorAction

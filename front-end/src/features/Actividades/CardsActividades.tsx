@@ -31,12 +31,13 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
   const userId = 2
 
   const handleAddtoCart = (ActivityId: number) => {
+    const token = localStorage.getItem("USER_INFO")
     const actividad = {
       userId,
       ActivityId,
       cantidad: 1,
     }
-    dispatch(addCart(actividad))
+    dispatch(addCart({ data: actividad, token: token }))
   }
 
   return (

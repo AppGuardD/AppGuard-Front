@@ -10,7 +10,7 @@ import appStorte from "@/assets/app_store.png"
 
 const Footer: React.FC = () => {
   return (
-    <footer className="flex items-start justify-evenly flex-wrap p-6 gap-2 border-t border-primary">
+    <footer className="flex items-start justify-evenly flex-wrap p-6 border-t mt-4">
       <div className="flex flex-wrap max-w-64">
         <img src={logo} alt="" className="h-10 pr-4" />
         <span className="font-semibold mt-1 text-2xl pt-0.25">AppGuard</span>

@@ -13,11 +13,21 @@ export function postLogin(data: any) {
       console.log("userInfo:", userInfo)
 
       dispatch({
-        type: ActionType.POST,
+        type: ActionType.LOGIN,
         payload: userInfo,
       })
-    } catch (error) {
+      dispatch({
+        type: ActionType.LOGIN_ERROR,
+        payload: "",
+      })
+    } catch (error: any) {
       console.error("Error de log:", error)
+      const message: string = error.response.data.message
+
+      dispatch({
+        type: ActionType.LOGIN_ERROR,
+        payload: message,
+      })
     }
   }
 }

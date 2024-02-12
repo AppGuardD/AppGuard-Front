@@ -3,8 +3,7 @@ import swal from "sweetalert"
 import { Button } from "@/components/ui/button"
 
 const LogoutButton = () => {
-  let user = JSON.parse(localStorage.getItem("USER-INFO") || "{}")
-
+  JSON.parse(localStorage.getItem("USER-INFO") || "{}")
   const navigate = useNavigate()
 
   const logOut = () => {
@@ -12,7 +11,7 @@ const LogoutButton = () => {
       title: "Logout!",
       text: "Has cerrado sesión",
       icon: "success",
-      buttons: ["Volver"],
+      buttons: [false],
     })
 
     localStorage.clear()
@@ -21,14 +20,11 @@ const LogoutButton = () => {
       navigate("/users")
 
       window.location.reload()
-    }, 1500)
+    }, 1000)
   }
 
   return (
-    <Button
-      className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
-      onClick={logOut}
-    >
+    <Button variant={"outline"} onClick={logOut}>
       Logout
     </Button>
   )

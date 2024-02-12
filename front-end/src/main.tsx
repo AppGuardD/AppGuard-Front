@@ -4,6 +4,7 @@ import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import { store } from "./redux/store"
 import App from "./App"
+import { Toaster } from "./components/ui/toaster"
 
 const container = document.getElementById("root")
 
@@ -14,6 +15,7 @@ if (container) {
     <React.StrictMode>
       <Provider store={store}>
         <App />
+        <Toaster />
       </Provider>
     </React.StrictMode>,
   )

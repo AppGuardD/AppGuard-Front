@@ -15,10 +15,12 @@ import { removeItem } from "@/redux/action-creators/carrito/removeItem"
 import { Card } from "@/components/ui/card"
 import type { CartTypes } from "@/redux/actions/cartActions"
 import { Separator } from "@/components/ui/separator"
+import { useNavigate } from "react-router-dom"
 
 const Cart: React.FC = () => {
   const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const userId = 2
 
   const carritoId = localStorage.getItem("ID_CARRITO")
@@ -31,12 +33,13 @@ const Cart: React.FC = () => {
   }, [dispatch, userId])
 
   const handleAddtoCart = (ActivityId: number) => {
+    const token = localStorage.getItem("USER_INFO")
     const actividad = {
       userId,
       ActivityId,
       cantidad: 1,
     }
-    dispatch(addCart(actividad))
+    dispatch(addCart({ data: actividad, token: token }))
   }
 
   const handleDeleteItem = (ActivityId: number) => {
@@ -126,12 +129,18 @@ const Cart: React.FC = () => {
             </Card>
           ))
         ) : (
-          <h1 className="text-2xl font-semibold text-center my-16">
-            Selecciona actividades para agregar al carrito.
-          </h1>
+          <div className="h-svh flex">
+            <Button
+              className="my-36 text-xl"
+              variant={"link"}
+              onClick={() => navigate("/actividades")}
+            >
+              Selecciona actividades para agregar al carrito.
+            </Button>
+          </div>
         )}
       </div>
-      <div className="w-64 ml-6 p-4 space-y-4 content-start border-l-2">
+      <div className="w-64 ml-6 p-4 space-y-4 content-start border-l">
         <h2 className="text-xl font-bold mb-2">Cantidad de boletos </h2>
         {carrito.detalle_carrito?.length === 1 ? (
           <h3 className="text-xl mb-2">
@@ -146,10 +155,17 @@ const Cart: React.FC = () => {
         <h2 className="text-xl font-bold mb-2">Total de la compra</h2>
         <p className="text-xl ml-4">${carrito.total}</p>
         <Separator className="my-2" />
-        <Button variant={"ghost"} className="text-xl">
-          Ir a Pagar
-          <ChevronRight className="ml-2" />
-        </Button>
+        {!carrito ? (
+          <Button variant={"ghost"} className="text-xl">
+            Ir a Pagar
+            <ChevronRight className="ml-2" />
+          </Button>
+        ) : (
+          <Button disabled variant={"ghost"} className="text-xl">
+            Ir a Pagar
+            <ChevronRight className="ml-2" />
+          </Button>
+        )}
       </div>
     </div>
   )
