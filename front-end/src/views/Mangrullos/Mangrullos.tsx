@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from "@/redux/hooks"
 import { useEffect } from "react"
 import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
 import { cleanMangrullos } from "@/redux/action-creators/mangrullos/cleanMangrullos"
-import type Mangrullo from "@/redux/actions/mangrullosActions"
+import type {Mangrullo} from "@/redux/actions/mangrullosActions"
 import { Button } from "@/components/ui/button"
 
 const Mangrullos: React.FC = () => {

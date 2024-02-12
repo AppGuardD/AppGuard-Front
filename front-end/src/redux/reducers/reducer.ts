@@ -13,7 +13,7 @@ const reducer = combineReducers({
   advicesReducer: advicesReducer,
   userReducer: userReducer,
   loginReducer: loginReducer,
-  cartReducer: cartReducer,
+  // cartReducer: cartReducer,
   reviewReducer: reviewReducer,
   reviewMangrullosReducer: reviewMangrullosReducer,
 })

@@ -12,6 +12,8 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useAppDispatch } from "@/redux/hooks"
+import { GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { z } from "zod"
 import { postLogin } from "@/redux/action-creators/login/postLogin"
 import { Badge } from "@/components/ui/badge"
@@ -41,6 +43,7 @@ const CreateUserForm: React.FC = () => {
   }
 
   return (
+  <GoogleOAuthProvider clientId="204945610405-eaj4cam96mbfrom5fj3m3hadk3guep9s.apps.googleusercontent.com">
     <div>
       <p className="text-4xl font-semibold mt-8 mx-8 mb-4">Inicio de sesion.</p>
       <Form {...form}>
@@ -86,9 +89,24 @@ const CreateUserForm: React.FC = () => {
               Iniciar Sesion
             </Button>
           </div>
+          <button
+            className="flex text-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-transparent hover:bg-accent font-semibold py-2 px-4 border rounded"
+            type="submit"
+          >
+            Iniciar Sesión
+          </button>
+          <GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>;
         </form>
       </Form>
     </div>
+    </GoogleOAuthProvider>
   )
 }
 

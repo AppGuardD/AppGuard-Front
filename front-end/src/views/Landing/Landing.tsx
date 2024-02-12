@@ -24,7 +24,7 @@ const Landing: React.FC = () => {
                 <img className="pl-4" src={rightArrow} alt="" />
               </Button>
             </Link>
-            <Link to={`/login`}>
+            <Link to={`/users`}>
               <Button variant={"outline"} className="text-xl mr-4">
                 Iniciar sesion
                 <img className="pl-4" src={rightArrow} alt="" />

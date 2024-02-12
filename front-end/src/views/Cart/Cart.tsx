@@ -23,45 +23,12 @@ import { Card } from "@/components/ui/card"
 import type { CartTypes } from "@/redux/actions/cartActions"
 import { Separator } from "@/components/ui/separator"
 
-const Cart: React.FC = () => {
-  const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
-  const dispatch = useAppDispatch()
-  const userId = 2
-
-  const carritoId = localStorage.getItem("ID_CARRITO")
-
   useEffect(() => {
     const fetchData = async () => {
       await dispatch(getCart(userId))
     }
     fetchData()
   }, [dispatch, userId])
-
-  const handleAddtoCart = (ActivityId: number) => {
-    const actividad = {
-      userId,
-      ActivityId,
-      cantidad: 1,
-    }
-    dispatch(addCart(actividad))
-  }
-
-  const handleDeleteItem = (ActivityId: number) => {
-    const Item = {
-      userId,
-      ActivityId,
-    }
-    dispatch(deleteItem(Item))
-  }
-
-  const handleRemoveItem = (ActivityId: number) => {
-    const Item = {
-      userId,
-      carritoId,
-      ActivityId,
-    }
-    dispatch(removeItem(Item))
-  }
 
   return (
     <div className="flex justify-center">

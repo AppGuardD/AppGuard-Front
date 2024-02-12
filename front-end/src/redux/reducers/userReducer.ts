@@ -2,6 +2,7 @@ import { ActionType } from "@/redux/action-types/userTypes";
 import type { Action, UserTypes } from "@/redux/actions/userActions";
 
 interface InitialState {
+  userInfo:[]
   id: number;
   userName: string;
   email: string;
@@ -16,7 +17,8 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  id: 1,
+  userInfo:[],
+  id: 2,
   userName: "",
   email: "",
   password: "",

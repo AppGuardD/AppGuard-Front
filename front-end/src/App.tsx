@@ -9,7 +9,7 @@ import Mangrullos from "./views/Mangrullos/Mangrullos"
 import NavBar from "./features/Navigation/NavBar"
 import Footer from "./features/Navigation/Footer"
 import Admin from "./views/Admin/Admin"
-import Cart from "./views/Cart/Cart"
+// import Cart from "./views/Cart/Cart"
 import Actividades from "./views/Actividades/Actividades"
 import DetailActividades from "./views/Detail/DetailActividades"
 import { Profile } from "./views/Profile/Profile"
@@ -27,7 +27,7 @@ const App = () => {
         <Route path="/users" element={<UsersView />} />
         <Route path="/donations" element={<Donations />} />
         <Route path="/about" element={<About />} />
-        <Route path="/cart" element={<Cart />} />
+        {/* <Route path="/cart" element={<Cart />} /> */}
         <Route path="/admin" element={<Admin />} />
         <Route path="/mangrullos" element={<Mangrullos />} />
         <Route path="/mangrullos/detail/:id" element={<DetailMangrullo />} />

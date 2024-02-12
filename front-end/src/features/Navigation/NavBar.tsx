@@ -1,9 +1,28 @@
-import { useNavigate } from "react-router-dom"
-import logo from "../../assets/logo-appguard.svg"
-import cartIcon from "../../assets/shopping-cart.svg"
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logo-appguard.svg";
+import cartIcon from "../../assets/shopping-cart.svg";
+import { jwtDecode} from 'jwt-decode';
+
+interface JwtPayload {
+  email: string;
+  userName: string;
+  rol: string;
+}
 
 const NavBar: React.FC = () => {
-  const navigate = useNavigate()
+  const token = localStorage.getItem("USER_INFO");
+  const navigate = useNavigate();
+  const [user, setUser] = useState<JwtPayload | null>(null);
+
+  useEffect(() => {
+    if (token) {
+      const decodedToken: JwtPayload = jwtDecode(token);
+      setUser(decodedToken);
+    } else {
+      setUser(null);
+    }
+  }, [token]);
 
   return (
     <nav className="flex items-center justify-between flex-wrap p-4 mb-4 border-b border-primary">
@@ -22,7 +41,7 @@ const NavBar: React.FC = () => {
           onClick={() => navigate("/home")}
           className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
         >
-          ACTIVIDADES
+          SERVICIOS
         </button>
         <button
           onClick={() => navigate("/donations")}
@@ -36,18 +55,32 @@ const NavBar: React.FC = () => {
         >
           QUIENES SOMOS
         </button>
-        <button
-          onClick={() => navigate("/users")}
-          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
-        >
-          INICIAR SESION
-        </button>
-        <button
-          onClick={() => navigate("/admin")}
-          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
-        >
-          ADMIN
-        </button>
+        {!user && (
+          <button
+            onClick={() => navigate("/users")}
+            className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
+          >
+            INICIAR SESION
+          </button>
+        )}
+        {user && (
+          <>
+            <button
+              onClick={() => navigate("/profile")}
+              className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
+            >
+              {user.userName}
+            </button>
+            {user.rol === "admin" && (
+              <button
+                onClick={() => navigate("/admin")}
+                className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
+              >
+                ADMIN
+              </button>
+            )}
+          </>
+        )}
         <button
           onClick={() => navigate("/cart")}
           className="align-middle transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
@@ -56,7 +89,7 @@ const NavBar: React.FC = () => {
         </button>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
