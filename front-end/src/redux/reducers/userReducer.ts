@@ -9,13 +9,14 @@ interface InitialState {
   typeIdentification: string;
   numberIdentification: string;
   rol: string;
+
   state: string;
   detail?: UserTypes;
   token?: string;
 }
 
 const initialState: InitialState = {
-  id: 2,
+  id: 0,
   userName: "",
   email: "",
   password: "",
@@ -24,6 +25,7 @@ const initialState: InitialState = {
   rol: "",
 
   state: "",
+  //detail?: UserTypes;
   token: "",
 };
 

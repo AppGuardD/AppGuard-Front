@@ -16,7 +16,7 @@ export function postAdminActividades(options: { newActivity: NewActivity }) {
   return async function (dispatch: Dispatch<Action>) {
     try {
       const url = "/activities/create"
-      const response = await instance.post(url, options)
+      const response = await instance.post(url, options.newActivity)
 
       dispatch({
         type: ActionType.POST,
