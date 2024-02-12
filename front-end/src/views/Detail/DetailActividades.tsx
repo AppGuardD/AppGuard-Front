@@ -73,7 +73,7 @@ const DetailActividades: React.FC = () => {
             </p>
             <div>
               <Button onClick={() => navigate(`/review/${detail.id}`)}>
-                Dejanos tu opiñion!
+                Deja tu review
               </Button>
             </div>
           </div>

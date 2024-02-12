@@ -15,6 +15,7 @@ import DetailActividades from "./views/Detail/DetailActividades"
 import { Profile } from "./views/Profile/Profile"
 import UsersView from "./views/Users/user"
 import { Review } from "./views/Review/Review"
+import {ReviewMangrullos} from "./views/Review/ReviewMangrullos"
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/actividades/detail/:id" element={<DetailActividades />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/review/:id" element={<Review />} />
+        <Route path="/mangrullos/review/:id" element = {<ReviewMangrullos/>} />
       </Routes>
       {<Footer />}
     </Router>
