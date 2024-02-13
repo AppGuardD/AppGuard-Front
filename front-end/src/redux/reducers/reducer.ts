@@ -4,6 +4,7 @@ import actividadesReducer from "./actividadesReducer";
 import advicesReducer from "./advicesReducer";
 import userReducer from "./userReducer";
 import loginReducer from "./loginReducer";
+import googleLoginReducer from "./googleLoginReducer";
 // import cartReducer from "./cartReducer";
 import reviewReducer from "./reviewReducer";
 
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   loginReducer: loginReducer,
   // cartReducer: cartReducer,
   reviewReducer: reviewReducer,
+  googleLoginReducer:googleLoginReducer
 });
 
 export default reducer;

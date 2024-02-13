@@ -31,7 +31,7 @@ export function createReviewActividades(options: {
         qualification: options.formData.qualification,
       }
 
-      console.log(requestData)
+      console.log(requestData, "request data")
       const url = "/reviewActivity/create"
       const response = await instance.post(url, requestData)
 
