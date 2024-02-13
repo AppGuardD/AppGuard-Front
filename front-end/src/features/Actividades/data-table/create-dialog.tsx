@@ -33,7 +33,6 @@ import { useAppSelector } from "@/redux/hooks"
 import { MultiSelect } from "@/components/ui/multiselect"
 import { useAppDispatch } from "@/redux/hooks"
 import { postAdminActividades } from "@/redux/action-creators/actividades/admin/admin-post-actividades"
-import { parse } from "path"
 
 const formSchema = z.object({
   activityName: z.string().min(2, {

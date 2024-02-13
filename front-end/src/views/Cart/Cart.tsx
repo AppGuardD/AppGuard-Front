@@ -21,7 +21,6 @@ import { paymentCart } from "@/redux/action-creators/carrito/payment"
 const Cart: React.FC = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const url = useAppSelector(state => state.cartReducer.mercadopagoURL)
   const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
   const carritoId = useAppSelector(state => state.cartReducer.carritoId)
   const userId = localStorage.getItem("USERID")
