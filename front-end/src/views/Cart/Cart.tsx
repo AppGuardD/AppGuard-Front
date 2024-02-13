@@ -19,21 +19,20 @@ import { useNavigate } from "react-router-dom"
 
 const Cart: React.FC = () => {
   const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
+  const carritoId = useAppSelector(state => state.cartReducer.carritoId)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const userId = 2
-
-  const carritoId = localStorage.getItem("ID_CARRITO")
+  const userId = localStorage.getItem("USERID")
+  const token = localStorage.getItem("TOKEN")
 
   useEffect(() => {
     const fetchData = async () => {
-      await dispatch(getCart(userId))
+      await dispatch(getCart({ userId: userId, token: token }))
     }
     fetchData()
-  }, [dispatch, userId])
+  }, [dispatch, userId, token])
 
   const handleAddtoCart = (ActivityId: number) => {
-    const token = localStorage.getItem("USER_INFO")
     const actividad = {
       userId,
       ActivityId,
@@ -47,16 +46,17 @@ const Cart: React.FC = () => {
       userId,
       ActivityId,
     }
-    dispatch(deleteItem(Item))
+    dispatch(deleteItem({ data: Item, token: token }))
   }
 
   const handleRemoveItem = (ActivityId: number) => {
+    const token = localStorage.getItem("TOKEN")
     const Item = {
       userId,
-      carritoId,
       ActivityId,
+      carritoId,
     }
-    dispatch(removeItem(Item))
+    dispatch(removeItem({ data: Item, token: token }))
   }
 
   return (
@@ -155,7 +155,7 @@ const Cart: React.FC = () => {
         <h2 className="text-xl font-bold mb-2">Total de la compra</h2>
         <p className="text-xl ml-4">${carrito.total}</p>
         <Separator className="my-2" />
-        {!carrito ? (
+        {carrito.detalle_carrito.length !== 0 ? (
           <Button variant={"ghost"} className="text-xl">
             Ir a Pagar
             <ChevronRight className="ml-2" />

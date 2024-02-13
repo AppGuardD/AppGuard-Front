@@ -3,9 +3,11 @@ import type { CartTypes, Action } from "@/redux/actions/cartActions"
 
 interface InitialState {
   carrito: CartTypes
+  carritoId: number | null
 }
 
 const initialState: InitialState = {
+  carritoId: null,
   carrito: {
     id: 0,
     fecha: "",
@@ -25,18 +27,31 @@ const sortDetalleCarrito = (carrito: CartTypes) => {
 const cartReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ActionType.ADD_TO_CART:
-      return { ...state, carrito: sortDetalleCarrito(action.payload) }
+      return {
+        ...state,
+        carrito: sortDetalleCarrito(action.payload),
+        carritoId: action.payload.id,
+      }
 
     case ActionType.GET_CART:
-      return { ...state, carrito: sortDetalleCarrito(action.payload) }
+      return {
+        ...state,
+        carrito: sortDetalleCarrito(action.payload),
+        carritoId: action.payload.id,
+      }
 
     case ActionType.DELETE_ITEM:
-      return { ...state, carrito: sortDetalleCarrito(action.payload) }
+      return {
+        ...state,
+        carrito: sortDetalleCarrito(action.payload),
+        carritoId: action.payload.id,
+      }
 
     case ActionType.REMOVE_FROM_CART:
       return {
         ...state,
         carrito: sortDetalleCarrito(action.payload),
+        carritoId: action.payload.id,
       }
 
     default:

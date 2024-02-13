@@ -8,7 +8,7 @@ interface JwtPayload {
 }
 
 export const Profile: React.FC = () => {
-  const token = localStorage.getItem("USER_INFO")
+  const token = localStorage.getItem("TOKEN")
   const user: JwtPayload = jwtDecode(token || "")
   console.log(user)
 

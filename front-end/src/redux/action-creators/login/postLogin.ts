@@ -8,13 +8,14 @@ export function postLogin(data: any) {
     try {
       const response = await instance.post("/auth/login", data)
 
-      const userInfo = response.data.token
-      localStorage.setItem("USER_INFO", userInfo)
-      console.log("userInfo:", userInfo)
+      const token = response.data.token
+      localStorage.setItem("TOKEN", token)
+      const userId = response.data.logUser.id
+      localStorage.setItem("USERID", userId)
 
       dispatch({
         type: ActionType.LOGIN,
-        payload: userInfo,
+        payload: token,
       })
       dispatch({
         type: ActionType.LOGIN_ERROR,

@@ -15,7 +15,7 @@ const AdminActividades: React.FC = () => {
 
   useEffect(() => {
     let mounted = true
-    const token = localStorage.getItem("USER_INFO")
+    const token = localStorage.getItem("TOKEN")
 
     const fetchData = async () => {
       await dispatch(getAdminActividades({ token: token }))

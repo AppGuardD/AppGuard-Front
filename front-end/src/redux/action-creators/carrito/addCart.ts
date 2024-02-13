@@ -8,23 +8,26 @@ export function addCart(options: { data: any; token: string | null }) {
   return async function (dispatch: Dispatch<Action>) {
     try {
       const { userId } = options.data
-      const urlGet = `/car/getCarrito/${userId}`
-      const response = await instance.get(urlGet)
 
-      await instance.post("/car/addItem", options.data, {
+      await instance({
+        method: "post",
+        url: `car/addItem`,
         headers: { tk: options.token },
+        data: options.data,
       })
 
-      const carritoID = response.data.id
-
-      localStorage.setItem("ID_CARRITO", carritoID)
+      const response = await instance({
+        method: "get",
+        url: `/car/getCarrito/${userId}`,
+        headers: { tk: options.token },
+      })
 
       dispatch({
         type: ActionType.ADD_TO_CART,
         payload: response.data,
       })
-    } catch (error) {
-      console.error("Error de log:", error)
+    } catch (error: any) {
+      console.error("Error al aniadir al carrito:", error.response.data)
     }
   }
 }

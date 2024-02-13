@@ -14,7 +14,7 @@ interface JwtPayload {
 
 const NavBar: React.FC = () => {
   const navigate = useNavigate()
-  const token = localStorage.getItem("USER_INFO")
+  const token = localStorage.getItem("TOKEN")
   const [user, setUser] = useState<JwtPayload | null>(
     token ? jwtDecode(token) : null,
   )

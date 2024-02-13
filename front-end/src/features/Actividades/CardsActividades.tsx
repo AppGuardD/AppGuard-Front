@@ -28,10 +28,10 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
   const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const userId = 2
+  const userId = localStorage.getItem("USERID")
+  const token = localStorage.getItem("TOKEN")
 
   const handleAddtoCart = (ActivityId: number) => {
-    const token = localStorage.getItem("USER_INFO")
     const actividad = {
       userId,
       ActivityId,
