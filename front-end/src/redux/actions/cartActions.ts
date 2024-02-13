@@ -38,4 +38,14 @@ interface removeAction {
   payload: CartTypes
 }
 
-export type Action = addAction | getAction | deleteAction | removeAction
+interface paymentAction {
+  type: ActionType.PAYMENT
+  payload: []
+}
+
+export type Action =
+  | addAction
+  | getAction
+  | deleteAction
+  | removeAction
+  | paymentAction

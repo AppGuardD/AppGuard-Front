@@ -2,11 +2,13 @@ import { ActionType } from "@/redux/action-types/cartTypes"
 import type { CartTypes, Action } from "@/redux/actions/cartActions"
 
 interface InitialState {
+  mercadopagoURL: string
   carrito: CartTypes
   carritoId: number | null
 }
 
 const initialState: InitialState = {
+  mercadopagoURL: "",
   carritoId: null,
   carrito: {
     id: 0,
@@ -26,6 +28,12 @@ const sortDetalleCarrito = (carrito: CartTypes) => {
 
 const cartReducer = (state = initialState, action: Action) => {
   switch (action.type) {
+    case ActionType.PAYMENT:
+      return {
+        ...state,
+        mercadopagoURL: action.payload,
+      }
+
     case ActionType.ADD_TO_CART:
       return {
         ...state,

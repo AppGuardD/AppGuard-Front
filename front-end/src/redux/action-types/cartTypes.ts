@@ -4,4 +4,5 @@ export enum ActionType {
   DELETE_ITEM = "DELETE_ITEM",
   REMOVE_FROM_CART = "REMOVE_FROM_CART",
   CLEAN_CART = "CLEAN_CART",
+  PAYMENT = "PAYMENT",
 }

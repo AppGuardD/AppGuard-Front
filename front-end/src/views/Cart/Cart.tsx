@@ -16,12 +16,14 @@ import { Card } from "@/components/ui/card"
 import type { CartTypes } from "@/redux/actions/cartActions"
 import { Separator } from "@/components/ui/separator"
 import { useNavigate } from "react-router-dom"
+import { paymentCart } from "@/redux/action-creators/carrito/payment"
 
 const Cart: React.FC = () => {
-  const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
-  const carritoId = useAppSelector(state => state.cartReducer.carritoId)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const url = useAppSelector(state => state.cartReducer.mercadopagoURL)
+  const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
+  const carritoId = useAppSelector(state => state.cartReducer.carritoId)
   const userId = localStorage.getItem("USERID")
   const token = localStorage.getItem("TOKEN")
 
@@ -57,6 +59,16 @@ const Cart: React.FC = () => {
       carritoId,
     }
     dispatch(removeItem({ data: Item, token: token }))
+  }
+
+  const handlePayment = () => {
+    const arrayItemsPay = carrito.detalle_carrito.map(item => ({
+      title: item.Activity.activityName,
+      description: item.Activity.description,
+      quantity: item.cantidad,
+      unit_price: item.Activity.price,
+    }))
+    dispatch(paymentCart({ id: userId, token: token, carrito: arrayItemsPay }))
   }
 
   return (
@@ -156,7 +168,7 @@ const Cart: React.FC = () => {
         <p className="text-xl ml-4">${carrito.total}</p>
         <Separator className="my-2" />
         {carrito.detalle_carrito.length !== 0 ? (
-          <Button variant={"ghost"} className="text-xl">
+          <Button onClick={handlePayment} variant={"ghost"} className="text-xl">
             Ir a Pagar
             <ChevronRight className="ml-2" />
           </Button>
