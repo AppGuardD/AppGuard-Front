@@ -12,6 +12,7 @@ interface InitialState {
   state: string
   detail?: UserTypes
   token?: string
+userInfo:[]
 }
 
 const initialState: InitialState = {
@@ -22,7 +23,7 @@ const initialState: InitialState = {
   typeIdentification: "",
   numberIdentification: "",
   rol: "",
-
+userInfo:[],
   state: "",
   token: "",
 }
