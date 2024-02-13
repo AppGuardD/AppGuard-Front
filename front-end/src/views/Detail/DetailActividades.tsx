@@ -27,7 +27,6 @@ const DetailActividades: React.FC = () => {
   return (
     <div className="mb-64">
       <div className="flex justify-between px-8">
-        <p className="text-3xl align-baseline">Detalle de actividad</p>
         <Button
           onClick={() => navigate("/actividades")}
           className="rounded mb-4 border-primary"
@@ -35,6 +34,7 @@ const DetailActividades: React.FC = () => {
         >
           Ir Atras
         </Button>
+        <p className="text-3xl align-baseline">Detalle de actividad</p>
       </div>
       {detail ? (
         <div className="grid grid-cols-2 gap-6 mt-6">

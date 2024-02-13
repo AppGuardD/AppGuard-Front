@@ -33,6 +33,7 @@ import { useAppSelector } from "@/redux/hooks"
 import { MultiSelect } from "@/components/ui/multiselect"
 import { useAppDispatch } from "@/redux/hooks"
 import { postAdminActividades } from "@/redux/action-creators/actividades/admin/admin-post-actividades"
+import { parse } from "path"
 
 const formSchema = z.object({
   activityName: z.string().min(2, {
@@ -41,9 +42,7 @@ const formSchema = z.object({
   description: z.string().min(2, {
     message: "Este campo es obligatorio.",
   }),
-  image: z.string().min(2, {
-    message: "Este campo es obligatorio.",
-  }),
+  image: z.any(),
   price: z.string().min(2, {
     message: "Este campo es obligatorio.",
   }),
@@ -54,6 +53,7 @@ const formSchema = z.object({
 })
 
 const CreateDialog: React.FC = () => {
+  const token = localStorage.getItem("TOKEN")
   const mangrullos: Mangrullo[] = useAppSelector(
     state => state.mangrullosReducer.mangrullos,
   )
@@ -80,14 +80,21 @@ const CreateDialog: React.FC = () => {
     const activityData = {
       activityName: data.activityName,
       description: data.description,
-      image: data.image,
       price: data.price,
-      mangrullos: data.mangrullos.map(item => item.value),
+      mangrullos: data.mangrullos.map(item => parseInt(item.value)),
       state: data.state,
       type: data.type,
     }
-    console.log(JSON.stringify(activityData))
-    dispatch(postAdminActividades({ newActivity: activityData }))
+    const formData = new FormData()
+    formData.append("image", data.image[0])
+
+    dispatch(
+      postAdminActividades({
+        image: formData,
+        form: activityData,
+        token: token,
+      }),
+    )
   }
 
   return (
@@ -106,7 +113,10 @@ const CreateDialog: React.FC = () => {
         </DialogHeader>
         {/*form*/}
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)}>
+          <form
+            encType="multipart/form-data"
+            onSubmit={form.handleSubmit(handleSubmit)}
+          >
             <div className="grid gap-4 py-4">
               <FormField
                 control={form.control}

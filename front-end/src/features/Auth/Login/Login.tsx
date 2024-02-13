@@ -25,7 +25,7 @@ const formSchema = z.object({
     message: "Correo electronico invalido.",
   }),
   password: z.string().min(1, {
-    message: "La contraseña tiene que tener al menos 8 caracteres.",
+    message: "Este campo es obligatorio.",
   }),
 })
 
@@ -97,13 +97,10 @@ const LoginForm: React.FC = () => {
                       />
                     </FormControl>
                     <FormMessage />
-                    <Badge className="mt-4" variant={"outline"}>
-                      Olvide mi contraseña
-                    </Badge>
                   </FormItem>
                 )}
               />
-              <div className="flex justify-between mt-4">
+              <div className="flex justify-between mt-2">
                 <Button type="submit" variant={"secondary"}>
                   Iniciar Sesion
                 </Button>
@@ -116,6 +113,9 @@ const LoginForm: React.FC = () => {
                   }}
                 />
               </div>
+              <Badge className="mt-4" variant={"outline"}>
+                Olvide mi contraseña
+              </Badge>
             </div>
           </form>
         </Form>
