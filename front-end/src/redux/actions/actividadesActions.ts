@@ -5,18 +5,6 @@ export type Type = "" | "Deportivo" | "Sanitario" | "Cultural"
 export type Cost = "" | "Pago" | "Gratis"
 export type Order = "" | "Mayor" | "Menor"
 
-export interface ActividadesTypes {
-  id: number
-  activityName: string
-  description: string
-  image: string
-  qualification: number
-  price: number
-  state: string
-  active: boolean
-  type: string
-}
-
 export interface ResponseData {
   succes: boolean
   pagination: {
@@ -24,19 +12,19 @@ export interface ResponseData {
     totalItems: number
     currentPage: number
   }
-  requestData: ActividadesTypes[]
+  requestData: DetailType[]
 }
 
 export interface DetailType {
-  id?: number
+  id: number
   activityName?: string
   description?: string
   image?: string
   qualification?: number
   price?: number
-  state?: string
   active?: boolean
-  type?: string
+  state?: "Gratis" | "Pago"
+  type?: "Deportivo" | "Sanitario" | "Cultural"
 }
 
 interface cleanAction {
@@ -57,7 +45,8 @@ interface getIdAction {
 
 interface getAdminAction {
   type: ActionType.GET_ADMIN
-  payload: ActividadesTypes[]
+  payload: ResponseData
+  url: string
 }
 
 interface cleanAdminAction {
@@ -75,12 +64,27 @@ interface putAction {
 
 interface disableAction {
   type: ActionType.DISABLE
-  payload: ActividadesTypes[]
+  payload: DetailType[]
 }
 
 interface pageAction {
   type: ActionType.PAGE
   payload: ResponseData
+}
+
+interface pageAdminAction {
+  type: ActionType.PAGE_ADMIN
+  payload: ResponseData
+}
+
+interface imageAction {
+  type: ActionType.IMAGE
+  payload: string
+}
+
+interface loadingAction {
+  type: ActionType.IMAGE_LOADING
+  payload: boolean
 }
 
 export type Action =
@@ -91,5 +95,8 @@ export type Action =
   | putAction
   | disableAction
   | pageAction
+  | pageAdminAction
   | getAdminAction
   | cleanAdminAction
+  | imageAction
+  | loadingAction

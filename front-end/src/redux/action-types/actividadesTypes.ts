@@ -8,4 +8,7 @@ export enum ActionType {
   PUT = "putActividades",
   DISABLE = "disableActividades",
   PAGE = "pageActividades",
+  PAGE_ADMIN = "pageActAdmin",
+  IMAGE = "imageActividades",
+  IMAGE_LOADING = "loadingImageActividades",
 }

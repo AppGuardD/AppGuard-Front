@@ -1,8 +1,28 @@
 import AdminMangrullos from "@/features/Mangrullos/AdminMangrullos"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import AdminActividades from "@/features/Actividades/AdminActivity"
+import { useEffect } from "react"
+import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
+import { cleanMangrullos } from "@/redux/action-creators/mangrullos/cleanMangrullos"
+import { useAppDispatch } from "@/redux/hooks"
 
 const Admin: React.FC = () => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    let mounted = true
+    const fetchData = async () => {
+      await dispatch(getMangrullos())
+      if (!mounted) {
+        dispatch(cleanMangrullos())
+      }
+    }
+    fetchData()
+    return () => {
+      mounted = false
+    }
+  }, [dispatch])
+
   return (
     <div className="flex m-8">
       <Tabs defaultValue="actividades" className="w-svw">

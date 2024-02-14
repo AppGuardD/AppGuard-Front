@@ -33,6 +33,11 @@ import { useAppSelector } from "@/redux/hooks"
 import { MultiSelect } from "@/components/ui/multiselect"
 import { useAppDispatch } from "@/redux/hooks"
 import { postAdminActividades } from "@/redux/action-creators/actividades/admin/admin-post-actividades"
+import UploadImageActivity from "./upload-image"
+import { useEffect, useState } from "react"
+import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
+import { cleanMangrullos } from "@/redux/action-creators/mangrullos/cleanMangrullos"
+import { CheckCircle2 } from "lucide-react"
 
 const formSchema = z.object({
   activityName: z.string().min(2, {
@@ -41,18 +46,18 @@ const formSchema = z.object({
   description: z.string().min(2, {
     message: "Este campo es obligatorio.",
   }),
-  image: z.any(),
   price: z.string().min(2, {
     message: "Este campo es obligatorio.",
   }),
   mangrullos: z.array(z.record(z.string().trim())),
-
   state: z.enum(["Gratis", "Pago"]),
   type: z.enum(["Deportivo", "Sanitario", "Cultural"]),
 })
 
 const CreateDialog: React.FC = () => {
+  const dispatch = useAppDispatch()
   const token = localStorage.getItem("TOKEN")
+  const image = useAppSelector(state => state.actividadesReducer.image)
   const mangrullos: Mangrullo[] = useAppSelector(
     state => state.mangrullosReducer.mangrullos,
   )
@@ -60,14 +65,13 @@ const CreateDialog: React.FC = () => {
     value: mangrullo.id.toString(),
     label: mangrullo.zone,
   }))
-  const dispatch = useAppDispatch()
+  const [submitted, setSubmitted] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       activityName: "",
       description: "",
-      image: "",
       price: "0",
       mangrullos: [],
       state: "Gratis",
@@ -83,17 +87,17 @@ const CreateDialog: React.FC = () => {
       mangrullos: data.mangrullos.map(item => parseInt(item.value)),
       state: data.state,
       type: data.type,
+      image: image,
     }
-    const formData = new FormData()
-    formData.append("image", data.image[0])
 
     dispatch(
       postAdminActividades({
-        image: formData,
         form: activityData,
         token: token,
       }),
     )
+
+    setSubmitted(true)
   }
 
   return (
@@ -106,17 +110,18 @@ const CreateDialog: React.FC = () => {
           Crear nueva actividad
         </Button>
       </DialogTrigger>
+
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Crear Actividad</DialogTitle>
         </DialogHeader>
-        {/*form*/}
+        <UploadImageActivity />
         <Form {...form}>
           <form
             encType="multipart/form-data"
             onSubmit={form.handleSubmit(handleSubmit)}
           >
-            <div className="grid gap-4 py-4">
+            <div className="grid gap-4 pb-4">
               <FormField
                 control={form.control}
                 name="activityName"
@@ -126,26 +131,6 @@ const CreateDialog: React.FC = () => {
                       <FormLabel className="text-right">Nombre</FormLabel>
                       <FormControl>
                         <Input className="col-span-3" {...field} />
-                      </FormControl>
-                      <FormMessage className="col-start-2 col-end-4" />
-                    </div>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="image"
-                render={({ field }) => (
-                  <FormItem className="h-14">
-                    <div className="grid grid-cols-4 items-center gap-x-4 gap-y-1">
-                      <FormLabel className="text-right">Imagen</FormLabel>
-                      <FormControl>
-                        <Input
-                          accept="image/png, image/jpeg, image/gif"
-                          className="col-span-3"
-                          type="file"
-                          {...field}
-                        />
                       </FormControl>
                       <FormMessage className="col-start-2 col-end-4" />
                     </div>
@@ -260,7 +245,18 @@ const CreateDialog: React.FC = () => {
               />
             </div>
             <DialogFooter>
-              <Button type="submit">Crear</Button>
+              {image ? (
+                <Button type="submit">Crear</Button>
+              ) : !submitted ? (
+                <Button variant={"ghost"} disabled>
+                  Sube una imagen primero
+                </Button>
+              ) : (
+                <Button variant={"ghost"} disabled>
+                  Actividad Creada
+                  <CheckCircle2 className="size-5 ml-2" />
+                </Button>
+              )}
             </DialogFooter>
           </form>
         </Form>

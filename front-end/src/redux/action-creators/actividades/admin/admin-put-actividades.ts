@@ -3,32 +3,32 @@ import type { Dispatch } from "@reduxjs/toolkit"
 import { ActionType } from "@/redux/action-types/actividadesTypes"
 import instance from "@/redux/axios/instance"
 
-export function postAdminActividades(options: {
+export function putAdminActividades(options: {
+  id?: number
   form: any
   token: string | null
 }) {
   return async function (dispatch: Dispatch<Action>) {
     try {
       const response = await instance({
-        method: "post",
-        url: "/activities/create",
+        method: "put",
+        url: `/activities/update/${options.id}`,
         data: options.form,
         headers: {
           tk: options.token,
-          "Content-Type": "multipart/form-data",
         },
       })
 
       dispatch({
-        type: ActionType.POST,
+        type: ActionType.PUT,
         payload: response.data,
       })
       dispatch({
         type: ActionType.IMAGE,
         payload: "",
       })
-    } catch (error: any) {
-      console.error("Error creating User:", error.response.data)
+    } catch (error) {
+      console.error("Error editing user", error)
     }
   }
 }

@@ -1,24 +1,15 @@
-import type { Dispatch } from "@reduxjs/toolkit"
-import type { Action } from "@/redux/actions/actividadesActions"
-import { ActionType } from "@/redux/action-types/actividadesTypes"
 import instance from "@/redux/axios/instance"
+import { ActionType } from "../../../action-types/actividadesTypes"
+import type { Action } from "../../../actions/actividadesActions"
+import type { Dispatch } from "@reduxjs/toolkit"
 
-export function disableActividades(options: {
+export function pageActAdmin(options: {
   oldUrl: string
   page: number
-  id?: number
   token: string | null
 }) {
   return async function (dispatch: Dispatch<Action>) {
     try {
-      await instance({
-        method: "put",
-        url: `/activities/disable/${options.id}`,
-        headers: {
-          tk: options.token,
-        },
-      })
-
       const oldUrl = options.oldUrl
       const queryParams = new URLSearchParams()
       if (options.page) queryParams.set("page", options.page.toString())
@@ -32,11 +23,11 @@ export function disableActividades(options: {
       })
 
       dispatch({
-        type: ActionType.DISABLE,
-        payload: response.data.requestData,
+        type: ActionType.PAGE_ADMIN,
+        payload: response.data,
       })
     } catch (error) {
-      console.error("Error al desactivar actividad:", error)
+      console.error("Error getting all events:", error)
     }
   }
 }

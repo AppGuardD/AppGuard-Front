@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { useNavigate } from "react-router-dom"
-import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
+import type { DetailType } from "@/redux/actions/actividadesActions"
 import { Button } from "@/components/ui/button"
 import {
   ChevronRight,
@@ -21,7 +21,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import type { CartTypes } from "@/redux/actions/cartActions"
 
 interface CardsActividadesProps {
-  actividades: ActividadesTypes[]
+  actividades: DetailType[]
 }
 
 const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
@@ -41,7 +41,7 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
   }
 
   return (
-    <div className="flex flex-wrap justify-center mx-6 mb-6">
+    <div className="flex flex-wrap justify-center mx-2 mb-6">
       {actividades.map(actividad => (
         <Card key={actividad.id} className="rounded m-4 size-96">
           <CardHeader>
