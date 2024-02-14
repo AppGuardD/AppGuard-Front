@@ -1,38 +1,38 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import { postLogin } from "../../../redux/action-creators/login/postLogin";
-import { useAppDispatch } from "@/redux/hooks";
+import { useForm, SubmitHandler } from "react-hook-form"
+import { postLogin } from "../../../redux/action-creators/login/postLogin"
+import { useAppDispatch } from "@/redux/hooks"
 import { GoogleLogin } from '@react-oauth/google';
-
-import { googleLogin } from "@/redux/action-creators/googleLogin/googleLogin";
+import { jwtDecode } from "jwt-decode";
+import { postGoogleLogin } from "@/redux/action-creators/googleLogin/googleLogin";
 
 interface LogData {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 interface FormData {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
-
+interface credentialResponse{
+  credential: string
+}
 const LoginForm: React.FC = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const {
     control,
     handleSubmit,
     register, 
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>()
 
   const onSubmit: SubmitHandler<FormData> = data => {
-    console.log("Formulario enviado:", data); // Agregar console.log() para depurar
-    dispatch(postLogin(data));
-  };
-
-  const handleGoogleLogin = () => {
-    dispatch(googleLogin());
-  };
+    console.log("Formulario enviado:", data) // Agregar console.log() para depurar
+    
+    dispatch(postLogin(data))
+  }
+ 
 
   return (
     
@@ -70,19 +70,26 @@ const LoginForm: React.FC = () => {
             >
               Iniciar Sesión
             </button>
-            <button
-              onClick={handleGoogleLogin}
-              className="flex text-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-transparent hover:bg-accent font-semibold py-2 px-4 border rounded"
-              type="button"
-            >
-              Iniciar con Google
-            </button>
-            
+            <GoogleLogin
+              onSuccess={credentialResponse  => {
+                if (credentialResponse.credential) {
+                  const token : string = jwtDecode(credentialResponse.credential)
+                  console.log(token)
+                  dispatch(postGoogleLogin(credentialResponse))
+                } else {
+                  console.error('No se pudo obtener el token del credencial');
+                }
+              }}
+              onError={() => {
+                console.log('Login Failed');
+                // Manejar errores aquí, si es necesario
+              }}
+            />
           </form>
         </div>
       </div>
     
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm
