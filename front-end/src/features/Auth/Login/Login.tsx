@@ -74,7 +74,7 @@ const LoginForm: React.FC = () => {
               onSuccess={credentialResponse  => {
                 if (credentialResponse.credential) {
                   const token : string = jwtDecode(credentialResponse.credential)
-                  console.log(token)
+                  console.log("token",token)
                   dispatch(postGoogleLogin(credentialResponse))
                 } else {
                   console.error('No se pudo obtener el token del credencial');

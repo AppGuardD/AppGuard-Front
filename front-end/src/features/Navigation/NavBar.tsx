@@ -8,6 +8,7 @@ interface JwtPayload {
   email: string;
   userName: string;
   rol: string;
+  name:string;
 }
 
 const NavBar: React.FC = () => {
@@ -69,7 +70,7 @@ const NavBar: React.FC = () => {
               onClick={() => navigate("/profile")}
               className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
             >
-              {user.userName}
+              {user.userName||user.name}
             </button>
             {user.rol === "admin" && (
               <button
