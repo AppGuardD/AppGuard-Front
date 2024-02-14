@@ -7,15 +7,28 @@ export function postLogin(data: any) {
   return async function (dispatch: Dispatch<Action>) {
     try {
       const response = await instance.post("/auth/login", data)
+
+      const token = response.data.token
+      localStorage.setItem("TOKEN", token)
+      const userId = response.data.logUser.id
+      localStorage.setItem("USERID", userId)
+
       dispatch({
-        type: ActionType.POST,
-        payload: response.data,
+        type: ActionType.LOGIN,
+        payload: token,
       })
-      const userInfo = response.data.token
-      localStorage.setItem("USER_INFO", userInfo)
-      console.log("userInfo:", userInfo)
-    } catch (error) {
+      dispatch({
+        type: ActionType.LOGIN_ERROR,
+        payload: "",
+      })
+    } catch (error: any) {
       console.error("Error de log:", error)
+      const message: string = error.response.data.message
+
+      dispatch({
+        type: ActionType.LOGIN_ERROR,
+        payload: message,
+      })
     }
   }
 }

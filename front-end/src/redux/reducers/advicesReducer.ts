@@ -1,25 +1,25 @@
-import { ActionType } from "../action-types/advicesTypes";
-import type { Action, AdvicesType } from "../actions/advicesActions";
+import { ActionType } from "../action-types/advicesTypes"
+import type { Action, AdvicesType } from "../actions/advicesActions"
 
 interface InitialState {
-  advices: AdvicesType[];
+  advices: AdvicesType[]
 }
 
 const initialState: InitialState = {
   advices: [],
-};
+}
 
 const advicesReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ActionType.GET:
-      return { ...state, advices: [...state.advices, ...action.payload] };
+      return { ...state, advices: [...state.advices, ...action.payload] }
 
     case ActionType.CLEAN:
-      return { ...state, advices: action.payload };
+      return { ...state, advices: action.payload }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default advicesReducer;
+export default advicesReducer

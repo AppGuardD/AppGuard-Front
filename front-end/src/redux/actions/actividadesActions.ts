@@ -1,21 +1,9 @@
-import type { ActividadType } from "../action-types/actividadesTypes"
+import type { ActionType } from "../action-types/actividadesTypes"
 
 export type Name = string
 export type Type = "" | "Deportivo" | "Sanitario" | "Cultural"
 export type Cost = "" | "Pago" | "Gratis"
 export type Order = "" | "Mayor" | "Menor"
-
-export interface ActividadesTypes {
-  id: number
-  activityName: string
-  description: string
-  image: string
-  qualification: number
-  price: number
-  state: string
-  active: boolean
-  type: string
-}
 
 export interface ResponseData {
   succes: boolean
@@ -24,63 +12,79 @@ export interface ResponseData {
     totalItems: number
     currentPage: number
   }
-  requestData: ActividadesTypes[]
+  requestData: DetailType[]
 }
 
 export interface DetailType {
-  id?: number
-  activityName?: string
-  description?: string
-  image?: string
-  qualification?: number
-  price?: number
-  state?: string
-  active?: boolean
-  type?: string
+  id: number
+  activityName: string
+  description: string
+  image: string
+  qualification: number
+  price: number
+  active: boolean
+  state: "Gratis" | "Pago"
+  type: "Deportivo" | "Sanitario" | "Cultural"
 }
 
 interface cleanAction {
-  type: ActividadType.CLEAN
+  type: ActionType.CLEAN
   payload: []
 }
 
 interface getAction {
-  type: ActividadType.GET
+  type: ActionType.GET
   payload: ResponseData
   url: string
 }
 
 interface getIdAction {
-  type: ActividadType.GET_ID
+  type: ActionType.GET_ID
   payload: DetailType
 }
 
 interface getAdminAction {
-  type: ActividadType.GET_ADMIN
-  payload: ActividadesTypes[]
+  type: ActionType.GET_ADMIN
+  payload: ResponseData
+  url: string
 }
 
 interface cleanAdminAction {
-  type: ActividadType.CLEAN_ADMIN
+  type: ActionType.CLEAN_ADMIN
   payload: []
 }
 
 interface postAction {
-  type: ActividadType.POST
+  type: ActionType.POST
 }
 
 interface putAction {
-  type: ActividadType.PUT
+  type: ActionType.PUT
 }
 
 interface disableAction {
-  type: ActividadType.DISABLE
-  payload: ActividadesTypes[]
+  type: ActionType.DISABLE
+  payload: DetailType[]
 }
 
 interface pageAction {
-  type: ActividadType.PAGE
+  type: ActionType.PAGE
   payload: ResponseData
+}
+
+interface pageAdminAction {
+  type: ActionType.PAGE_ADMIN
+  payload: ResponseData
+}
+
+interface imageAction {
+  type: ActionType.IMAGE
+  payload: string
+}
+
+interface loadingAction {
+  type: ActionType.IMAGE_LOADING
+  payload: boolean
 }
 
 export type Action =
@@ -91,5 +95,8 @@ export type Action =
   | putAction
   | disableAction
   | pageAction
+  | pageAdminAction
   | getAdminAction
   | cleanAdminAction
+  | imageAction
+  | loadingAction

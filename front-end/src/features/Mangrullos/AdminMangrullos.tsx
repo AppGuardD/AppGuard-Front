@@ -29,11 +29,12 @@ const AdminMangrullos: React.FC = () => {
 
   return (
     <div className="p-4 m-8 rounded border border-primary">
-      <div className="flex justify-between">
-        <p className="text-3xl align-baseline">Mangrullos</p>
-        <CreateDialog />
-      </div>
-      <DataTable columns={columns} data={mangrullos} />
+      {/*<div className="flex justify-between">*/}
+      {/*  <p className="text-3xl align-baseline">Mangrullos</p>*/}
+      {/*  <CreateDialog />*/}
+      {/*</div>*/}
+      {/*<DataTable columns={columns} data={mangrullos} />*/}
+      WIP
     </div>
   )
 }

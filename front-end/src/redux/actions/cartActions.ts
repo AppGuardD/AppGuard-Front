@@ -1,12 +1,13 @@
 import type { ActionType } from "../action-types/cartTypes"
+import type { ActividadesTypes } from "./actividadesActions"
 
 export interface CarObjType {
-  id?: number
-  cantidad?: number
-  subtotal?: number
-  carritoId?: number
-  ActivityId?: number
-  Activity?: Object
+  id: number
+  cantidad: number
+  subtotal: number
+  carritoId: number
+  ActivityId: number
+  Activity: ActividadesTypes
 }
 
 export interface CartTypes {
@@ -14,7 +15,7 @@ export interface CartTypes {
   fecha: string
   userId: number
   total: number
-  detalle_carrito?: Array<CarObjType>
+  detalle_carrito: Array<CarObjType>
 }
 
 interface addAction {
@@ -37,4 +38,14 @@ interface removeAction {
   payload: CartTypes
 }
 
-export type Action = addAction | getAction | deleteAction | removeAction
+interface paymentAction {
+  type: ActionType.PAYMENT
+  payload: []
+}
+
+export type Action =
+  | addAction
+  | getAction
+  | deleteAction
+  | removeAction
+  | paymentAction

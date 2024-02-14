@@ -3,40 +3,17 @@ import type { ActionType } from "../action-types/loginTypes"
 export interface LoginTypes {
   email: string
   password: string
+  token: string
 }
 
-interface cleanAction {
-  type: ActionType.CLEAN
-  payload: []
+interface loginAction {
+  type: ActionType.LOGIN
+  payload: string
 }
 
-interface getAction {
-  type: ActionType.GET
-  payload: LoginTypes[]
+interface loginErrorAction {
+  type: ActionType.LOGIN_ERROR
+  payload: string
 }
 
-interface getIdAction {
-  type: ActionType.GET_ID
-  payload: LoginTypes
-}
-
-interface postAction {
-  type: ActionType.POST
-  payload: LoginTypes
-}
-
-interface putAction {
-  type: ActionType.PUT
-}
-
-interface disableAction {
-  type: ActionType.DISABLE
-}
-
-export type Action =
-  | cleanAction
-  | getAction
-  | getIdAction
-  | postAction
-  | putAction
-  | disableAction
+export type Action = loginAction | loginErrorAction

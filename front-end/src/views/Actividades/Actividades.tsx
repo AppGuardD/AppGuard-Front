@@ -2,12 +2,12 @@ import { getActividades } from "@/redux/action-creators/actividades/getActividad
 import { useAppSelector, useAppDispatch } from "@/redux/hooks"
 import { useEffect } from "react"
 import CardsActividades from "@/features/Actividades/CardsActividades"
-import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
+import type { DetailType } from "@/redux/actions/actividadesActions"
 import { cleanActividades } from "@/redux/action-creators/actividades/cleanActividades"
 import FilterActividades from "@/features/Actividades/filters/filter-bar"
 
 const Actividades: React.FC = () => {
-  const actividades: ActividadesTypes[] = useAppSelector(
+  const actividades: DetailType[] = useAppSelector(
     state => state.actividadesReducer.actividades,
   )
   const dispatch = useAppDispatch()
@@ -30,7 +30,7 @@ const Actividades: React.FC = () => {
   }, [dispatch])
 
   return (
-    <div className="h-svh">
+    <div className="h-full">
       <FilterActividades />
       <CardsActividades actividades={actividades} />
     </div>

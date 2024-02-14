@@ -1,4 +1,4 @@
-export enum ActividadType {
+export enum ActionType {
   CLEAN = "clearActividades",
   GET = "getActividades",
   GET_ID = "getIdActividades",
@@ -8,4 +8,7 @@ export enum ActividadType {
   PUT = "putActividades",
   DISABLE = "disableActividades",
   PAGE = "pageActividades",
+  PAGE_ADMIN = "pageActAdmin",
+  IMAGE = "imageActividades",
+  IMAGE_LOADING = "loadingImageActividades",
 }

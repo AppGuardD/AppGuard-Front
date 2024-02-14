@@ -20,7 +20,7 @@ const SearchInputActividades: React.FC = () => {
   return (
     <>
       <Input
-        className="w-[180px]"
+        className="w-[180px] mr-2"
         placeholder="Buscar por nombre..."
         value={query}
         onChange={handleSearch}

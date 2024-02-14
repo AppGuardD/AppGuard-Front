@@ -1,5 +1,5 @@
 import instance from "@/redux/axios/instance"
-import { ActividadType } from "../../action-types/actividadesTypes"
+import { ActionType } from "../../action-types/actividadesTypes"
 import type { Action } from "../../actions/actividadesActions"
 import type { Dispatch } from "@reduxjs/toolkit"
 
@@ -14,7 +14,7 @@ export function pageActividades(options: { oldUrl: string; page: number }) {
       const response = await instance.get(url)
 
       dispatch({
-        type: ActividadType.PAGE,
+        type: ActionType.PAGE,
         payload: response.data,
       })
     } catch (error) {

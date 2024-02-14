@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { useNavigate } from "react-router-dom"
-import type { ActividadesTypes } from "@/redux/actions/actividadesActions"
+import type { DetailType } from "@/redux/actions/actividadesActions"
 import { Button } from "@/components/ui/button"
 import {
   ChevronRight,
@@ -17,16 +17,19 @@ import {
 } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { addCart } from "@/redux/action-creators/carrito/addCart"
-import { useAppDispatch } from "@/redux/hooks"
+import { useAppDispatch, useAppSelector } from "@/redux/hooks"
+import type { CartTypes } from "@/redux/actions/cartActions"
 
 interface CardsActividadesProps {
-  actividades: ActividadesTypes[]
+  actividades: DetailType[]
 }
 
 const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
+  const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const userId = 2
+  const userId = localStorage.getItem("USERID")
+  const token = localStorage.getItem("TOKEN")
 
   const handleAddtoCart = (ActivityId: number) => {
     const actividad = {
@@ -34,13 +37,13 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
       ActivityId,
       cantidad: 1,
     }
-    dispatch(addCart(actividad))
+    dispatch(addCart({ data: actividad, token: token }))
   }
 
   return (
-    <div className="grid grid-cols-4 gap-6 justify-items-center mx-6 mb-6">
+    <div className="flex flex-wrap justify-center mx-2 mb-6">
       {actividades.map(actividad => (
-        <Card key={actividad.id} className="rounded size-96">
+        <Card key={actividad.id} className="rounded m-4 size-96">
           <CardHeader>
             <CardTitle className="capitalize">
               {actividad.activityName}
@@ -73,13 +76,22 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
                 Conocer mas
                 <ChevronRight className="size-5 ml-2" />
               </Button>
-              <Button
-                onClick={() => handleAddtoCart(actividad.id)}
-                variant={"ghost"}
-              >
-                Añadir al carrito
-                <ShoppingCart className="size-5 ml-2" />
-              </Button>
+              {carrito.detalle_carrito.some(
+                carrito => carrito.Activity.id === actividad.id,
+              ) ? (
+                <Button variant={"ghost"} disabled>
+                  Añadir al carrito
+                  <ShoppingCart className="size-5 ml-2" />
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => handleAddtoCart(actividad.id)}
+                  variant={"ghost"}
+                >
+                  Añadir al carrito
+                  <ShoppingCart className="size-5 ml-2" />
+                </Button>
+              )}
             </div>
           </CardFooter>
         </Card>

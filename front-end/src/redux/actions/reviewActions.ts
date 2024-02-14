@@ -1,4 +1,4 @@
-import { ReviewType } from "../action-types/reviewTypes"
+import type { ReviewType } from "../action-types/reviewTypes"
 
 export interface ReviewTypes {
   comment: string

@@ -1,38 +1,59 @@
-import { ActividadType } from "../action-types/actividadesTypes";
-import type { ActividadesTypes, Action } from "../actions/actividadesActions";
-import type { DetailType } from "../actions/actividadesActions";
+import { ActionType } from "../action-types/actividadesTypes"
+import type { Action } from "../actions/actividadesActions"
+import type { DetailType } from "../actions/actividadesActions"
 
 interface InitialState {
-  adminTable: ActividadesTypes[];
-  actividades: ActividadesTypes[];
-  actividadesCopy: ActividadesTypes[];
-  type: "" | "Deportivo" | "Sanitario" | "Cultural";
-  cost: "" | "Pago" | "Gratis";
-  order: "" | "Mayor" | "Menor";
-  totalPages: number;
-  totalItems: number;
-  currentPage: number;
-  detail: DetailType;
-  url: string;
+  type: "" | "Deportivo" | "Sanitario" | "Cultural"
+  cost: "" | "Pago" | "Gratis"
+  order: "" | "Mayor" | "Menor"
+
+  actividades: DetailType[]
+  actividadesCopy: DetailType[]
+  totalPages: number
+  totalItems: number
+  currentPage: number
+  url: string
+
+  adminTable: DetailType[]
+  totalPagesAdmin: number
+  totalItemsAdmin: number
+  currentPageAdmin: number
+  urlAdmin: string
+
+  detail: DetailType
+
+  image: string
+  imageLoading: boolean
 }
 
 const initialState: InitialState = {
-  adminTable: [],
-  actividades: [],
-  actividadesCopy: [],
   type: "",
   cost: "",
   order: "",
+
+  url: "",
+  actividades: [],
+  actividadesCopy: [],
   totalPages: 0,
   totalItems: 0,
   currentPage: 1,
-  detail: {},
-  url: "",
-};
+
+  urlAdmin: "",
+  adminTable: [],
+  totalPagesAdmin: 0,
+  totalItemsAdmin: 0,
+  currentPageAdmin: 1,
+
+  detail: {
+    id: 0,
+  },
+  image: "",
+  imageLoading: false,
+}
 
 const actividadesReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case ActividadType.GET:
+    case ActionType.GET:
       return {
         ...state,
         actividades: action.payload.requestData,
@@ -41,15 +62,9 @@ const actividadesReducer = (state = initialState, action: Action) => {
         totalItems: action.payload.pagination.totalItems,
         currentPage: action.payload.pagination.currentPage,
         url: action.url,
-      };
+      }
 
-    case ActividadType.CLEAN:
-      return { ...state, actividades: action.payload };
-
-    case ActividadType.GET_ID:
-      return { ...state, detail: action.payload };
-
-    case ActividadType.PAGE:
+    case ActionType.PAGE:
       return {
         ...state,
         actividades: action.payload.requestData,
@@ -57,20 +72,48 @@ const actividadesReducer = (state = initialState, action: Action) => {
         totalPages: action.payload.pagination.totalPages,
         totalItems: action.payload.pagination.totalItems,
         currentPage: action.payload.pagination.currentPage,
-      };
+      }
 
-    case ActividadType.DISABLE:
-      return { ...state, adminTable: action.payload };
+    case ActionType.GET_ADMIN:
+      return {
+        ...state,
+        adminTable: action.payload.requestData,
+        urlAdmin: action.url,
+        totalPagesAdmin: action.payload.pagination.totalPages,
+        totalItemsAdmin: action.payload.pagination.totalItems,
+        currentPageAdmin: action.payload.pagination.currentPage,
+      }
 
-    case ActividadType.GET_ADMIN:
-      return { ...state, adminTable: action.payload };
+    case ActionType.PAGE_ADMIN:
+      return {
+        ...state,
+        adminTable: action.payload.requestData,
+        totalPagesAdmin: action.payload.pagination.totalPages,
+        totalItemsAdmin: action.payload.pagination.totalItems,
+        currentPageAdmin: action.payload.pagination.currentPage,
+      }
 
-    case ActividadType.CLEAN_ADMIN:
-      return { ...state, adminTable: action.payload };
+    case ActionType.CLEAN:
+      return { ...state, actividades: action.payload }
+
+    case ActionType.GET_ID:
+      return { ...state, detail: action.payload }
+
+    case ActionType.DISABLE:
+      return { ...state, adminTable: action.payload }
+
+    case ActionType.CLEAN_ADMIN:
+      return { ...state, adminTable: action.payload }
+
+    case ActionType.IMAGE:
+      return { ...state, image: action.payload }
+
+    case ActionType.IMAGE_LOADING:
+      return { ...state, imageLoading: action.payload }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default actividadesReducer;
+export default actividadesReducer

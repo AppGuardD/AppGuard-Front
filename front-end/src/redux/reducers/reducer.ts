@@ -5,8 +5,9 @@ import advicesReducer from "./advicesReducer";
 import userReducer from "./userReducer";
 import loginReducer from "./loginReducer";
 import googleLoginReducer from "./googleLoginReducer";
-// import cartReducer from "./cartReducer";
 import reviewReducer from "./reviewReducer";
+import cartReducer from "./cartReducer"
+import reviewMangrullosReducer from "./reviewMangrullosReducer"
 
 const reducer = combineReducers({
   mangrullosReducer: mangrullosReducer,
@@ -14,9 +15,10 @@ const reducer = combineReducers({
   advicesReducer: advicesReducer,
   userReducer: userReducer,
   loginReducer: loginReducer,
-  // cartReducer: cartReducer,
+  cartReducer: cartReducer,
   reviewReducer: reviewReducer,
-  googleLoginReducer:googleLoginReducer
-});
+  googleLoginReducer:googleLoginReducer,
+  reviewMangrullosReducer: reviewMangrullosReducer,
+})
 
-export default reducer;
+export default reducer
