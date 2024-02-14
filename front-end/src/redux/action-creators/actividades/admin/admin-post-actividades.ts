@@ -15,7 +15,6 @@ export function postAdminActividades(options: {
         data: options.form,
         headers: {
           tk: options.token,
-          "Content-Type": "multipart/form-data",
         },
       })
 

@@ -17,14 +17,14 @@ export interface ResponseData {
 
 export interface DetailType {
   id: number
-  activityName?: string
-  description?: string
-  image?: string
-  qualification?: number
-  price?: number
-  active?: boolean
-  state?: "Gratis" | "Pago"
-  type?: "Deportivo" | "Sanitario" | "Cultural"
+  activityName: string
+  description: string
+  image: string
+  qualification: number
+  price: number
+  active: boolean
+  state: "Gratis" | "Pago"
+  type: "Deportivo" | "Sanitario" | "Cultural"
 }
 
 interface cleanAction {

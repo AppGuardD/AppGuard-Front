@@ -34,9 +34,7 @@ import { MultiSelect } from "@/components/ui/multiselect"
 import { useAppDispatch } from "@/redux/hooks"
 import { postAdminActividades } from "@/redux/action-creators/actividades/admin/admin-post-actividades"
 import UploadImageActivity from "./upload-image"
-import { useEffect, useState } from "react"
-import { getMangrullos } from "@/redux/action-creators/mangrullos/getMangrullos"
-import { cleanMangrullos } from "@/redux/action-creators/mangrullos/cleanMangrullos"
+import { useState } from "react"
 import { CheckCircle2 } from "lucide-react"
 
 const formSchema = z.object({
@@ -89,6 +87,8 @@ const CreateDialog: React.FC = () => {
       type: data.type,
       image: image,
     }
+
+    console.log(activityData)
 
     dispatch(
       postAdminActividades({

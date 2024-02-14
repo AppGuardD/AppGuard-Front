@@ -5,12 +5,13 @@ import {
   PaginationItem,
   PaginationLink,
 } from "@/components/ui/pagination"
+import { getAdminActividades } from "@/redux/action-creators/actividades/admin/admin-get-actividades"
 import { pageActAdmin } from "@/redux/action-creators/actividades/admin/admin-pages-actividades"
+import { cleanAdminActividades } from "@/redux/action-creators/actividades/admin/clean-admin-actividades"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const PagesActTable: React.FC = () => {
-  const dispatch = useAppDispatch()
   const urlAdmin: string = useAppSelector(
     state => state.actividadesReducer.urlAdmin,
   )
@@ -22,6 +23,23 @@ const PagesActTable: React.FC = () => {
   )
   const [page, setPage] = useState(currentPage)
   const token = localStorage.getItem("TOKEN")
+
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    let mounted = true
+    const token = localStorage.getItem("TOKEN")
+
+    const fetchData = async () => {
+      await dispatch(getAdminActividades({ token: token }))
+      if (!mounted) {
+        dispatch(cleanAdminActividades())
+      }
+    }
+    fetchData()
+    return () => {
+      mounted = false
+    }
+  }, [dispatch])
 
   const handleNext = () => {
     setPage(prev => {

@@ -56,7 +56,9 @@ const formSchema = z.object({
 
 const EditDialog: React.FC<DetailType> = (props: DetailType) => {
   const dispatch = useAppDispatch()
+  const image = useAppSelector(state => state.actividadesReducer.image)
   const token = localStorage.getItem("TOKEN")
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -69,7 +71,20 @@ const EditDialog: React.FC<DetailType> = (props: DetailType) => {
     },
   })
 
-  const image = useAppSelector(state => state.actividadesReducer.image)
+  useEffect(() => {
+    form.reset({
+      activityName: props.activityName,
+      description: props.description,
+      price: props.price,
+      mangrullos: [],
+      state: props.state,
+      type: props.type,
+    })
+    if (image.length > 0) {
+      dispatch(loadingImage(false))
+    }
+  }, [dispatch, image, props, form])
+
   const urlAdmin: string = useAppSelector(
     state => state.actividadesReducer.urlAdmin,
   )
@@ -87,12 +102,6 @@ const EditDialog: React.FC<DetailType> = (props: DetailType) => {
     label: mangrullo.zone,
   }))
   const [submitted, setSubmitted] = useState(false)
-
-  useEffect(() => {
-    if (image.length > 0) {
-      dispatch(loadingImage(false))
-    }
-  }, [dispatch, image])
 
   const handleSubmit: SubmitHandler<z.infer<typeof formSchema>> = data => {
     let activityData = {
@@ -142,6 +151,7 @@ const EditDialog: React.FC<DetailType> = (props: DetailType) => {
   }
 
   const handleDisable = () => {
+    console.log(props.id)
     dispatch(
       disableActividades({
         id: props.id,
@@ -213,8 +223,8 @@ const EditDialog: React.FC<DetailType> = (props: DetailType) => {
                     <div className="grid grid-cols-4 items-center gap-x-4 gap-y-1">
                       <FormLabel className="text-right">Tipo</FormLabel>
                       <Select
-                        onValueChange={field.onChange}
                         defaultValue={field.value}
+                        onValueChange={field.onChange}
                       >
                         <FormControl>
                           <SelectTrigger className="col-span-3">
@@ -240,8 +250,8 @@ const EditDialog: React.FC<DetailType> = (props: DetailType) => {
                     <div className="grid grid-cols-4 items-center gap-x-4 gap-y-1">
                       <FormLabel className="text-right">Modalidad</FormLabel>
                       <Select
-                        onValueChange={field.onChange}
                         defaultValue={field.value}
+                        onValueChange={field.onChange}
                       >
                         <FormControl>
                           <SelectTrigger className="col-span-3">
