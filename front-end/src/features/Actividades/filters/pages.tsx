@@ -55,7 +55,7 @@ const PagesActividades: React.FC = () => {
             <PaginationLink>{currentPage}</PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            {currentPage === totalPages ? (
+            {currentPage === totalPages || totalPages ===0 ? (
               <Button disabled variant={"outline"} onClick={handleNext}>
                 Next
               </Button>
