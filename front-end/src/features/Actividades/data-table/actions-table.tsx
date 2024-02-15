@@ -1,7 +1,7 @@
-import type { DetailType } from "@/redux/actions/actividadesActions"
+import type { DetailActTypes } from "@/redux/actions/actividadesActions"
 import EditDialog from "./edit-dialog"
 
-const ActionsTableActividades: React.FC<DetailType> = data => {
+const ActionsTableActividades: React.FC<DetailActTypes> = data => {
   return (
     <div className="flex max-w-16">
       <EditDialog {...data} />

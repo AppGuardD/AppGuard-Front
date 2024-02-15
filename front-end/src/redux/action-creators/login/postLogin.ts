@@ -22,8 +22,10 @@ export function postLogin(data: any) {
         payload: "",
       })
     } catch (error: any) {
-      console.error("Error de log:", error)
-      const message: string = error.response.data.message
+      //console.error("Login failed", error.response.data.error)
+      console.error("Login failed", error)
+
+      const message: string = error.response.data.error
 
       dispatch({
         type: ActionType.LOGIN_ERROR,

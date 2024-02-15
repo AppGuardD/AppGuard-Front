@@ -5,14 +5,14 @@ interface InitialState {
   email: string
   password: string
   token: string
-  errorLogin: string
+  errorLogin: string | null
 }
 
 const initialState: InitialState = {
   email: "",
   password: "",
   token: "",
-  errorLogin: "",
+  errorLogin: null,
 }
 
 const loginReducer = (state = initialState, action: Action) => {
@@ -20,7 +20,7 @@ const loginReducer = (state = initialState, action: Action) => {
     case ActionType.LOGIN:
       return {
         ...state,
-        //user: [...state.email, action.payload],
+        user: [...state.email, action.payload] /*prueba*/,
         token: action.payload,
       }
 

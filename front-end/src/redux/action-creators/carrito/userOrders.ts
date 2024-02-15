@@ -1,11 +1,14 @@
-import {ActionType} from "../../action-types/ordersTypes"
-import instance from "@/redux/axios/instance";
-import axios, { AxiosError } from 'axios';
-import { Dispatch } from 'redux';
+import { ActionType } from "../../action-types/ordersTypes"
+import instance from "@/redux/axios/instance"
+import axios, { AxiosError } from "axios"
+import { Dispatch } from "redux"
 
-export const getUserOrders = (options:{userId: string | null, token: string | null}) => {
+export const getUserOrders = (options: {
+  userId: string | null
+  token: string | null
+}) => {
   return async (dispatch: Dispatch) => {
-    dispatch({ type:ActionType.GET_USER_ORDERS_REQUEST });
+    dispatch({ type: ActionType.GET_USER_ORDERS_REQUEST })
 
     try {
       const response = await instance({
@@ -15,16 +18,14 @@ export const getUserOrders = (options:{userId: string | null, token: string | nu
           tk: options.token,
         },
       })
-      console.log(response.data);
-      
+      console.log(response.data)
+
       dispatch({
         type: ActionType.GET_USER_ORDERS_SUCCESS,
-        payload: response.data.requestData
-      });
-    } catch (error: any) { 
-        console.log("erorr xd", error);
-        
-    }   
-  };
-};
-
+        payload: response.data.requestData,
+      })
+    } catch (error: any) {
+      console.log("erorr xd", error)
+    }
+  }
+}

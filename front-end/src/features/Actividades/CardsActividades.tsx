@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { useNavigate } from "react-router-dom"
-import type { DetailType } from "@/redux/actions/actividadesActions"
+import type { DetailActTypes } from "@/redux/actions/actividadesActions"
 import { Button } from "@/components/ui/button"
 import {
   ChevronRight,
@@ -22,7 +22,7 @@ import type { CartTypes } from "@/redux/actions/cartActions"
 import { useToast } from "@/components/ui/use-toast"
 
 interface CardsActividadesProps {
-  actividades: DetailType[]
+  actividades: DetailActTypes[]
 }
 
 const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
@@ -74,14 +74,23 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
           </CardContent>
           <CardFooter className="flex flex-col">
             <div className="grid grid-cols-2 place-items-center w-full px-8">
-              <div className="flex mr-auto">
-                <CircleDollarSign className="size-5 mr-2" />
-                <p>{actividad.price}</p>
-              </div>
-              <div className="flex ml-auto">
-                <Star className="size-5 mr-2" />
-                <p>{actividad.qualification}</p>
-              </div>
+              {actividad.price !== 0 ? (
+                <div className="flex mr-auto">
+                  <CircleDollarSign className="size-5 mr-2" />
+                  <p>{actividad.price}</p>
+                </div>
+              ) : (
+                <div className="flex mr-auto">
+                  <CircleDollarSign className="size-5 mr-2" />
+                  <p>Gratis</p>
+                </div>
+              )}
+              {actividad.qualification ? (
+                <div className="flex ml-auto">
+                  <Star className="size-5 mr-2" />
+                  <p>{actividad.qualification}</p>
+                </div>
+              ) : null}
             </div>
             <Separator className="mt-2" />
             <div className="flex justify-between">

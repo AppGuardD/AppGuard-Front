@@ -83,4 +83,3 @@ const SelectFilterActividades: React.FC = () => {
 }
 
 export default SelectFilterActividades
-

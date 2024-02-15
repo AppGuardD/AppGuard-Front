@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/select"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
@@ -246,7 +247,9 @@ const CreateDialog: React.FC = () => {
             </div>
             <DialogFooter>
               {image ? (
-                <Button type="submit">Crear</Button>
+                <DialogClose>
+                  <Button type="submit">Crear</Button>
+                </DialogClose>
               ) : !submitted ? (
                 <Button variant={"ghost"} disabled>
                   Sube una imagen primero

@@ -35,6 +35,8 @@
     "cmdk": "^0.2.1",
     "embla-carousel-autoplay": "^8.0.0-rc22",
     "embla-carousel-react": "^8.0.0-rc20",
+    "gapi-script": "^1.2.0",
+    "jotai": "^2.6.4",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.315.0",
     "multer": "^1.4.5-lts.1",

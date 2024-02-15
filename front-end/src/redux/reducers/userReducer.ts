@@ -1,5 +1,9 @@
 import { ActionType } from "@/redux/action-types/userTypes"
-import type { Action } from "@/redux/actions/userActions"
+import type {
+  Action,
+  AdminUserTypes,
+  OrdersTypes,
+} from "@/redux/actions/userActions"
 
 interface InitialState {
   userInfo: []
@@ -10,9 +14,10 @@ interface InitialState {
   typeIdentification: string
   numberIdentification: string
   rol: string
-
-  //detail?: UserTypes;
   state: string
+
+  allUsers: AdminUserTypes[]
+  allOrders: OrdersTypes[]
 }
 
 const initialState: InitialState = {
@@ -24,36 +29,38 @@ const initialState: InitialState = {
   typeIdentification: "",
   numberIdentification: "",
   rol: "",
-
-  //detail?: hola, que es esto?;
   state: "",
+
+  allUsers: [],
+  allOrders: [],
+}
+
+const sortUsers = (users: AdminUserTypes[]) => {
+  const sorter = users.sort((a, b) => a?.id - b?.id)
+  return sorter
+}
+
+const sortOrders = (orders: OrdersTypes[]) => {
+  const sorter = orders.sort((a, b) => a?.id - b?.id)
+  return sorter
 }
 
 const userReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case ActionType.CLEAN:
-      return { ...state, user: action.payload }
-
-    case ActionType.GET:
-      return { ...state, user: action.payload }
-
-    case ActionType.GET_ID:
-      return {
-        ...state,
-        detail: action.payload,
-      }
-
     case ActionType.DISABLE:
       return { ...state }
+
+    case ActionType.GET_ADMIN:
+      return { ...state, allUsers: sortUsers(action.payload) }
+
+    case ActionType.GET_ORDERS:
+      return { ...state, allOrders: sortOrders(action.payload) }
 
     case ActionType.POST:
       return {
         ...state,
         user: [...state.userInfo, action.payload],
       }
-
-    //  case ActionType.PUT:
-    //    return (state = action.payload)
 
     default:
       return state
