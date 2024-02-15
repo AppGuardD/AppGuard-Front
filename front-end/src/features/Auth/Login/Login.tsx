@@ -10,11 +10,14 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks"
+import { GoogleLogin } from "@react-oauth/google"
+import { jwtDecode } from "jwt-decode"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { postGoogleLogin } from "@/redux/action-creators/googleLogin/googleLogin"
+import { useAppDispatch } from "@/redux/hooks"
 import { z } from "zod"
 import { postLogin } from "@/redux/action-creators/login/postLogin"
-import { Badge } from "@/components/ui/badge"
-import LoginButton from "./login-button"
 
 const formSchema = z.object({
   email: z.string().email({
@@ -27,8 +30,7 @@ const formSchema = z.object({
 
 const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch()
-  const errorLogin = useAppSelector(state => state.loginReducer.errorLogin)
-
+  //const errorLogin = useAppSelector(state => state.loginReducer.errorLogin)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -68,7 +70,7 @@ const LoginForm: React.FC = () => {
               control={form.control}
               name="password"
               render={({ field }) => (
-                <FormItem className="h-24 mb-2">
+                <FormItem className="h-28">
                   <FormLabel>Contraseña</FormLabel>
                   <FormControl>
                     <Input
@@ -81,19 +83,30 @@ const LoginForm: React.FC = () => {
                 </FormItem>
               )}
             />
-            <div className="h-4">
-              {errorLogin ? (
-                <p className="text-sm text-destructive font-bold">
-                  {errorLogin}
-                </p>
-              ) : null}
+            <div className="flex justify-between mt-2">
+              <Button type="submit" variant={"secondary"}>
+                Iniciar Sesion
+              </Button>
+              <GoogleLogin
+                onSuccess={credentialResponse => {
+                  if (credentialResponse.credential) {
+                    const token: string = jwtDecode(
+                      credentialResponse.credential,
+                    )
+                    console.log("token", token)
+                    dispatch(postGoogleLogin(credentialResponse))
+                  } else {
+                    console.error("No se pudo obtener el token del credencial")
+                  }
+                }}
+                onError={() => {
+                  console.log("Login Failed")
+                }}
+              />
             </div>
-            <div className="flex flex-col justify-between mt-2">
-              <LoginButton />
-              <Badge className="mt-4 text-sm" variant={"outline"}>
-                Olvide mi contraseña
-              </Badge>
-            </div>
+            <Badge className="mt-4" variant={"outline"}>
+              Olvide mi contraseña
+            </Badge>
           </div>
         </form>
       </Form>
