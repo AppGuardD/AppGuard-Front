@@ -1,5 +1,5 @@
 import type { ActionType } from "../action-types/cartTypes"
-import type { ActividadesTypes } from "./actividadesActions"
+import { DetailType } from "./actividadesActions"
 
 export interface CarObjType {
   id: number
@@ -7,7 +7,7 @@ export interface CarObjType {
   subtotal: number
   carritoId: number
   ActivityId: number
-  Activity: ActividadesTypes
+  Activity: DetailType
 }
 
 export interface CartTypes {
