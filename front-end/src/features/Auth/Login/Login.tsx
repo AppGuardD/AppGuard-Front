@@ -12,14 +12,14 @@ import { Input } from "@/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useAppDispatch } from "@/redux/hooks"
 import { GoogleLogin } from "@react-oauth/google"
-import { GoogleOAuthProvider } from "@react-oauth/google"
+import { jwtDecode } from "jwt-decode"
 import { z } from "zod"
 import { postLogin } from "@/redux/action-creators/login/postLogin"
 import { Badge } from "@/components/ui/badge"
 import { useNavigate } from "react-router-dom"
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
-
+import { postGoogleLogin } from "@/redux/action-creators/googleLogin/googleLogin"
 const formSchema = z.object({
   email: z.string().email({
     message: "Correo electronico invalido.",
@@ -59,7 +59,7 @@ const LoginForm: React.FC = () => {
   }
 
   return (
-    <GoogleOAuthProvider clientId="204945610405-eaj4cam96mbfrom5fj3m3hadk3guep9s.apps.googleusercontent.com">
+    
       <div>
         <p className="text-4xl font-semibold mt-8 mx-8 mb-4">
           Inicio de sesion.
@@ -105,13 +105,20 @@ const LoginForm: React.FC = () => {
                   Iniciar Sesion
                 </Button>
                 <GoogleLogin
-                  onSuccess={credentialResponse => {
-                    console.log(credentialResponse)
-                  }}
-                  onError={() => {
-                    console.log("Login Failed")
-                  }}
-                />
+              onSuccess={credentialResponse  => {
+                if (credentialResponse.credential) {
+                  const token : string = jwtDecode(credentialResponse.credential)
+                  console.log("token",token)
+                  dispatch(postGoogleLogin(credentialResponse))
+                } else {
+                  console.error('No se pudo obtener el token del credencial');
+                }
+              }}
+              onError={() => {
+                console.log('Login Failed');
+                // Manejar errores aquí, si es necesario
+              }}
+            />
               </div>
               <Badge className="mt-4" variant={"outline"}>
                 Olvide mi contraseña
@@ -120,7 +127,7 @@ const LoginForm: React.FC = () => {
           </form>
         </Form>
       </div>
-    </GoogleOAuthProvider>
+    
   )
 }
 

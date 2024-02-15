@@ -10,6 +10,7 @@ interface JwtPayload {
   email: string
   userName: string
   rol: string
+  name:string
 }
 
 const NavBar: React.FC = () => {
@@ -38,7 +39,7 @@ const NavBar: React.FC = () => {
             className="text-md my-auto ml-4"
             onClick={() => navigate("/profile")}
           >
-            {user.userName}
+            {user.userName || user.name}
             <User className="ml-2" />
           </Badge>
         )}

@@ -13,7 +13,7 @@ export function postGoogleLogin(credentialResponse: any) {
   return async function (dispatch: Dispatch<any>) {
     try {
       const googleCredential = credentialResponse.credential;
-      localStorage.setItem("USER_INFO", googleCredential);
+      localStorage.setItem("TOKEN", googleCredential);
 
       // Decodificar el token para obtener la información del usuario
       const tokenData = jwtDecode<GoogleTokenPayload>(googleCredential);
