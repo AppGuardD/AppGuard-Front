@@ -28,6 +28,12 @@ const NavBar: React.FC = () => {
     }
   }, [token])
 
+
+  const handleEmergencyCall = () => {
+    window.location.href = "https://www.argentina.gob.ar/tema/emergencias";
+  };
+
+
   return (
     <nav className="flex items-center justify-between flex-wrap p-4 mb-4 border-b">
       <div className="flex">
@@ -42,6 +48,12 @@ const NavBar: React.FC = () => {
             <User className="ml-2" />
           </Badge>
         )}
+        <button
+          onClick={handleEmergencyCall}
+          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
+        >
+          EMERGENCIAS
+        </button>
       </div>
       <div>
         <button

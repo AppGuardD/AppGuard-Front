@@ -21,9 +21,9 @@ const Donations: React.FC = () => {
             nuestros destacados guardavidas, cuya labor es preservar nuestra
             seguridad para que podamos disfrutar plenamente de todas las
             actividades y playas que ofrecemos. Es por eso que tomamos la 
-            importante decicion de destinar el 10% de los valores de las actividades
-            publicadas para destinarlos directamente a este valioso grupo y apoyarlos.
-            ¡Tu participación marca la diferencia!.
+            importante decisión de destinar un porcentaje de las operaciones realizadas
+            cuando participan de una actividad publicada en nuestro sitio con el fin de  destinarlos directamente 
+            a este valioso grupo y apoyarlos. ¡Tu participación marca la diferencia!.
             ¡Juntos hacemos posible un entorno más seguro y placentero para
             todos!
           </p>
