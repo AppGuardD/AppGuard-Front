@@ -1,17 +1,14 @@
 import type React from "react"
-import type { DetailType } from "@/redux/actions/mangrullosActions"
 import { useNavigate, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { getIdMangrullos } from "@/redux/action-creators/mangrullos/getIdMangrullos"
 import { useEffect } from "react"
-import DetailActividad from "@/features/Actividades/DetailActividad"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import DetailActInMangrullos from "@/features/Actividades/DetailActInMangrullos"
 
 const DetailMangrullo: React.FC = () => {
-  const detail: DetailType = useAppSelector(
-    state => state.mangrullosReducer.detail,
-  )
+  const detail = useAppSelector(state => state.mangrullosReducer.detail)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
@@ -32,34 +29,29 @@ const DetailMangrullo: React.FC = () => {
           Ir Atras
         </Button>
       </div>
-      <div className="grid grid-cols-2 gap-4 mt-2 m-16 p-4">
-        <div>
-          {detail ? (
-            <div className="flex-col">
-              <div className="aspect-video overflow-hidden">
+      <div className="flex flex-col w-full px-8">
+        {detail ? (
+          <div className="flex justify-center">
+            <div className="p-4 px-auto">
+              <p className="text-4xl font-bold capitalize">{detail.zone}</p>
+              <Separator className="my-4" />
+              <div className="mx-auto aspect-video overflow-hidden rounded h-96">
                 <img
-                  className="aspect-video object-cover rounded"
+                  className="aspect-video object-cover rounded h-96"
                   src={detail.image}
                   alt="Imagen de playa"
                 />
               </div>
-              <Separator className="my-4" />
-              <div className="flex p-2">
-                <div className="basis-1/3">
-                  <p className="text-2xl bold capitalize">{detail.zone}</p>
-                  <p>Peligrosidad: {detail.dangerousness}</p>
-                  <p>Calificación: {detail.qualification}</p>
-                </div>
-              </div>
+              <Separator className="my-4 border border-primary" />
+              <p className="mx-auto w-max text-2xl">
+                Actividades en este mangrullo.
+              </p>
             </div>
-          ) : null}
-        </div>
-        <div>
-          {detail.activity && <DetailActividad activity={detail.activity} />}
-        </div>
-        <Button onClick={() => navigate(`/mangrullos/review/${detail.id}`)}>
-          Deja tu review
-        </Button>
+          </div>
+        ) : null}
+        {detail.activity ? (
+          <DetailActInMangrullos actividades={detail.activity} />
+        ) : null}
       </div>
     </div>
   )

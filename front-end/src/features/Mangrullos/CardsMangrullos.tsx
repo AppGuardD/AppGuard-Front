@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom"
 import type { Mangrullo } from "@/redux/actions/mangrullosActions"
 import { Button } from "@/components/ui/button"
+import { ChevronRight } from "lucide-react"
 
 interface CardsMangrullosProps {
   mangrullos: Mangrullo[]
@@ -17,10 +18,10 @@ interface CardsMangrullosProps {
 const CardsMangrullos: React.FC<CardsMangrullosProps> = ({ mangrullos }) => {
   const navigate = useNavigate()
   return (
-    <div className="grid grid-cols-4 gap-6 justify-items-center mx-6 mb-6">
+    <div className="flex flex-wrap mx-6 mb-6 justify-evenly">
       {mangrullos.map(mangrullo => (
-        <Card key={mangrullo.id} className="rounded size-96">
-          <CardHeader>
+        <Card key={mangrullo.id} className="rounded size-96 mb-4">
+          <CardHeader className="flex">
             <CardTitle className="capitalize">{mangrullo.zone}</CardTitle>
           </CardHeader>
           <CardContent className="rounded overflow-hidden aspect-video">
@@ -30,13 +31,14 @@ const CardsMangrullos: React.FC<CardsMangrullosProps> = ({ mangrullos }) => {
               alt="Actividad"
             />
           </CardContent>
-          <CardFooter className="flex justify-between">
-            <p>Calificacion: {mangrullo.qualification} Estrella</p>
+          <CardFooter>
             <Button
-              variant={"outline"}
+              className="font-bold mt-auto"
+              variant={"ghost"}
               onClick={() => navigate(`/mangrullos/detail/${mangrullo.id}`)}
             >
-              Conocer mas...
+              Actividades
+              <ChevronRight className="size-5 ml-2" />
             </Button>
           </CardFooter>
         </Card>

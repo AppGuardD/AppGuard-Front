@@ -12,10 +12,10 @@ export interface ResponseData {
     totalItems: number
     currentPage: number
   }
-  requestData: DetailType[]
+  requestData: DetailActTypes[]
 }
 
-export interface DetailType {
+export interface DetailActTypes {
   id: number
   activityName: string
   description: string
@@ -23,8 +23,8 @@ export interface DetailType {
   qualification: number
   price: number
   active: boolean
-  state: "Gratis" | "Pago"
-  type: "Deportivo" | "Sanitario" | "Cultural"
+  state?: "Gratis" | "Pago"
+  type?: "Deportivo" | "Sanitario" | "Cultural"
 }
 
 interface cleanAction {
@@ -40,7 +40,7 @@ interface getAction {
 
 interface getIdAction {
   type: ActionType.GET_ID
-  payload: DetailType
+  payload: DetailActTypes
 }
 
 interface getAdminAction {
@@ -64,7 +64,7 @@ interface putAction {
 
 interface disableAction {
   type: ActionType.DISABLE
-  payload: DetailType[]
+  payload: DetailActTypes[]
 }
 
 interface pageAction {

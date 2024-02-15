@@ -2,12 +2,12 @@ import { getActividades } from "@/redux/action-creators/actividades/getActividad
 import { useAppSelector, useAppDispatch } from "@/redux/hooks"
 import { useEffect } from "react"
 import CardsActividades from "@/features/Actividades/CardsActividades"
-import type { DetailType } from "@/redux/actions/actividadesActions"
+import type { DetailActTypes } from "@/redux/actions/actividadesActions"
 import { cleanActividades } from "@/redux/action-creators/actividades/cleanActividades"
 import FilterActividades from "@/features/Actividades/filters/filter-bar"
 
 const Actividades: React.FC = () => {
-  const actividades: DetailType[] = useAppSelector(
+  const actividades: DetailActTypes[] = useAppSelector(
     state => state.actividadesReducer.actividades,
   )
   const dispatch = useAppDispatch()

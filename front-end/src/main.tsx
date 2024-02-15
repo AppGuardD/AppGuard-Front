@@ -9,20 +9,19 @@ import { GoogleOAuthProvider } from "@react-oauth/google"
 
 import { Toaster } from "./components/ui/toaster"
 
-
 const container = document.getElementById("root")
 
 if (container) {
   const root = createRoot(container)
 
   root.render(
-    <React.StrictMode>    
-      <Provider store={store}>     
-<GoogleOAuthProvider clientId="520470920092-eqpo37d0jvb127gdlqo4djlg8h9eclsl.apps.googleusercontent.com">
-        <App />
-        <Toaster />
-      </GoogleOAuthProvider>
-      </Provider>      
+    <React.StrictMode>
+      <Provider store={store}>
+        <GoogleOAuthProvider clientId="520470920092-eqpo37d0jvb127gdlqo4djlg8h9eclsl.apps.googleusercontent.com">
+          <App />
+          <Toaster />
+        </GoogleOAuthProvider>
+      </Provider>
     </React.StrictMode>,
   )
 } else {

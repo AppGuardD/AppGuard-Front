@@ -1,8 +1,8 @@
 import type { ColumnDef } from "@tanstack/react-table"
-import type { DetailType } from "@/redux/actions/actividadesActions"
+import type { DetailActTypes } from "@/redux/actions/actividadesActions"
 import ActionsTableActividades from "./actions-table"
 
-export const columns: ColumnDef<DetailType>[] = [
+export const columns: ColumnDef<DetailActTypes>[] = [
   {
     accessorKey: "id",
     header: "ID",

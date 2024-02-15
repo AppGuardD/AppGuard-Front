@@ -1,5 +1,5 @@
 import type React from "react"
-import type { DetailType } from "@/redux/actions/actividadesActions"
+import type { DetailActTypes } from "@/redux/actions/actividadesActions"
 import { useNavigate, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { getIdActividad } from "@/redux/action-creators/actividades/getIdActividad"
@@ -10,7 +10,7 @@ import { Star } from "lucide-react"
 
 const DetailActividades: React.FC = () => {
   const { id } = useParams<{ id: string }>()
-  const detail: DetailType = useAppSelector(
+  const detail: DetailActTypes = useAppSelector(
     state => state.actividadesReducer.detail,
   )
   const dispatch = useAppDispatch()

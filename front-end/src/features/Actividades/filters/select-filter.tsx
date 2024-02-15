@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/select"
 import { getActividades } from "@/redux/action-creators/actividades/getActividades"
 import { useAppDispatch } from "@/redux/hooks"
+import { ListRestart } from "lucide-react"
 import { useState } from "react"
 
 const SelectFilterActividades: React.FC = () => {
@@ -35,9 +36,15 @@ const SelectFilterActividades: React.FC = () => {
     dispatch(getActividades({ type: type, state: state }))
   }
 
+  const handleClearFilters = () => {
+    setState("")
+    setType("")
+    dispatch(getActividades({ type: "", state: "" }))
+  }
+
   return (
     <>
-      <Select onValueChange={handleState}>
+      <Select onValueChange={handleState} value={state}>
         <SelectTrigger className="mr-2 w-[110px]">
           <SelectValue placeholder="Valor" />
         </SelectTrigger>
@@ -46,22 +53,30 @@ const SelectFilterActividades: React.FC = () => {
           <SelectItem value="Gratis">Gratis</SelectItem>
           <SelectItem value="Pago">Pago</SelectItem>
         </SelectContent>
+      </Select>
 
-        <Select onValueChange={handleType}>
-          <SelectTrigger className="mr-2 w-[110px]">
-            <SelectValue placeholder="Tipo" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="Todos">Tipo</SelectItem>
-            <SelectItem value="Deportivo">Deportivo</SelectItem>
-            <SelectItem value="Sanitario">Sanitario</SelectItem>
-            <SelectItem value="Cultural">Cultural</SelectItem>
-          </SelectContent>
-        </Select>
+      <Select onValueChange={handleType} value={type}>
+        <SelectTrigger className="mr-2 w-[110px]">
+          <SelectValue placeholder="Tipo" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="Todos">Tipo</SelectItem>
+          <SelectItem value="Deportivo">Deportivo</SelectItem>
+          <SelectItem value="Sanitario">Sanitario</SelectItem>
+          <SelectItem value="Cultural">Cultural</SelectItem>
+        </SelectContent>
       </Select>
 
       <Button onClick={handleFilter} variant={"outline"}>
         Filtrar
+      </Button>
+
+      <Button
+        className="ml-2 px-0 size-10"
+        onClick={handleClearFilters}
+        variant={"outline"}
+      >
+        <ListRestart className="size-5" />
       </Button>
     </>
   )

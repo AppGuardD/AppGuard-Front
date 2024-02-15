@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { useNavigate } from "react-router-dom"
-import type { DetailType } from "@/redux/actions/actividadesActions"
+import type { DetailActTypes } from "@/redux/actions/actividadesActions"
 import { Button } from "@/components/ui/button"
 import {
   ChevronRight,
@@ -21,13 +21,13 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import type { CartTypes } from "@/redux/actions/cartActions"
 
 interface CardsActividadesProps {
-  actividades: DetailType[]
+  actividades: DetailActTypes[]
 }
 
 const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
-  const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
   const userId = localStorage.getItem("USERID")
   const token = localStorage.getItem("TOKEN")
 
@@ -38,6 +38,18 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
       cantidad: 1,
     }
     dispatch(addCart({ data: actividad, token: token }))
+  }
+
+  console.log(actividades)
+
+  if (actividades.length === 0) {
+    return (
+      <div className="flex h-svh">
+        <p className="mx-auto mt-60 font-bold text-3xl">
+          No hay coincidencias.
+        </p>
+      </div>
+    )
   }
 
   return (
@@ -58,14 +70,23 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
           </CardContent>
           <CardFooter className="flex flex-col">
             <div className="grid grid-cols-2 place-items-center w-full px-8">
-              <div className="flex mr-auto">
-                <CircleDollarSign className="size-5 mr-2" />
-                <p>{actividad.price}</p>
-              </div>
-              <div className="flex ml-auto">
-                <Star className="size-5 mr-2" />
-                <p>{actividad.qualification}</p>
-              </div>
+              {actividad.price !== 0 ? (
+                <div className="flex mr-auto">
+                  <CircleDollarSign className="size-5 mr-2" />
+                  <p>{actividad.price}</p>
+                </div>
+              ) : (
+                <div className="flex mr-auto">
+                  <CircleDollarSign className="size-5 mr-2" />
+                  <p>Gratis</p>
+                </div>
+              )}
+              {actividad.qualification ? (
+                <div className="flex ml-auto">
+                  <Star className="size-5 mr-2" />
+                  <p>{actividad.qualification}</p>
+                </div>
+              ) : null}
             </div>
             <Separator className="mt-2" />
             <div className="flex justify-between">

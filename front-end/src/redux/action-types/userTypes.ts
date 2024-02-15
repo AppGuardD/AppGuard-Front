@@ -1,8 +1,8 @@
 export enum ActionType {
-  CLEAN = "clearUser",
-  GET = "getUser",
-  GET_ID = "getIdUser",
-  POST = "postUser",
   PUT = "putUser",
+  POST = "postUser",
+  GET_ADMIN = "getAdminUsers",
+  GET_ORDERS = "getAdminOrders",
+  ROL_EDIT = "putUser",
   DISABLE = "disableUser",
 }

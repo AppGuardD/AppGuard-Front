@@ -1,7 +1,5 @@
 import type React from "react"
 import Donacion from "../../assets/Donacion-.jpg"
-import { Button } from "@/components/ui/button"
-import rightArrow from "../../assets/right-arrow.svg"
 
 const Donations: React.FC = () => {
   return (
@@ -15,25 +13,20 @@ const Donations: React.FC = () => {
       </div>
       <div className="w-1/2 h-12 p-12">
         <p className="text-5xl mb-4 md:mb-6 lg:mb-8">
-          TU DONACIÓN ES IMPORTANTE
+          TU PARTICIPACION ES IMPORTANTE
         </p>
         <div className="mt-4 md:mt-6 lg:mt-8 text-justify">
           <p className="text-2xl">
             Desde AppGuard, valoramos enormemente la valiosa contribución de
             nuestros destacados guardavidas, cuya labor es preservar nuestra
             seguridad para que podamos disfrutar plenamente de todas las
-            actividades y playas que ofrecemos. Es por eso que facilitamos
-            medios directos de contribución para apoyarlos. ¡Únete a nosotros,
-            tu ayuda es fundamental! Tu participación marca la diferencia.
-            ¡Juntos hacemos posible un entorno más seguro y placentero para
-            todos!
+            actividades y playas que ofrecemos. Es por eso que tomamos la
+            importante decisión de destinar un porcentaje de las operaciones
+            realizadas cuando participan de una actividad publicada en nuestro
+            sitio con el fin de destinarlos directamente a este valioso grupo y
+            apoyarlos. ¡Tu participación marca la diferencia!. ¡Juntos hacemos
+            posible un entorno más seguro y placentero para todos!
           </p>
-        </div>
-        <div className="mt-8">
-          <Button variant={"outline"} className="text-xl">
-            DONAR
-            <img className="pl-2" src={rightArrow} alt="" />
-          </Button>
         </div>
       </div>
     </div>

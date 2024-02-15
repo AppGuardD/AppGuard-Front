@@ -34,7 +34,7 @@ import { useAppDispatch } from "@/redux/hooks"
 import UploadImageActivity from "./upload-image"
 import { useEffect, useState } from "react"
 import { CheckCircle2, Loader2 } from "lucide-react"
-import type { DetailType } from "@/redux/actions/actividadesActions"
+import type { DetailActTypes } from "@/redux/actions/actividadesActions"
 import { MoreHorizontalIcon } from "lucide-react"
 import { putAdminActividades } from "@/redux/action-creators/actividades/admin/admin-put-actividades"
 import { loadingImage } from "@/redux/action-creators/actividades/admin/image-loading"
@@ -54,7 +54,7 @@ const formSchema = z.object({
   type: z.enum(["Deportivo", "Sanitario", "Cultural"]),
 })
 
-const EditDialog: React.FC<DetailType> = (props: DetailType) => {
+const EditDialog: React.FC<DetailActTypes> = (props: DetailActTypes) => {
   const dispatch = useAppDispatch()
   const image = useAppSelector(state => state.actividadesReducer.image)
   const token = localStorage.getItem("TOKEN")
