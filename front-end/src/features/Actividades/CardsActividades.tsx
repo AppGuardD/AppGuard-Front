@@ -25,9 +25,9 @@ interface CardsActividadesProps {
 }
 
 const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
-  const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
   const userId = localStorage.getItem("USERID")
   const token = localStorage.getItem("TOKEN")
 
@@ -38,6 +38,18 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
       cantidad: 1,
     }
     dispatch(addCart({ data: actividad, token: token }))
+  }
+
+  console.log(actividades)
+
+  if (actividades.length === 0) {
+    return (
+      <div className="flex h-svh">
+        <p className="mx-auto mt-60 font-bold text-3xl">
+          No hay coincidencias.
+        </p>
+      </div>
+    )
   }
 
   return (

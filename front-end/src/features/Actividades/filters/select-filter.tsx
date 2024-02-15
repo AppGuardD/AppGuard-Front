@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/select"
 import { getActividades } from "@/redux/action-creators/actividades/getActividades"
 import { useAppDispatch } from "@/redux/hooks"
+import { ListRestart } from "lucide-react"
 import { useState } from "react"
 
 const SelectFilterActividades: React.FC = () => {
@@ -36,10 +37,10 @@ const SelectFilterActividades: React.FC = () => {
   }
 
   const handleClearFilters = () => {
-    setState("");
-    setType("");
+    setState("")
+    setType("")
     dispatch(getActividades({ type: "", state: "" }))
-  };
+  }
 
   return (
     <>
@@ -70,11 +71,16 @@ const SelectFilterActividades: React.FC = () => {
         Filtrar
       </Button>
 
-      <Button onClick={handleClearFilters} variant={"outline"}>
-        Limpiar Filtros
+      <Button
+        className="ml-2 px-0 size-10"
+        onClick={handleClearFilters}
+        variant={"outline"}
+      >
+        <ListRestart className="size-5" />
       </Button>
     </>
   )
 }
 
 export default SelectFilterActividades
+
