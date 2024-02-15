@@ -7,6 +7,7 @@ import loginReducer from "./loginReducer"
 import cartReducer from "./cartReducer"
 import reviewReducer from "./reviewReducer"
 import reviewMangrullosReducer from "./reviewMangrullosReducer"
+import orderReducer from "./ordersReducer"
 
 const reducer = combineReducers({
   mangrullosReducer: mangrullosReducer,
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   cartReducer: cartReducer,
   reviewReducer: reviewReducer,
   reviewMangrullosReducer: reviewMangrullosReducer,
+  orderReducer: orderReducer,
 })
 
 export default reducer
