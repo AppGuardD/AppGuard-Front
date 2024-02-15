@@ -18,7 +18,7 @@ export const Profile: React.FC = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(getUserOrders({ userId: userId, token: token }))
-  }, [dispatch])
+  }, [dispatch, userId, token])
 
   return (
     <div className="p-8 rounded w-96 h-svh">

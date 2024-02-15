@@ -38,8 +38,8 @@ const initialState: InitialState = {
   totalItems: 0,
   currentPage: 1,
 
-  urlAdmin: "",
   adminTable: [],
+  urlAdmin: "",
   totalPagesAdmin: 0,
   totalItemsAdmin: 0,
   currentPageAdmin: 1,

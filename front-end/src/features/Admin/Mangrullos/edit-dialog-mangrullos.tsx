@@ -1,12 +1,5 @@
 import { Button } from "@/components/ui/button"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -21,7 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import type { Mangrullo } from "@/redux/actions/mangrullosActions"
+import type { MangrulloAdmin } from "@/redux/actions/mangrullosActions"
 import type { SubmitHandler } from "react-hook-form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -29,32 +22,27 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { useAppSelector } from "@/redux/hooks"
-import { MultiSelect } from "@/components/ui/multiselect"
 import { useAppDispatch } from "@/redux/hooks"
-import UploadImageActivity from "./upload-image"
 import { useEffect, useState } from "react"
 import { CheckCircle2, Loader2 } from "lucide-react"
-import type { DetailActTypes } from "@/redux/actions/actividadesActions"
 import { MoreHorizontalIcon } from "lucide-react"
-import { putAdminActividades } from "@/redux/action-creators/actividades/admin/admin-put-actividades"
 import { loadingImage } from "@/redux/action-creators/actividades/admin/image-loading"
-import { disableActividades } from "@/redux/action-creators/actividades/admin/disable-actividades"
 import { DialogClose } from "@radix-ui/react-dialog"
+import UploadImageActivity from "@/features/Actividades/data-table/upload-image"
+import { putAdminMangrullos } from "@/redux/action-creators/mangrullos/admin/admin-put-mangrullos"
+import { disableMangrullos } from "@/redux/action-creators/mangrullos/admin/admin-disable-mangrullos"
 
 const formSchema = z.object({
-  activityName: z.string().min(2, {
+  zone: z.string().min(2, {
     message: "Este campo es obligatorio.",
   }),
   description: z.string().min(2, {
     message: "Este campo es obligatorio.",
   }),
-  price: z.optional(z.number()),
-  mangrullos: z.array(z.record(z.string().trim())),
-  state: z.enum(["Gratis", "Pago"]),
-  type: z.enum(["Deportivo", "Sanitario", "Cultural"]),
+  dangerousness: z.number(),
 })
 
-const EditDialog: React.FC<DetailActTypes> = (props: DetailActTypes) => {
+const EditDialogMangrullos: React.FC<MangrulloAdmin> = props => {
   const dispatch = useAppDispatch()
   const image = useAppSelector(state => state.actividadesReducer.image)
   const token = localStorage.getItem("TOKEN")
@@ -62,65 +50,62 @@ const EditDialog: React.FC<DetailActTypes> = (props: DetailActTypes) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      activityName: props.activityName,
+      zone: props.zone,
       description: props.description,
-      price: props.price,
-      mangrullos: [],
-      state: props.state,
-      type: props.type,
+      dangerousness: props.dangerousness,
     },
   })
 
   useEffect(() => {
     form.reset({
-      activityName: props.activityName,
+      zone: props.zone,
       description: props.description,
-      price: props.price,
-      mangrullos: [],
-      state: props.state,
-      type: props.type,
+      dangerousness: props.dangerousness,
     })
     if (image.length > 0) {
       dispatch(loadingImage(false))
     }
   }, [dispatch, image, props, form])
 
-  const urlAdmin: string = useAppSelector(
-    state => state.actividadesReducer.urlAdmin,
-  )
-  const currentPage: number = useAppSelector(
-    state => state.actividadesReducer.currentPageAdmin,
-  )
+  //const urlAdmin: string = useAppSelector(
+  //  state => state.actividadesReducer.urlAdmin,
+  //)
+  //const currentPage: number = useAppSelector(
+  //  state => state.actividadesReducer.currentPageAdmin,
+  //)
+
   const imageLoading = useAppSelector(
     state => state.actividadesReducer.imageLoading,
   )
-  const mangrullos: Mangrullo[] = useAppSelector(
-    state => state.mangrullosReducer.mangrullos,
-  )
-  const selectOptions = mangrullos.map(mangrullo => ({
-    value: mangrullo.id.toString(),
-    label: mangrullo.zone,
-  }))
   const [submitted, setSubmitted] = useState(false)
 
+  const urlAdmin: string = useAppSelector(
+    state => state.mangrullosReducer.urlAdmin,
+  )
+  const currentPage: number = useAppSelector(
+    state => state.mangrullosReducer.currentPageAdmin,
+  )
+
+  const handleDisable = () => {
+    console.log(props.id)
+    dispatch(
+      disableMangrullos({
+        id: props.id,
+        token: token,
+        oldUrl: urlAdmin,
+        page: currentPage,
+      }),
+    )
+  }
+
   const handleSubmit: SubmitHandler<z.infer<typeof formSchema>> = data => {
-    let activityData = {
-      activityName: data.activityName,
+    let mangrulloData = {
+      zone: data.zone,
       description: data.description,
-      price: data.price,
-      state: data.state,
-      type: data.type,
-      image: props.image,
+      dangerousness: data.dangerousness,
     }
 
-    let additional: { mangrullos?: string[] | number[]; image?: string } = {}
-
-    if (image.length > 0 && data.mangrullos.length > 0) {
-      additional = {
-        mangrullos: data.mangrullos.map(item => parseInt(item.value)),
-        image: image,
-      }
-    }
+    let additional: { image?: string } = {}
 
     if (image.length > 0) {
       additional = {
@@ -128,38 +113,14 @@ const EditDialog: React.FC<DetailActTypes> = (props: DetailActTypes) => {
       }
     }
 
-    if (data.mangrullos.length > 0) {
-      additional = {
-        mangrullos: data.mangrullos.map(item => parseInt(item.value)),
-      }
-    }
-
     const final = {
-      ...activityData,
+      ...mangrulloData,
       ...additional,
     }
 
     console.log(final)
-    dispatch(
-      putAdminActividades({
-        id: props.id,
-        form: final,
-        token: token,
-      }),
-    )
+    dispatch(putAdminMangrullos({ token: token, id: props.id, form: final }))
     setSubmitted(true)
-  }
-
-  const handleDisable = () => {
-    console.log(props.id)
-    dispatch(
-      disableActividades({
-        id: props.id,
-        token: token,
-        oldUrl: urlAdmin,
-        page: currentPage,
-      }),
-    )
   }
 
   return (
@@ -183,7 +144,7 @@ const EditDialog: React.FC<DetailActTypes> = (props: DetailActTypes) => {
             <div className="grid">
               <FormField
                 control={form.control}
-                name="activityName"
+                name="zone"
                 render={({ field }) => (
                   <FormItem className="h-14">
                     <div className="grid grid-cols-4 items-center gap-x-4 gap-y-1">
@@ -198,11 +159,13 @@ const EditDialog: React.FC<DetailActTypes> = (props: DetailActTypes) => {
               />
               <FormField
                 control={form.control}
-                name="price"
+                name="dangerousness"
                 render={({ field }) => (
-                  <FormItem className="h-14">
+                  <FormItem className="pt-4">
                     <div className="grid grid-cols-4 items-center gap-x-4 gap-y-1">
-                      <FormLabel className="text-right">Precio</FormLabel>
+                      <FormLabel className="text-right">
+                        Nivel Peligro
+                      </FormLabel>
                       <FormControl>
                         <Input
                           type="number"
@@ -210,79 +173,7 @@ const EditDialog: React.FC<DetailActTypes> = (props: DetailActTypes) => {
                           {...field}
                         />
                       </FormControl>
-                      <FormMessage className="col-start-2 col-end-5" />
-                    </div>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="type"
-                render={({ field }) => (
-                  <FormItem className="h-14">
-                    <div className="grid grid-cols-4 items-center gap-x-4 gap-y-1">
-                      <FormLabel className="text-right">Tipo</FormLabel>
-                      <Select
-                        defaultValue={field.value}
-                        onValueChange={field.onChange}
-                      >
-                        <FormControl>
-                          <SelectTrigger className="col-span-3">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="Deportivo">Deportivo</SelectItem>
-                          <SelectItem value="Sanitario">Sanitario</SelectItem>
-                          <SelectItem value="Cultural">Cultural</SelectItem>
-                        </SelectContent>
-                      </Select>
                       <FormMessage className="col-start-2 col-end-4" />
-                    </div>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="state"
-                render={({ field }) => (
-                  <FormItem className="h-14">
-                    <div className="grid grid-cols-4 items-center gap-x-4 gap-y-1">
-                      <FormLabel className="text-right">Modalidad</FormLabel>
-                      <Select
-                        defaultValue={field.value}
-                        onValueChange={field.onChange}
-                      >
-                        <FormControl>
-                          <SelectTrigger className="col-span-3">
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="Pago">Pago</SelectItem>
-                          <SelectItem value="Gratis">Gratis</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage className="col-start-2 col-end-4" />
-                    </div>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="mangrullos"
-                render={({ field }) => (
-                  <FormItem>
-                    <div className="grid grid-cols-4 items-center gap-x-4 gap-y-1">
-                      <FormLabel className="text-right">Mangrullo</FormLabel>
-                      <div className="col-span-3">
-                        <MultiSelect
-                          selected={field.value}
-                          options={selectOptions}
-                          {...field}
-                        />
-                      </div>
-                      <FormMessage className="col-start-2 col-end-5" />
                     </div>
                   </FormItem>
                 )}
@@ -322,14 +213,14 @@ const EditDialog: React.FC<DetailActTypes> = (props: DetailActTypes) => {
                 )
               ) : (
                 <Button className="w-36" variant={"ghost"} disabled>
-                  Actividad Editada
+                  Mangrullo Editado
                   <CheckCircle2 className="size-5 ml-2" />
                 </Button>
               )}
             </div>
           </form>
         </Form>
-        {!props.active ? (
+        {props.state !== "Activo" ? (
           <DialogClose className="flex justify-center m-auto" asChild>
             <Button
               variant={"secondary"}
@@ -355,4 +246,4 @@ const EditDialog: React.FC<DetailActTypes> = (props: DetailActTypes) => {
   )
 }
 
-export default EditDialog
+export default EditDialogMangrullos

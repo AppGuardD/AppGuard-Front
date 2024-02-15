@@ -9,7 +9,6 @@ const AdminActividades: React.FC = () => {
   const adminTable: DetailActTypes[] = useAppSelector(
     state => state.actividadesReducer.adminTable,
   )
-
   return (
     <div className="p-4 m-8 rounded border border-primary">
       <div className="flex justify-between">

@@ -3,15 +3,28 @@ import type {
   DetailMangrulloType,
   Mangrullo,
   Action,
+  MangrulloAdmin,
 } from "@/redux/actions/mangrullosActions"
 
 interface InitialState {
+  mangrullosTable: MangrulloAdmin[]
+  totalPagesAdmin: number
+  totalItemsAdmin: number
+  currentPageAdmin: number
+  urlAdmin: string
+
   totalPages: number
   mangrullos: Mangrullo[]
   detail: DetailMangrulloType
 }
 
 const initialState: InitialState = {
+  mangrullosTable: [],
+  totalPagesAdmin: 0,
+  totalItemsAdmin: 0,
+  currentPageAdmin: 1,
+  urlAdmin: "",
+
   totalPages: 0,
   mangrullos: [],
   detail: {
@@ -25,13 +38,18 @@ const initialState: InitialState = {
   },
 }
 
+const sort = (mangrullo: MangrulloAdmin[]) => {
+  const sorter = mangrullo.sort((a, b) => a?.id - b?.id)
+  return sorter
+}
+
 const mangrullosReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ActionType.CLEAN:
       return { ...state, mangrullos: action.payload }
 
     case ActionType.GET:
-      return { ...state, mangrullos: [...state.mangrullos, ...action.payload] }
+      return { ...state, mangrullos: action.payload }
 
     case ActionType.GET_ID:
       return {
@@ -39,14 +57,29 @@ const mangrullosReducer = (state = initialState, action: Action) => {
         detail: action.payload,
       }
     case ActionType.DISABLE:
-      return { ...state }
-    //
-    // case ActionType.POST:
-    //   return (state = action.payload)
-    //
-    // case ActionType.PUT:
-    //   return (state = action.payload)
-    //
+      return { ...state, mangrullosTable: action.payload }
+
+    case ActionType.GET_ADMIN:
+      return {
+        ...state,
+        urlAdmin: action.url,
+        mangrullosTable: sort(action.payload.requestData),
+        totalPagesAdmin: action.payload.pagination.totalPages,
+        totalItemsAdmin: action.payload.pagination.totalItems,
+        currentPageAdmin: action.payload.pagination.currentPage,
+      }
+
+    case ActionType.PAGE_ADMIN:
+      return {
+        ...state,
+        mangrullosTable: sort(action.payload.requestData),
+        totalPagesAdmin: action.payload.pagination.totalPages,
+        totalItemsAdmin: action.payload.pagination.totalItems,
+        currentPageAdmin: action.payload.pagination.currentPage,
+      }
+
+    case ActionType.CLEAN_ADMIN:
+      return { ...state, mangrullosTable: action.payload }
 
     default:
       return state

@@ -11,19 +11,24 @@ export interface UserTypes {
   state: string
 }
 
-interface cleanAction {
-  type: ActionType.CLEAN
-  payload: []
+export interface OrdersTypes {
+  id: number
+  date: string
+  totalValue: number
+  title: string
+  status: string
+  merchantId: string
+  userId: number
 }
 
-interface getAction {
-  type: ActionType.GET
-  payload: UserTypes
-}
-
-interface getIdAction {
-  type: ActionType.GET_ID
-  payload: UserTypes
+export interface AdminUserTypes {
+  id: number
+  userName: string
+  email: string
+  typeIdentification: string
+  numberIdentification: string
+  rol: string
+  state: string
 }
 
 interface postAction {
@@ -31,18 +36,27 @@ interface postAction {
   payload: UserTypes
 }
 
-interface putAction {
-  type: ActionType.PUT
+interface rolAction {
+  type: ActionType.ROL_EDIT
 }
 
 interface disableAction {
   type: ActionType.DISABLE
 }
 
+interface adminGetAction {
+  type: ActionType.GET_ADMIN
+  payload: []
+}
+
+interface orderGetAction {
+  type: ActionType.GET_ORDERS
+  payload: []
+}
+
 export type Action =
-  | cleanAction
-  | getAction
-  | getIdAction
   | postAction
-  | putAction
+  | rolAction
   | disableAction
+  | adminGetAction
+  | orderGetAction
