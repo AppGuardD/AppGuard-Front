@@ -14,14 +14,17 @@ import { Textarea } from "@/components/ui/textarea"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { createReviewActividades } from "@/redux/action-creators/reviews/postReview"
 import { useParams } from "react-router-dom"
+import { Separator } from "@/components/ui/separator"
+import { useEffect, useState } from "react"
+import { useToast } from "@/components/ui/use-toast"
 
 const formSchema = z.object({
   comment: z
     .string()
     .min(2, {
-      message: "Your review cannot be less than 2 characters",
+      message: "Tu review no puede contener menos de 2 caracteres",
     })
-    .max(120, { message: "Your review cannot be more than 120 characters" }),
+    .max(300, { message: "Tu review no puede tener más de 300 caracteres" }),
   qualification: z
     .number()
     .min(1, { message: "Puntuación mínima de 1" })
@@ -31,10 +34,14 @@ const formSchema = z.object({
 export function Review() {
   const dispatch = useAppDispatch()
   const { id } = useParams<{ id: string }>()
-  const userId = useAppSelector(state => state.userReducer.id)
+  const userId = localStorage.getItem("USERID")
+  const [hoveredStar, setHoveredStar] = useState<number | null>(null);
+  const token = localStorage.getItem("TOKEN")
+  const { toast } = useToast()
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const reviewData = {
-    userId: userId.toString(),
+    userId: userId,
     activityId: id,
   }
 
@@ -48,56 +55,73 @@ export function Review() {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     dispatch(
-      createReviewActividades({ reviewData: reviewData, formData: data }),
+      createReviewActividades({ token: token, reviewData: reviewData, formData: data }),
     )
+    setFormSubmitted(true);
+    handleClick(); 
   }
 
+  const handleClick = () => {
+    toast({
+      title:"Appguard",
+      description: "Se ha enviado tu review"
+    })  
+  };
   return (
-    <div className="flex flex-col">
-      <p className="text-2xl mx-auto">Review actividades</p>
+    <div className="flex flex-col items-center justify-center h-svh">
+      <p className="text-3xl mx-auto my-10">Comparte tu review</p>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col items-center"
+          className="flex flex-col items-center justify-center w-3/4 "
         >
           <FormField
             control={form.control}
             name="comment"
             render={({ field }) => (
-              <FormItem className="mt - 10">
-                <FormLabel className="mt-10">Dejanos tu review</FormLabel>
+              <FormItem className="mt - 10 w-3/4">
+                <FormLabel className="mt-10 text-2xl">Agrega un comentario escrito</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Ingrese un texto" {...field} />
+                  <Textarea className="min-h-44 text-2xl placeholder:text-slate-400 placeholder:italic" placeholder="¿Qué te gustó o qué no te gustó? Tu opinión es muy importante." {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-2xl"/>
               </FormItem>
             )}
           />
+          <Separator className="my-4 w-3/4" />
           <FormField
             control={form.control}
             name="qualification"
             render={({ field }) => (
-              <FormItem className="">
-                <FormLabel>Puntuación</FormLabel>
+              <FormItem className="text-2xl">
+                <FormLabel className="text-2xl">Puntuación</FormLabel>
                 <FormControl>
-                  <div>
-                    {[1, 2, 3, 4, 5].map(star => (
-                      <button
-                        key={star}
-                        type="button"
-                        onClick={() => form.setValue("qualification", star)}
-                        className={`text-3xl ${star <= form.getValues("qualification") ? "text-yellow-400" : "text-gray-300"} focus:outline-none`}
-                      >
-                        ★
-                      </button>
-                    ))}
+                  <div className="text-3xl">
+                  {[1, 2, 3, 4, 5].map(star => {
+                      const isHighlighted = star <= form.getValues("qualification");
+                      const isHovered = hoveredStar !== null && star <= hoveredStar; // Verificación de nulidad
+                      const shouldHighlight = isHighlighted || isHovered;
+                      return (
+                          <button
+                              key={star}
+                              type="button"
+                              onClick={() => form.setValue("qualification", star)}
+                              onMouseEnter={() => setHoveredStar(star)}
+                              onMouseLeave={() => setHoveredStar(null)}
+                              className={`text-3xl ${shouldHighlight ? "text-yellow-400" : "text-gray-300"} focus:outline-none`}
+                          >
+                              ★
+                          </button>
+                      );
+                  })}
                   </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Separator className="my-2 w-3/4" />
+          <Button type="submit" disabled={formSubmitted}>Submit</Button>
         </form>
       </Form>
     </div>

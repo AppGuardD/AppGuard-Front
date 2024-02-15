@@ -1,4 +1,5 @@
 export enum ActionType {
+  PUT = "putUser",
   POST = "postUser",
   GET_ADMIN = "getAdminUsers",
   GET_ORDERS = "getAdminOrders",

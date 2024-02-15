@@ -19,6 +19,7 @@ import { Separator } from "@/components/ui/separator"
 import { addCart } from "@/redux/action-creators/carrito/addCart"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import type { CartTypes } from "@/redux/actions/cartActions"
+import { useToast } from "@/components/ui/use-toast"
 
 interface CardsActividadesProps {
   actividades: DetailActTypes[]
@@ -30,8 +31,13 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
   const carrito: CartTypes = useAppSelector(state => state.cartReducer.carrito)
   const userId = localStorage.getItem("USERID")
   const token = localStorage.getItem("TOKEN")
+  const { toast } = useToast()
 
   const handleAddtoCart = (ActivityId: number) => {
+    toast({
+      title:"Appguard",
+      description: "Se ha añadido al carrito"
+    })  
     const actividad = {
       userId,
       ActivityId,
@@ -39,8 +45,6 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
     }
     dispatch(addCart({ data: actividad, token: token }))
   }
-
-  console.log(actividades)
 
   if (actividades.length === 0) {
     return (

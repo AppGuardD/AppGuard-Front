@@ -20,7 +20,7 @@ const loginReducer = (state = initialState, action: Action) => {
     case ActionType.LOGIN:
       return {
         ...state,
-        //user: [...state.email, action.payload],
+        user: [...state.email, action.payload] /*prueba*/,
         token: action.payload,
       }
 
