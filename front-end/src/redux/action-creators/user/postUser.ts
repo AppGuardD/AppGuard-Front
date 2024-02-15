@@ -9,7 +9,6 @@ interface UserData {
   password: string
   typeIdentification: string
   numberIdentification: string
-  rol: string
 }
 
 export function createUser(userData: UserData) {

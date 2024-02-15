@@ -1,26 +1,26 @@
 import { ActionType } from "../action-types/actividadesTypes"
 import type { Action } from "../actions/actividadesActions"
-import type { DetailType } from "../actions/actividadesActions"
+import type { DetailActTypes } from "../actions/actividadesActions"
 
 interface InitialState {
   type: "" | "Deportivo" | "Sanitario" | "Cultural"
   cost: "" | "Pago" | "Gratis"
   order: "" | "Mayor" | "Menor"
 
-  actividades: DetailType[]
-  actividadesCopy: DetailType[]
+  actividades: DetailActTypes[]
+  actividadesCopy: DetailActTypes[]
   totalPages: number
   totalItems: number
   currentPage: number
   url: string
 
-  adminTable: DetailType[]
+  adminTable: DetailActTypes[]
   totalPagesAdmin: number
   totalItemsAdmin: number
   currentPageAdmin: number
   urlAdmin: string
 
-  detail: DetailType
+  detail: DetailActTypes
 
   image: string
   imageLoading: boolean
@@ -46,7 +46,14 @@ const initialState: InitialState = {
 
   detail: {
     id: 0,
+    activityName: "",
+    description: "",
+    qualification: 0,
+    price: 0,
+    active: false,
+    image: "",
   },
+
   image: "",
   imageLoading: false,
 }

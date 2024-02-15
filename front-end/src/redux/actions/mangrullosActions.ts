@@ -1,4 +1,5 @@
 import type { ActionType } from "../action-types/mangrullosTypes"
+import type { DetailActTypes } from "./actividadesActions"
 
 export interface Mangrullo {
   id: number
@@ -9,37 +10,14 @@ export interface Mangrullo {
   qualification: number
 }
 
-export interface ActividadType {
-  activity?: [
-    {
-      activityName: string
-      description: string
-      qualification: number
-      price: number
-      state: string
-      type: string
-      image?: string
-    },
-  ]
-}
-
-export interface DetailType {
-  id?: number
-  zone?: string
-  state?: string
-  image?: string
-  dangerousness?: number
-  qualification?: number
-  activity?: [
-    {
-      activityName: string
-      description: string
-      qualification: number
-      price: number
-      state: string
-      type: string
-    },
-  ]
+export interface DetailMangrulloType {
+  activity: DetailActTypes[]
+  id: number
+  dangerousness: number
+  qualification: number
+  zone: string
+  state: string
+  image: string
 }
 
 interface cleanAction {
@@ -54,7 +32,7 @@ interface getAction {
 
 interface getIdAction {
   type: ActionType.GET_ID
-  payload: Mangrullo
+  payload: DetailMangrulloType
 }
 
 interface postAction {

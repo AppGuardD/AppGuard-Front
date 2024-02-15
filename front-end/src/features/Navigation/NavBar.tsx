@@ -4,7 +4,8 @@ import logo from "../../assets/logo-appguard.svg"
 import cartIcon from "../../assets/shopping-cart.svg"
 import { jwtDecode } from "jwt-decode"
 import { Badge } from "@/components/ui/badge"
-import { User } from "lucide-react"
+import { ShoppingCart, Siren, User } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 interface JwtPayload {
   email: string
@@ -28,11 +29,9 @@ const NavBar: React.FC = () => {
     }
   }, [token])
 
-
   const handleEmergencyCall = () => {
-    window.location.href = "https://www.argentina.gob.ar/tema/emergencias";
-  };
-
+    window.location.href = "https://www.argentina.gob.ar/tema/emergencias"
+  }
 
   return (
     <nav className="flex items-center justify-between flex-wrap p-4 mb-4 border-b">
@@ -48,60 +47,71 @@ const NavBar: React.FC = () => {
             <User className="ml-2" />
           </Badge>
         )}
-        <button
+        <Button
+          className="ml-2 font-bold text-md"
+          variant={"link"}
           onClick={handleEmergencyCall}
-          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
         >
           EMERGENCIAS
-        </button>
+          <Siren className="size-5 ml-2" />
+        </Button>
       </div>
       <div>
-        <button
+        <Button
+          className="ml-2 font-bold text-md"
+          variant={"link"}
           onClick={() => navigate("/")}
-          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
         >
           INICIO
-        </button>
-        <button
+        </Button>
+        <Button
+          className="ml-2 font-bold text-md"
+          variant={"link"}
           onClick={() => navigate("/home")}
-          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
         >
           SERVICIOS
-        </button>
-        <button
+        </Button>
+        <Button
+          className="ml-2 font-bold text-md"
+          variant={"link"}
           onClick={() => navigate("/donations")}
-          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
         >
-          DONACIONES
-        </button>
-        <button
+          MISION
+        </Button>
+        <Button
+          className="ml-2 font-bold text-md"
+          variant={"link"}
           onClick={() => navigate("/about")}
-          className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
         >
           QUIENES SOMOS
-        </button>
+        </Button>
+
         {!user && (
-          <button
+          <Button
+            className="ml-2 font-bold text-md"
+            variant={"link"}
             onClick={() => navigate("/users")}
-            className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
           >
             INICIAR SESION
-          </button>
+          </Button>
         )}
         {user?.rol === "Admin" && (
-          <button
+          <Button
+            className="ml-2 font-bold text-md"
+            variant={"link"}
             onClick={() => navigate("/admin")}
-            className="transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
           >
             ADMIN
-          </button>
+          </Button>
         )}
-        <button
+        <Button
+          className="ml-2 font-bold m-0 text-md"
+          variant={"link"}
           onClick={() => navigate("/cart")}
-          className="align-middle transition ease-in-out delay-150 py-1 px-2 mx-6 hover:ring-2 ring-accent rounded"
         >
-          <img src={cartIcon} alt="Icono de carro de compras" />
-        </button>
+          CARRITO
+          <ShoppingCart className="size-5 ml-2" />
+        </Button>
       </div>
     </nav>
   )

@@ -1,31 +1,27 @@
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
-import { useAppSelector } from "@/redux/hooks"
+import { useEffect } from "react"
 
 const LoginButton = () => {
-  const token = useAppSelector(state => state.loginReducer.token)
+  const token = localStorage.getItem("TOKEN")
   const navigate = useNavigate()
   const { toast } = useToast()
 
-  const logInHandler = () => {
+  useEffect(() => {
     if (token) {
       toast({
         title: "AppGuard",
         description: "Has iniciado sesion.",
       })
-      navigate("/profile")
-      window.location.reload()
-    } else {
-      toast({
-        title: "AppGuard",
-        description: "Email o password incorrecto",
-      })
+      setTimeout(() => {
+        navigate("/home")
+      }, 1000)
     }
-  }
+  }, [token, navigate, toast])
 
   return (
-    <Button type="submit" variant={"secondary"} onClick={logInHandler}>
+    <Button className="mr-auto" type="submit" variant={"secondary"}>
       Iniciar Sesion
     </Button>
   )

@@ -16,11 +16,15 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useAppDispatch } from "@/redux/hooks"
 import { createUser } from "@/redux/action-creators/user/postUser"
 import { z } from "zod"
+import RegisterButton from "./register-button"
+import { useToast } from "@/components/ui/use-toast"
+import { tabAtom } from "@/views/Users/tabAtom"
+import { useAtom } from "jotai"
+import { Button } from "@/components/ui/button"
 
 const formSchema = z.object({
   userName: z.string().min(2, {
@@ -36,10 +40,11 @@ const formSchema = z.object({
     message: "Este campo es obligatorio",
   }),
   typeIdentification: z.enum(["DNI", "PP"]),
-  rol: z.enum(["Admin", "Cliente"]),
 })
 
 const CreateUserForm: React.FC = () => {
+  const { toast } = useToast()
+  const [tab, setTab] = useAtom(tabAtom)
   const dispatch = useAppDispatch()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -49,13 +54,19 @@ const CreateUserForm: React.FC = () => {
       password: "",
       typeIdentification: "DNI",
       numberIdentification: "",
-      rol: "Cliente",
     },
   })
 
   const handleSubmit: SubmitHandler<z.infer<typeof formSchema>> = data => {
     console.log(data)
     dispatch(createUser(data))
+    toast({
+      title: "AppGuard",
+      description: "Cuenta creada!",
+    })
+    setTimeout(() => {
+      setTab("login")
+    }, 500)
   }
 
   return (
@@ -133,30 +144,6 @@ const CreateUserForm: React.FC = () => {
                       <SelectContent>
                         <SelectItem value="DNI">DNI</SelectItem>
                         <SelectItem value="PP">Pasaporte</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="rol"
-                render={({ field }) => (
-                  <FormItem className="h-24">
-                    <FormLabel>Tipo de cuenta</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="Admin">Administrador</SelectItem>
-                        <SelectItem value="Cliente">Cliente</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />

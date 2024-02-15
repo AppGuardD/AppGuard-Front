@@ -31,7 +31,8 @@ const Admin: React.FC = () => {
           <TabsList>
             <TabsTrigger value="actividades">Actividades</TabsTrigger>
             <TabsTrigger value="mangrullos">Mangrullos</TabsTrigger>
-            <TabsTrigger value="consejos">Consejos</TabsTrigger>
+            <TabsTrigger value="usuarios">Usuarios</TabsTrigger>
+            <TabsTrigger value="ordenes">Ordenes</TabsTrigger>
           </TabsList>
         </div>
         <div>
@@ -41,7 +42,8 @@ const Admin: React.FC = () => {
           <TabsContent value="mangrullos">
             <AdminMangrullos />
           </TabsContent>
-          <TabsContent value="consejos">3</TabsContent>
+          <TabsContent value="usuarios">usuarios</TabsContent>
+          <TabsContent value="ordenes">ordenes</TabsContent>
         </div>
       </Tabs>
     </div>

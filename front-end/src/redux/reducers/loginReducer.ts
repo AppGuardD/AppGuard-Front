@@ -5,14 +5,14 @@ interface InitialState {
   email: string
   password: string
   token: string
-  errorLogin: string
+  errorLogin: string | null
 }
 
 const initialState: InitialState = {
   email: "",
   password: "",
   token: "",
-  errorLogin: "",
+  errorLogin: null,
 }
 
 const loginReducer = (state = initialState, action: Action) => {

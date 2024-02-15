@@ -1,6 +1,6 @@
 import { ActionType } from "@/redux/action-types/mangrullosTypes"
 import type {
-  DetailType,
+  DetailMangrulloType,
   Mangrullo,
   Action,
 } from "@/redux/actions/mangrullosActions"
@@ -8,13 +8,21 @@ import type {
 interface InitialState {
   totalPages: number
   mangrullos: Mangrullo[]
-  detail: DetailType
+  detail: DetailMangrulloType
 }
 
 const initialState: InitialState = {
   totalPages: 0,
   mangrullos: [],
-  detail: {},
+  detail: {
+    activity: [],
+    id: 0,
+    dangerousness: 0,
+    qualification: 0,
+    zone: "",
+    state: "",
+    image: "",
+  },
 }
 
 const mangrullosReducer = (state = initialState, action: Action) => {
