@@ -14,6 +14,8 @@ const AdminMangrullos: React.FC = () => {
     state => state.mangrullosReducer.mangrullosTable,
   )
 
+  console.log(mangrullosTable)
+
   useEffect(() => {
     dispatch(getAdminMangrullos({ token: token }))
   }, [dispatch, token])

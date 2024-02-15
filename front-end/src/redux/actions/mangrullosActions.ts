@@ -1,6 +1,16 @@
 import type { ActionType } from "../action-types/mangrullosTypes"
 import type { DetailActTypes } from "./actividadesActions"
 
+export interface MangrulloAdmin {
+  id: number
+  zone: string
+  state: string
+  image: string
+  dangerousness: number
+  qualification: number
+  description: string
+}
+
 export interface ResponseDataMangrullo {
   pagination: {
     totalPages: number
@@ -17,16 +27,6 @@ export interface Mangrullo {
   image: string
   dangerousness: number
   qualification: number
-}
-
-export interface MangrulloAdmin {
-  id: number
-  zone: string
-  state: string
-  image: string
-  dangerousness: number
-  qualification: number
-  description: string
 }
 
 export interface DetailMangrulloType {
@@ -60,7 +60,7 @@ interface putAction {
 
 interface disableAction {
   type: ActionType.DISABLE
-  payload: ResponseDataMangrullo
+  payload: MangrulloAdmin[]
 }
 
 interface getAdminAction {
