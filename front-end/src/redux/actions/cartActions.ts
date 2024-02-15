@@ -43,9 +43,14 @@ interface paymentAction {
   payload: []
 }
 
+interface successAction {
+  type: ActionType.SUCCESS_CART
+}
+
 export type Action =
   | addAction
   | getAction
   | deleteAction
   | removeAction
   | paymentAction
+  | successAction

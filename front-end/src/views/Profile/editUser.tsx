@@ -1,4 +1,3 @@
-import LoginForm from "../../features/Auth/Login/Login"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -14,6 +13,7 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { useAppDispatch } from "@/redux/hooks"
 import { updateUser } from "@/redux/action-creators/user/putUser"
+import LoginFormProfile from "@/features/Auth/Login/login-profile"
 
 const formSchema = z.object({
   password: z
@@ -84,7 +84,7 @@ export function EditUserData() {
           </form>
         </Form>
       ) : (
-        <LoginForm />
+        <LoginFormProfile />
       )}
     </div>
   )

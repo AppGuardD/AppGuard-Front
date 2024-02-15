@@ -3,8 +3,10 @@ import PagesActividades from "./pages"
 import SearchInputActividades from "./search-input"
 import SelectFilterActividades from "./select-filter"
 import { useNavigate } from "react-router-dom"
+import { Badge } from "@/components/ui/badge"
 
 const FilterActividades: React.FC = () => {
+  const token = localStorage.getItem("TOKEN")
   const navigate = useNavigate()
 
   return (
@@ -17,7 +19,14 @@ const FilterActividades: React.FC = () => {
         >
           Atras
         </Button>
-        <p className="text-3xl">Todas las Actividades</p>
+        <p className="text-3xl">
+          Todas las Actividades
+          {!token ? (
+            <Badge onClick={() => navigate("/users")}>
+              Inicia sesion para comprar
+            </Badge>
+          ) : null}
+        </p>
       </div>
       <div className="flex basis-1/3">
         <PagesActividades />

@@ -35,9 +35,9 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
 
   const handleAddtoCart = (ActivityId: number) => {
     toast({
-      title:"Appguard",
-      description: "Se ha añadido al carrito"
-    })  
+      title: "Appguard",
+      description: "Se ha añadido al carrito",
+    })
     const actividad = {
       userId,
       ActivityId,
@@ -101,9 +101,14 @@ const CardsActividades: React.FC<CardsActividadesProps> = ({ actividades }) => {
                 Conocer mas
                 <ChevronRight className="size-5 ml-2" />
               </Button>
-              {carrito.detalle_carrito.some(
-                carrito => carrito.Activity.id === actividad.id,
-              ) ? (
+              {!token ? (
+                <Button variant={"ghost"} disabled>
+                  Añadir al carrito
+                  <ShoppingCart className="size-5 ml-2" />
+                </Button>
+              ) : carrito.detalle_carrito.some(
+                  carrito => carrito.Activity.id === actividad.id,
+                ) ? (
                 <Button variant={"ghost"} disabled>
                   Añadir al carrito
                   <ShoppingCart className="size-5 ml-2" />

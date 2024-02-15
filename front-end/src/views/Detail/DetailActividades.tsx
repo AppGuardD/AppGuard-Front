@@ -7,18 +7,21 @@ import { useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Star } from "lucide-react"
+import { getReviews } from "@/redux/action-creators/reviews/getReview"
 
 const DetailActividades: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const detail: DetailActTypes = useAppSelector(
     state => state.actividadesReducer.detail,
   )
+  const reviews = useAppSelector(state => state.reviewReducer.review)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
     try {
       dispatch(getIdActividad(id))
+      dispatch(getReviews())
     } catch (error) {
       console.error("Error fetching data:", error)
     }
@@ -72,9 +75,28 @@ const DetailActividades: React.FC = () => {
               {detail.type}
             </p>
             <div>
-              <Button onClick={() => navigate(`/review/${detail.id}`)}>
+              <Button
+                className="mt-4"
+                variant={"outline"}
+                onClick={() => navigate(`/review/${detail.id}`)}
+              >
                 Deja tu review
               </Button>
+              <div className="border p-2 rounded mt-4">
+                <p>Reviews</p>
+                {reviews.map(item => (
+                  <div
+                    className="m-2 p-2 border flex justify-between rounded"
+                    key={item.id}
+                  >
+                    <p>{item.comment}</p>
+                    <div className="flex">
+                      <p>{item.qualification}</p>
+                      <Star className="size-5 ml-2"></Star>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

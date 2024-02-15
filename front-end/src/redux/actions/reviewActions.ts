@@ -1,18 +1,19 @@
 import type { ReviewType } from "../action-types/reviewTypes"
+import type { ReviewReducer } from "../reducers/reviewReducer"
 
-export interface ReviewTypes {
+interface PostTypes {
   comment: string
   qualification: number
 }
 
 interface getAction {
   type: ReviewType.GET
-  payload: ReviewTypes[]
+  payload: ReviewReducer[]
 }
 
 interface postAction {
   type: ReviewType.POST
-  payload: ReviewTypes
+  payload: PostTypes
 }
 
 interface deleteAction {

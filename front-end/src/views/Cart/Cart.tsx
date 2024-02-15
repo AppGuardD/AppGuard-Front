@@ -15,8 +15,9 @@ import { removeItem } from "@/redux/action-creators/carrito/removeItem"
 import { Card } from "@/components/ui/card"
 import type { CartTypes } from "@/redux/actions/cartActions"
 import { Separator } from "@/components/ui/separator"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { paymentCart } from "@/redux/action-creators/carrito/payment"
+import { successCart } from "@/redux/action-creators/carrito/cleanCar"
 
 const Cart: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -25,6 +26,8 @@ const Cart: React.FC = () => {
   const carritoId = useAppSelector(state => state.cartReducer.carritoId)
   const userId = localStorage.getItem("USERID")
   const token = localStorage.getItem("TOKEN")
+  const [searchParams, setSearchParams] = useSearchParams()
+  const searchValue = searchParams.get("state")
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,6 +71,29 @@ const Cart: React.FC = () => {
       unit_price: item.Activity.price,
     }))
     dispatch(paymentCart({ id: userId, token: token, carrito: arrayItemsPay }))
+  }
+  if (searchValue === "success") {
+    dispatch(successCart({ token: token, userId: userId }))
+    return (
+      <div className="h-svh">
+        <div className="w-max mx-auto mt-72">
+          <p className="font-bold text-2xl text-center">
+            Tu compra se ha realizado correctamente!
+          </p>
+          <p className="font-bold text-xl text-center">
+            Revisa tu correo para ver la factura.
+          </p>
+          <Separator className="my-2" />
+          <Button
+            className="text-xl"
+            variant={"link"}
+            onClick={() => navigate("/actividades")}
+          >
+            Selecciona actividades para agregar al carrito.
+          </Button>
+        </div>
+      </div>
+    )
   }
 
   return (

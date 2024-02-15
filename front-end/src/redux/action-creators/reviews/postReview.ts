@@ -26,20 +26,19 @@ export function createReviewActividades(options: {
         comment: options.formData.comment,
         qualification: options.formData.qualification,
       }
-      
+
       const response = await instance({
         method: "post",
         url: `/reviewActivity/create/`,
         headers: { tk: options.token },
-        data: requestData
+        data: requestData,
       })
 
       dispatch({
         type: ReviewType.POST,
         payload: response.data,
       })
-      console.log(response.data);
-      
+      console.log(response.data)
     } catch (error) {
       console.error("Error creating review", error)
     }

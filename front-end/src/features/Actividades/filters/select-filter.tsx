@@ -43,7 +43,7 @@ const SelectFilterActividades: React.FC = () => {
   }
 
   return (
-    <>
+    <div className="flex my-auto">
       <Select onValueChange={handleState} value={state}>
         <SelectTrigger className="mr-2 w-[110px]">
           <SelectValue placeholder="Valor" />
@@ -78,7 +78,7 @@ const SelectFilterActividades: React.FC = () => {
       >
         <ListRestart className="size-5" />
       </Button>
-    </>
+    </div>
   )
 }
 

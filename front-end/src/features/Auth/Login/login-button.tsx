@@ -21,9 +21,11 @@ const LoginButton = () => {
   }, [token, navigate, toast])
 
   return (
-    <Button className="mr-auto" type="submit" variant={"secondary"}>
-      Iniciar Sesion
-    </Button>
+    <>
+      <Button className="mr-auto" type="submit" variant={"secondary"}>
+        Iniciar Sesion
+      </Button>
+    </>
   )
 }
 
